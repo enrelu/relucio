@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import '../styles/global.css'
 
 interface Props {
 	title: string;
@@ -44,7 +45,6 @@ const { title, description = "Enrique Relucio Portfolio", showHeader = true } = 
 </html>
 
 <style is:global>
-@import "tailwindcss";
 	html {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
