@@ -5,14 +5,24 @@ import Layout from '../../layouts/Layout.astro';
 // 1. Generamos las rutas para cada post
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
-	return posts.map((post) => ({
+	
+	// 1. Ordenamos por fecha (del más nuevo al más antiguo)
+	const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+	return sortedPosts.map((post, index) => ({
 		params: { slug: post.slug },
-		props: post,
+		props: { 
+			post,
+			// El "Siguiente" es el índice anterior (porque es más nuevo)
+			// El "Anterior" es el índice siguiente (porque es más viejo)
+			nextPost: index > 0 ? sortedPosts[index - 1] : null,
+			prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+		},
 	}));
 }
 
 // 2. Obtenemos los datos del post actual
-const post = Astro.props;
+const { post, prevPost, nextPost } = Astro.props;
 const { Content } = await post.render();
 
 // 3. Extraemos las propiedades (Frontmatter)
@@ -78,6 +88,37 @@ const formattedDate = pubDate.toLocaleDateString('es-ES', {
 			</div>
 
 		</article>
+
+		{/* NAVEGACIÓN ENTRE ARTÍCULOS (NUEVO) */}
+		<div class="flex flex-col sm:flex-row justify-between gap-4 mt-16 mb-8">
+			{/* Botón Anterior (Más antiguo) */}
+			{prevPost ? (
+				<a href={`/blog/${prevPost.slug}/`} class="group flex flex-col gap-1 text-left sm:max-w-[45%]">
+					<span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+						← Anterior
+					</span>
+					<span class="text-sm font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors line-clamp-2">
+						{prevPost.data.title}
+					</span>
+				</a>
+			) : (
+				<div /> /* Espaciador vacío si no hay anterior */
+			)}
+
+			{/* Botón Siguiente (Más nuevo) */}
+			{nextPost ? (
+				<a href={`/blog/${nextPost.slug}/`} class="group flex flex-col gap-1 text-right sm:max-w-[45%] items-end">
+					<span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+						Siguiente →
+					</span>
+					<span class="text-sm font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors line-clamp-2">
+						{nextPost.data.title}
+					</span>
+				</a>
+			) : (
+				<div /> 
+			)}
+		</div>
 
 		{/* NAVEGACIÓN INFERIOR */}
 		<div class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex justify-between items-center">
