@@ -4,9 +4,8 @@ interface Props {
   title: string;
   date: Date;
   url: string;
-  // Hacemos que la imagen sea opcional (?) por si algún post no tiene
   heroImage?: string;
-  category: string; // Asumimos que category siempre viene (o tiene default en el padre)
+  category: string;
   tags: string[];
 }
 
@@ -77,3 +76,4 @@ const formattedDate = date.toLocaleDateString('es-ES', {
   </div>
 
 </article>
+

@@ -1,14 +1,18 @@
 ---
+// src/components/Section.astro
 interface Props {
-	title: string;
+  title: string;
+  id?: string; // <-- Aceptamos la propiedad opcional id
 }
-const { title } = Astro.props;
+
+const { title, id } = Astro.props;
 ---
-<section class="flex flex-col gap-6">
-    <h2 class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 uppercase tracking-wider">
-        {title}
-    </h2>
-    <div class="flex flex-col gap-4">
-        <slot />
-    </div>
+
+<section id={id} class="flex flex-col gap-6 mt-12 scroll-mt-24">
+  <h2 class="text-2xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50">
+    {title}
+  </h2>
+  <div>
+    <slot />
+  </div>
 </section>

@@ -1,10 +1,15 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
 interface Props {
 	title: string;
 	description?: string;
+    showHeader?: boolean;
 }
 
-const { title, description = "Design Engineer Portfolio" } = Astro.props;
+// 2. Le damos valor por defecto true (si no dices nada, se muestra)
+const { title, description = "Enrique Relucio Portfolio", showHeader = true } = Astro.props;
 ---
 
 <!doctype html>
@@ -20,30 +25,32 @@ const { title, description = "Design Engineer Portfolio" } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body class="bg-white dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 min-h-screen selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900">
-		<slot />
+		
+		<main class="max-w-2xl mx-auto px-6 pt-12 pb-32 mb-32 md:pt-20 md:pb-40 flex flex-col min-h-screen">
+			
+			{showHeader && <Header />}
+
+			<div class="flex-grow">
+				<slot />
+			</div>
+			<div class="mb-20">
+				
+			</div>
+			<Footer />
+
+		</main>
+
 	</body>
 </html>
 
 <style is:global>
 @import "tailwindcss";
-	/* El secreto de la nitidez */
 	html {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
-	
-	/* Estilos base para scrollbar minimalista (opcional) */
-	::-webkit-scrollbar {
-		width: 8px;
-	}
-	::-webkit-scrollbar-track {
-		background: transparent;
-	}
-	::-webkit-scrollbar-thumb {
-		background-color: #e4e4e7;
-		border-radius: 20px;
-	}
-	.dark ::-webkit-scrollbar-thumb {
-		background-color: #27272a;
-	}
+	::-webkit-scrollbar { width: 8px; }
+	::-webkit-scrollbar-track { background: transparent; }
+	::-webkit-scrollbar-thumb { background-color: #e4e4e7; border-radius: 20px; }
+	.dark ::-webkit-scrollbar-thumb { background-color: #27272a; }
 </style>

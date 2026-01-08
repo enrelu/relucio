@@ -1,8 +1,8 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
-// Esto genera las rutas estáticas para cada post
+// 1. Generamos las rutas para cada post
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
@@ -10,30 +10,83 @@ export async function getStaticPaths() {
 		props: post,
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
+// 2. Obtenemos los datos del post actual
 const post = Astro.props;
 const { Content } = await post.render();
+
+// 3. Extraemos las propiedades (Frontmatter)
+const { title, description, pubDate, updatedDate, heroImage, category = 'General', tags = [] } = post.data;
+
+const formattedDate = pubDate.toLocaleDateString('es-ES', {
+	year: 'numeric',
+	month: 'short',
+	day: 'numeric',
+});
 ---
 
-<Layout title={post.data.title} description={post.data.description}>
-	<main class="max-w-2xl mx-auto px-6 py-24 md:py-32">
-        <header class="mb-10 flex flex-col gap-4">
-            <a href="/" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
-                ← Volver al inicio
-            </a>
-            <h1 class="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-                {post.data.title}
-            </h1>
-            <div class="flex gap-4 text-sm text-zinc-500">
-                <time datetime={post.data.pubDate.toISOString()}>
-                    {post.data.pubDate.toLocaleDateString('es-ES', { dateStyle: 'long' })}
-                </time>
-            </div>
-        </header>
-        
-        <article class="prose prose-zinc dark:prose-invert prose-headings:font-medium prose-a:text-zinc-900 dark:prose-a:text-white prose-a:no-underline hover:prose-a:underline">
-			<Content />
+<Layout title={title} description={description}>
+		<article class="flex flex-col gap-8">
+			
+			{/* CABECERA DEL ARTÍCULO */}
+			<header class="flex flex-col gap-4">
+				
+				
+
+				{/* Título */}
+				<h1 class="text-3xl pt-10 md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+					{title}
+				</h1>
+				{/* Meta superior: Fecha y Categoría */}
+				<div class="flex items-center gap-3 text-sm">
+					<span class="text-zinc-400 font-mono">{formattedDate}</span>
+					<span class="text-zinc-300 dark:text-zinc-700">|</span>
+					<a href={`/blog/category/${category}`} class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider hover:underline">
+						{category}
+					</a>
+				</div>
+
+				{/* Etiquetas (Tags) */}
+				{tags && tags.length > 0 && (
+					<div class="flex flex-wrap gap-2 mt-2">
+						{tags.map((tag) => (
+							<a 
+								href={`/blog/tag/${tag}`} 
+								class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-xs font-medium"
+							>
+								#{tag}
+							</a>
+						))}
+					</div>
+				)}
+			</header>
+
+			{/* IMAGEN DE PORTADA (HERO IMAGE) */}
+			{heroImage && (
+				<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800">
+					<img
+						src={heroImage}
+						alt=""
+						class="object-cover w-full h-full"
+					/>
+				</div>
+			)}
+
+			{/* CONTENIDO DEL POST */}
+			<div class="prose prose-zinc dark:prose-invert max-w-none mt-4 prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-lg">
+				<Content />
+			</div>
+
 		</article>
-	</main>
+
+		{/* NAVEGACIÓN INFERIOR */}
+		<div class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex justify-between items-center">
+			<a href="/blog" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+				← Volver al blog
+			</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+				Subir ↑
+			</a>
+		</div>
+        
 </Layout>
