@@ -11,128 +11,193 @@ import { getCollection } from 'astro:content';
 // PROYECTOS (Añadido campo 'details' con texto extendido)
 const projects = [
   {
-    id: "proj-1",
-    title: "Servicio Virtual CISO",
-    category: "consultoria",
-    client: "Hispasat",
-    summary: "Gestión de riesgos y coordinación de seguridad integral.",
-    details: `Responsable de la definición del Plan Director de Seguridad alineado con los objetivos de negocio. Implantación de normativas ISO 27001 y Esquema Nacional de Seguridad (ENS).
+  id: "proj-1",
+  title: "EmotionScore: Algoritmo de Calidad Deportiva (LLES)",
+  category: "desarrollo",
+  client: "Proyecto Personal (Open Source)",
+  summary: "Desarrollo de un modelo matemático predictivo para calificar la 'espectacularidad' deportiva sin spoilers.",
+  details: `Diseño y desarrollo integral de una plataforma que resuelve la "Paradoja del Spoiler" mediante el procesamiento de métricas avanzadas. El sistema ingesta datos de La Liga y aplica un algoritmo propio (LLES) para puntuar partidos del 0 al 5 basándose en la narrativa del juego y no solo en el resultado.
 
-    Supervisión directa de auditorías internas y gestión de incidentes críticos, actuando como enlace principal entre el equipo técnico y el comité de dirección.`,
-    year: "2022"
-  },
+  Arquitectura y Desafíos Técnicos:
+  - Ingeniería de Datos (ETL): Pipeline en Python (Pandas/Numpy) con extracción asíncrona (asyncio/aiohttp) de múltiples fuentes de datos (Understat, StatsBomb).
+  - Modelado Matemático: Creación de un algoritmo multifactorial que pondera Goles Esperados (xG), Volatilidad de Victoria (WPA) e Índices de Caos para calcular la "Tensión Competitiva".
+  - Full Stack: Backend ligero en FastAPI y Frontend en React diseñado con "Modo Ciego" para ocultar el marcador final.
+
+  Impacto:
+  - Innovación: Creación de métricas propias (IAO - Índice de Amenaza Ofensiva) normalizadas contra datos históricos.
+  - Escalabilidad: Arquitectura preparada para procesar temporadas históricas y generar recomendaciones automatizadas.`,
+  year: "2026"
+},
   {
-    id: "proj-2",
-    title: "Auditoría de Seguridad OT",
-    category: "consultoria",
-    client: "Grupo Mahou San Miguel",
-    summary: "Evaluación de vulnerabilidades en infraestructura industrial.",
-    details: `Ejecución de pentesting en entornos SCADA/ICS bajo la normativa IEC 62443 sin afectar la disponibilidad de la planta. 
-    
-    Elaboración de informes de impacto de negocio y roadmap de remediación para segregar redes IT/OT y securizar accesos remotos de proveedores.`,
-    year: "2021"
-  },
+  id: "proj-2",
+  title: "Gobierno del Dato & DLP",
+  category: "consultoria",
+  client: "Entidad Bancaria Tier-1",
+  summary: "Implementación de arquitectura Data-Centric Security para cumplimiento DORA/GDPR.",
+  details: `Despliegue de una estrategia de seguridad centrada en el dato para resolver riesgos críticos de fuga de información y cumplimiento normativo. Se sustituyó un modelo ineficiente por clasificación automática y políticas unificadas en Endpoint y Cloud.
+
+  Resultados e Impacto:
+  - Volumen de Negocio: Cierre de contrato de 350.000€ (Licencias + Servicios) con validación directa de CISO y DPO.
+  - Eficiencia Operativa: Reducción del 85% de falsos positivos, eliminando fricción en la operativa bancaria.
+  - Cumplimiento: Trazabilidad del 100% en documentación confidencial y superación de auditoría regulatoria sin hallazgos.`,
+  year: "2025"
+},
   {
-    id: "proj-3",
-    title: "Integración RAN & IP",
-    category: "consultoria",
-    client: "Huawei",
-    summary: "Liderazgo técnico para despliegue de redes 4G/5G en Europa.",
-    details: `Coordinación de un equipo internacional de 30 ingenieros. Gestión de la migración de nodos y aseguramiento de la calidad (QA) en las entregas a clientes tier-1 como Vodafone y Orange.`,
-    year: "2019"
-  },
+  id: "proj-3",
+  title: "Protección de Correo & Cultura de Seguridad",
+  category: "consultoria",
+  client: "Empresa Sector Energía",
+  summary: "Estrategia de defensa híbrida (IA + Factor Humano) contra fraude CEO y Phishing.",
+  details: `Implementación de respuesta crítica ante intentos de fraude BEC (Business Email Compromise). Diseño de una arquitectura de seguridad en capas: protección perimetral con IA y activación del usuario como "Human Firewall".
+
+  Resultados e Impacto:
+  - Transformación Cultural: Reducción del Click-Rate del 32% al 4% en 12 meses y aumento del reporte proactivo al SOC (80% de las alertas provienen ahora de usuarios).
+  - Eficacia Técnica: 99.9% de bloqueo de amenazas antes del buzón mediante Secure Email Gateway (SEG).
+  - Negocio: Cierre de contrato SaaS recurrente de 3 años para 2.500 licencias.`,
+  year: "2025"
+},
   {
-    id: "proj-4",
-    title: "Ingeniería Aeroespacial",
-    category: "consultoria",
-    client: "Airbus Crisa",
-    summary: "Proyectos de electrónica de potencia para satélites.",
-    details: `Participación en el ciclo de vida completo del hardware de vuelo (Ariane 6). Diseño de bancos de pruebas automáticos y validación de requisitos críticos de misión.`,
-    year: "2018"
-  },
-  {
-    id: "proj-5",
-    title: "Web Emotion",
-    category: "desarrollo",
-    client: "Airbus Crisa",
-    summary: "Proyectos de electrónica de potencia para satélites.",
-    details: `Participación en el ciclo de vida completo del hardware de vuelo (Ariane 6). Diseño de bancos de pruebas automáticos y validación de requisitos críticos de misión.`,
-    year: "2018"
-  }
+  id: "proj-4",
+  title: "Estrategia de Seguridad & vCISO",
+  category: "consultoria",
+  client: "Grupo Industrial Textil",
+  summary: "Gobernanza unificada y obtención de ISO 27001 para grupo en expansión (M&A).",
+  details: `Transformación integral de la postura de seguridad en un entorno descentralizado por crecimiento inorgánico. Asumí el rol de CISO Virtual (vCISO) para definir la hoja de ruta a 3 años (Plan Director), centralizar la gestión de riesgos y diseñar el SGSI.
+
+  Resultados e Impacto:
+  - Madurez NIST: Incremento del índice de ciber-resiliencia de 1.2 (Inicial) a 3.5 (Definido) en 18 meses.
+  - Habilitador de Negocio: Obtención de la certificación ISO 27001, desbloqueando el acceso a nuevas licitaciones comerciales.
+  - Eficiencia Financiera: Ahorro del 15% en costes operativos (OPEX) mediante la consolidación de proveedores duplicados.
+  - Relación a Largo Plazo: Contrato de 3 años como "Trusted Advisor" exclusivo para inversiones tecnológicas.`,
+  year: "2025"
+}
 ];
 
 // EXPERIENCIA (Añadido campo 'details')
 const experience = [
   {
     id: "exp-1",
-    role: "Responsable Unidad Ciberseguridad",
+    role: "Responsable de Alcorce Ciberseguridad",
     company: "Alcorce Telecomunicaciones",
-    summary: "Creación y estrategia de la unidad de negocio.",
-    details: `Definición del portfolio de servicios de ciberseguridad gestionada. Establecimiento de alianzas estratégicas con fabricantes líderes (Fortinet, Palo Alto). 
-    
-    Responsable de la cuenta de resultados (P&L) de la unidad y liderazgo del equipo técnico y preventa.`,
-    year: "2022 — Hoy"
-  },
+    summary: "Fundación de la unidad de negocio, gestión de P&L y estrategia de escalado.",
+    details: `Liderazgo integral en la creación de la marca 'Alcorce Ciberseguridad' desde una etapa 'Zero-to-One', asumiendo la responsabilidad total sobre la cuenta de resultados (P&L), operaciones y estrategia Go-to-Market.
+
+    Logros e Impacto:
+    - Escalado de Negocio: Crecimiento de facturación del +200% (2024) y del +600% (2025) tras el lanzamiento inicial en 2023.
+    - Ecosistema: Cierre de alianzas estratégicas con fabricantes y mayoristas clave para la distribución tecnológica.
+
+    Responsabilidades Clave:
+    - Dirección Estratégica: Definición de la hoja de ruta comercial y objetivos financieros.
+    - Ingeniería de Producto: "Servitización" del portfolio y diseño de soluciones de seguridad gestionada.
+    - Gestión Operativa: Supervisión financiera y coordinación de equipos técnicos para el aseguramiento del servicio.`,
+    year: "2022 — Actualidad"
+},
   {
-    id: "exp-2",
-    role: "Gerente de Ciberseguridad",
-    company: "Babel",
-    summary: "Gestión de servicios SOC y consultoría GRC.",
-    details: `Supervisión operativa del Centro de Operaciones de Seguridad (SOC). Gestión de proyectos de consultoría normativa (GDPR, ISO 27001) para clientes del sector bancario y seguros.`,
-    year: "2021 — 2022"
-  },
+  id: "exp-2",
+  role: "Consultor de Ciberseguridad",
+  company: "Babel",
+  summary: "Dirección de operaciones SOC y consultoría estratégica GRC para sector financiero.",
+  details: `Gestión dual enfocada en la eficacia operativa de seguridad (SecOps) y el cumplimiento normativo en entornos de alta regulación (Banca y Seguros).
+
+  Responsabilidades Clave:
+  - Liderazgo SOC: Supervisión operativa del Centro de Operaciones de Seguridad, garantizando el cumplimiento de SLAs y la respuesta efectiva ante incidentes.
+  - Consultoría GRC: Dirección de proyectos de adecuación normativa y gestión de riesgos (GDPR, ISO 27001), alineando los requisitos legales con la estrategia tecnológica.
+  - Gestión de Clientes: Interlocución técnica y ejecutiva con grandes cuentas del sector financiero.`,
+  year: "2021 — 2022"
+},
   {
-    id: "exp-3",
-    role: "Responsable Unidad Telco",
-    company: "ALTEN Spain",
-    summary: "Gestión de operaciones y desarrollo de negocio.",
-    details: `Management de un equipo de +35 consultores en clientes operadores. Desarrollo de carrera del equipo, contratación y gestión financiera de los proyectos.`,
-    year: "2018 — 2021"
-  }
+  id: "exp-3",
+  role: "Responsable Unidad de Negocio Telco",
+  company: "ALTEN Spain",
+  summary: "Gestión de P&L, liderazgo de equipos (+35 ing.) y desarrollo de negocio (2.5M€).",
+  details: `Dirección de la unidad de ingeniería prestando servicio a los principales Operadores y Fabricantes (Tier-1). Gestión integral del ciclo de vida: desde la prospección comercial y estrategia hasta la entrega del servicio.
+
+  Logros e Impacto:
+  - Volumen de Negocio: Consolidación de una cartera anual de 2,5 Millones de Euros.
+  - Hipercrecimiento: Aumento de facturación del +170% (2019) y expansión acelerada de cuota de mercado en 2020.
+  - Proyectos Críticos: Supervisión técnica en despliegues 5G, optimización de redes móviles y diseño de módulos para satélites de comunicaciones.
+
+  Responsabilidades Clave:
+  - Gestión Financiera: Responsable total del P&L de la unidad, márgenes y rentabilidad de proyectos.
+  - Liderazgo de Equipos: Gestión, desarrollo y retención de un equipo de +35 ingenieros cualificados.
+  - Estrategia Comercial: Apertura de nuevas cuentas, definición de portfolio y negociación de contratos marco.`,
+  year: "2018 — 2021"
+},
+{
+  id: "exp-4",
+  role: "Consultor de Comunicaciones Unificadas",
+  company: "Fibratel",
+  summary: "Transformación digital y diseño de arquitecturas de colaboración para +50 clientes.",
+  details: `Consultoría tecnológica orientada a la eficiencia operativa y omnicanalidad. Lideré la migración y modernización de infraestructuras para más de 50 clientes corporativos, integrando soluciones de Comunicaciones Unificadas con sistemas de gestión (ERP).
+
+  Responsabilidades:
+  - Venta Consultiva: Gestión técnica de oportunidades, ejecución de demos, workshops y diseño de soluciones a medida.
+  - Ecosistema: Relación directa con fabricantes para el diseño de arquitecturas complejas.`,
+  year: "2016 — 2018"
+},
+{
+  id: "exp-5",
+  role: "Ingeniero Preventa",
+  company: "British Telecom (BT)",
+  summary: "Diseño de arquitecturas críticas y transformación digital para cuentas IBEX35.",
+  details: `Ingeniería de soluciones complejas para grandes corporaciones, con foco en redes globales, seguridad y cloud. Participación clave en proyectos de alto impacto: evolución de la red internacional para el principal banco de España, migraciones Cloud en el sector seguros y diseño de infraestructura IT global para cadenas hoteleras.
+
+  Responsabilidades:
+  - Arquitectura de Soluciones: Diseño técnico de redes corporativas (WAN/LAN), DRP, Seguridad Perimetral y Comunicaciones Unificadas (ToIP).
+  - Cloud & IT: Propuestas de servicios gestionados en entornos híbridos y públicos (Azure, AWS, O365).
+  - Soporte a Ventas: Elaboración de RFPs, defensa técnica de propuestas y consultoría para clientes estratégicos.`,
+  year: "2015 — 2016"
+}
 ];
 
 const certifications = [
   {
-    name: "Certified in Cybersecurity (CC)",
-    issuer: "ISC2",
-    year: "2023",
-    url: "https://www.isc2.org/certifications/cc"
+    name: "PSAT Professional",
+    issuer: "Proofpoint",
+    year: "2025"
   },
   {
-    name: "Cybersecurity Essentials",
+    name: "Certified in Cybersecurity (CC)",
+    issuer: "ISC2",
+    year: "2023"
+  },
+  {
+    name: "Introduction to Cybersecurity",
     issuer: "Cisco",
     year: "2023",
-    url: "#"
+    url: "https://www.credly.com/badges/667f4ff9-90d9-40ba-af09-81dcc74a1b52/public_url"
   },
   {
     name: "PACSP (Professional Accredited Cloud Security)",
     issuer: "Proofpoint",
     year: "2023",
-    url: "#"
+    url: "https://verify.skilljar.com/c/o2ttw37rx69w"
   },
   {
     name: "Certified Fundamentals Cybersecurity",
     issuer: "Fortinet",
     year: "2023",
-    url: "#"
+    url: "https://www.credly.com/badges/c943348d-6604-490c-8e0a-931684c5ac1f/public_url"
   },
   {
     name: "NSE 1 & NSE 2 Network Security Associate",
     issuer: "Fortinet",
-    year: "2022",
-    url: "#"
+    year: "2022"
   },
   {
-    name: "Security Architecture for Account Managers",
+    name: "Security Architecture for Systems Engineer #500-651",
     issuer: "Cisco",
-    year: "2018",
-    url: "#"
+    year: "2018"
   },
   {
     name: "CCDA - Certified Design Associate",
     issuer: "Cisco",
-    year: "2017",
-    url: "#"
+    year: "2017"
+  },
+  {
+    name: "CCNA - Routing & Switching",
+    issuer: "Cisco",
+    year: "2015"
   }
 ];
 
