@@ -1,16 +1,242 @@
 ---
+// 1. IMPORTACIONES
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import ExpandableItem from '../components/ExpandableItem.astro'; // <--- IMPORTANTE
+import BlogRow from '../components/BlogRow.astro';
+import { getCollection } from 'astro:content';
 
+// 2. DATOS DE PROYECTOS Y EXPERIENCIA
+// PROYECTOS (Añadido campo 'details' con texto extendido)
+const projects = [
+  {
+    id: "proj-1",
+    title: "Servicio Virtual CISO",
+    client: "Hispasat",
+    summary: "Gestión de riesgos y coordinación de seguridad integral.",
+    details: `Responsable de la definición del Plan Director de Seguridad alineado con los objetivos de negocio. Implantación de normativas ISO 27001 y Esquema Nacional de Seguridad (ENS).
+
+    Supervisión directa de auditorías internas y gestión de incidentes críticos, actuando como enlace principal entre el equipo técnico y el comité de dirección.`,
+    year: "2022"
+  },
+  {
+    id: "proj-2",
+    title: "Auditoría de Seguridad OT",
+    client: "Grupo Mahou San Miguel",
+    summary: "Evaluación de vulnerabilidades en infraestructura industrial.",
+    details: `Ejecución de pentesting en entornos SCADA/ICS bajo la normativa IEC 62443 sin afectar la disponibilidad de la planta. 
+    
+    Elaboración de informes de impacto de negocio y roadmap de remediación para segregar redes IT/OT y securizar accesos remotos de proveedores.`,
+    year: "2021"
+  },
+  {
+    id: "proj-3",
+    title: "Integración RAN & IP",
+    client: "Huawei",
+    summary: "Liderazgo técnico para despliegue de redes 4G/5G en Europa.",
+    details: `Coordinación de un equipo internacional de 30 ingenieros. Gestión de la migración de nodos y aseguramiento de la calidad (QA) en las entregas a clientes tier-1 como Vodafone y Orange.`,
+    year: "2019"
+  },
+  {
+    id: "proj-4",
+    title: "Ingeniería Aeroespacial",
+    client: "Airbus Crisa",
+    summary: "Proyectos de electrónica de potencia para satélites.",
+    details: `Participación en el ciclo de vida completo del hardware de vuelo (Ariane 6). Diseño de bancos de pruebas automáticos y validación de requisitos críticos de misión.`,
+    year: "2018"
+  }
+];
+
+// EXPERIENCIA (Añadido campo 'details')
+const experience = [
+  {
+    id: "exp-1",
+    role: "Responsable Unidad Ciberseguridad",
+    company: "Alcorce Telecomunicaciones",
+    summary: "Creación y estrategia de la unidad de negocio.",
+    details: `Definición del portfolio de servicios de ciberseguridad gestionada. Establecimiento de alianzas estratégicas con fabricantes líderes (Fortinet, Palo Alto). 
+    
+    Responsable de la cuenta de resultados (P&L) de la unidad y liderazgo del equipo técnico y preventa.`,
+    year: "2022 — Hoy"
+  },
+  {
+    id: "exp-2",
+    role: "Gerente de Ciberseguridad",
+    company: "Babel",
+    summary: "Gestión de servicios SOC y consultoría GRC.",
+    details: `Supervisión operativa del Centro de Operaciones de Seguridad (SOC). Gestión de proyectos de consultoría normativa (GDPR, ISO 27001) para clientes del sector bancario y seguros.`,
+    year: "2021 — 2022"
+  },
+  {
+    id: "exp-3",
+    role: "Responsable Unidad Telco",
+    company: "ALTEN Spain",
+    summary: "Gestión de operaciones y desarrollo de negocio.",
+    details: `Management de un equipo de +35 consultores en clientes operadores. Desarrollo de carrera del equipo, contratación y gestión financiera de los proyectos.`,
+    year: "2018 — 2021"
+  }
+];
+
+const certifications = [
+  {
+    name: "Certified in Cybersecurity (CC)",
+    issuer: "ISC2",
+    year: "2023",
+    url: "https://www.isc2.org/certifications/cc"
+  },
+  {
+    name: "Cybersecurity Essentials",
+    issuer: "Cisco",
+    year: "2023",
+    url: "#"
+  },
+  {
+    name: "PACSP (Professional Accredited Cloud Security)",
+    issuer: "Proofpoint",
+    year: "2023",
+    url: "#"
+  },
+  {
+    name: "Certified Fundamentals Cybersecurity",
+    issuer: "Fortinet",
+    year: "2023",
+    url: "#"
+  },
+  {
+    name: "NSE 1 & NSE 2 Network Security Associate",
+    issuer: "Fortinet",
+    year: "2022",
+    url: "#"
+  },
+  {
+    name: "Security Architecture for Account Managers",
+    issuer: "Cisco",
+    year: "2018",
+    url: "#"
+  },
+  {
+    name: "CCDA - Certified Design Associate",
+    issuer: "Cisco",
+    year: "2017",
+    url: "#"
+  }
+];
+
+// 3. LÓGICA DEL BLOG (Aquí es donde se define latestPosts)
+let latestPosts = [];
+try {
+  const allPosts = await getCollection('blog');
+  // Ordenamos por fecha y cogemos los 2 últimos
+  latestPosts = allPosts
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+    .slice(0, 2);
+} catch (e) {
+  console.log("No se encontraron posts o la colección 'blog' no existe aún.");
+}
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Enrique Relucio - Consultor de Ciberseguridad">
+	<main class="max-w-2xl mx-auto px-6 py-24 md:py-32 flex flex-col gap-20">
+		
+		<header class="flex flex-col gap-6">
+			<div class="h-16 w-16 bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm">
+				<img src="https://ui-avatars.com/api/?name=Enrique+Relucio&background=18181b&color=fff&size=128" alt="Enrique Relucio" class="object-cover w-full h-full grayscale opacity-90 hover:opacity-100 transition-opacity" />
+			</div>
+
+			<div class="flex flex-col gap-4">
+				<h1 class="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
+					Enrique Relucio
+				</h1>
+				<p class="text-[16px] leading-7 text-zinc-600 dark:text-zinc-400">
+					Ingeniero de Telecomunicación especializado en <span class="text-zinc-900 dark:text-zinc-100 font-medium">Ciberseguridad</span> y Desarrollo de Negocio.
+				</p>
+			</div>
+
+            <nav class="flex gap-4">
+                <a href="/blog" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">Blog</a>
+                <a href="https://linkedin.com/in/enriquerelucio" target="_blank" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">LinkedIn</a>
+                <a href="mailto:contacto@relucio.es" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">Email</a>
+            </nav>
+		</header>
+
+        {latestPosts.length > 0 && (
+            <Section title="Artículos Recientes">
+                <div class="flex flex-col">
+                    {latestPosts.map((post) => (
+                        <BlogRow 
+                          title={post.data.title}
+                          date={post.data.pubDate}
+                          url={`/blog/${post.slug}/`}
+                          category={post.data.category} 
+                          tags={post.data.tags}  
+                          image={post.data.heroImage}
+                        />
+                    ))}
+                </div>
+            </Section>
+        )}
+
+		<Section title="Proyectos Seleccionados">
+      <div class="flex flex-col">
+        {projects.map((project) => (
+          <ExpandableItem 
+            id={project.id}
+            title={project.title}
+            subtitle={`Cliente: ${project.client}`}
+            summary={project.summary}
+            details={project.details}
+            year={project.year}
+          />
+        ))}
+      </div>
+    </Section>
+
+        <Section title="Trayectoria">
+      <div class="flex flex-col">
+        {experience.map((job) => (
+          <ExpandableItem 
+            id={job.id}
+            title={job.role}
+            subtitle={job.company}
+            summary={job.summary}
+            details={job.details}
+            year={job.year}
+          />
+        ))}
+      </div>
+    </Section>
+
+        <Section title="Certificaciones">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {certifications.map((cert) => (
+                    <a 
+                        href={cert.url} 
+                        target="_blank"
+                        class="flex flex-col gap-1 p-3 -mx-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800 group"
+                    >
+                        <div class="flex justify-between items-start w-full">
+                            <h3 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm">
+                                {cert.name}
+                            </h3>
+                            <span class="text-zinc-400 text-xs font-mono tabular-nums shrink-0 ml-2">
+                                {cert.year}
+                            </span>
+                        </div>
+                        <span class="text-xs text-zinc-500 dark:text-zinc-500">
+                            Emitido por <span class="text-zinc-700 dark:text-zinc-300 font-medium">{cert.issuer}</span>
+                        </span>
+                    </a>
+                ))}
+            </div>
+        </Section>
+
+        <footer class="pt-10 border-t border-zinc-100 dark:border-zinc-900 pb-10">
+            <div class="flex justify-between items-center">
+                <p class="text-xs text-zinc-400">
+                    &copy; {new Date().getFullYear()} Enrique Relucio.
+                </p>
+            </div>
+        </footer>
+	</main>
+</Layout>

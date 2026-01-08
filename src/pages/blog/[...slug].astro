@@ -1,0 +1,39 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+// Esto genera las rutas estáticas para cada post
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: post,
+	}));
+}
+type Props = CollectionEntry<'blog'>;
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+	<main class="max-w-2xl mx-auto px-6 py-24 md:py-32">
+        <header class="mb-10 flex flex-col gap-4">
+            <a href="/" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+                ← Volver al inicio
+            </a>
+            <h1 class="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
+                {post.data.title}
+            </h1>
+            <div class="flex gap-4 text-sm text-zinc-500">
+                <time datetime={post.data.pubDate.toISOString()}>
+                    {post.data.pubDate.toLocaleDateString('es-ES', { dateStyle: 'long' })}
+                </time>
+            </div>
+        </header>
+        
+        <article class="prose prose-zinc dark:prose-invert prose-headings:font-medium prose-a:text-zinc-900 dark:prose-a:text-white prose-a:no-underline hover:prose-a:underline">
+			<Content />
+		</article>
+	</main>
+</Layout>

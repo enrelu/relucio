@@ -1,0 +1,79 @@
+---
+// src/components/BlogRow.astro
+interface Props {
+  title: string;
+  date: Date;
+  url: string;
+  // Hacemos que la imagen sea opcional (?) por si algún post no tiene
+  heroImage?: string;
+  category: string; // Asumimos que category siempre viene (o tiene default en el padre)
+  tags: string[];
+}
+
+const { title, date, url, image, category = 'General', tags = [] } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="group relative flex flex-col sm:flex-row gap-4 p-4 -mx-4 rounded-lg transition-all duration-200 border border-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:border-zinc-200 dark:hover:border-zinc-800">
+  
+  {/* 1. IMAGEN (Solo se renderiza si existe) */}
+  {image && (
+    <div class="shrink-0 order-1 sm:order-2">
+      <a href={url} tabindex="-1" aria-hidden="true">
+        <img 
+          src={image} 
+          alt="" 
+          class="w-full sm:w-32 h-32 sm:h-24 object-cover rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
+          loading="lazy"
+        />
+      </a>
+    </div>
+  )}
+
+  {/* 2. CONTENIDO (Texto y Metadatos) */}
+  <div class="flex flex-col justify-between flex-grow order-2 sm:order-1">
+    
+    <div>
+      <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+        <h3 class="font-medium text-lg text-zinc-900 dark:text-zinc-100 transition-colors">
+          <a href={url} class="hover:underline focus:outline-none">
+            {title}
+          </a>
+        </h3>
+        
+        <time datetime={date.toISOString()} class="text-xs font-mono text-zinc-400 whitespace-nowrap shrink-0">
+          {formattedDate}
+        </time>
+      </div>
+
+      {/* METADATOS: Categoría y Etiquetas */}
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-2 text-xs">
+        
+        {/* Categoría */}
+        <a href={`/blog/category/${category}`} class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider hover:underline z-10 relative">
+          {category}
+        </a>
+
+        <span class="text-zinc-300 dark:text-zinc-700">|</span>
+
+        {/* Etiquetas (Protegido con || []) */}
+        <div class="flex flex-wrap gap-2 z-10 relative">
+          {(tags || []).map((tag) => (
+            <a 
+              href={`/blog/tag/${tag}`} 
+              class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+
+</article>

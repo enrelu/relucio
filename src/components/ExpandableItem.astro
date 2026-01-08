@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  subtitle: string;
+  year: string;
+  summary?: string;
+  details: string;
+  id: string;
+}
+
+const { title, subtitle, year, summary, details, id } = Astro.props;
+---
+
+<div class="expandable-group flex flex-col p-4 -mx-4 rounded-lg transition-all duration-200 border border-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:border-zinc-200 dark:hover:border-zinc-800 group">
+  
+  <button 
+    type="button" 
+    class="w-full flex flex-col gap-2 text-left cursor-pointer focus:outline-none"
+    aria-expanded="false" 
+    aria-controls={id}
+    onclick={`
+      const content = document.getElementById('${id}');
+      const icon = this.querySelector('.chevron-icon');
+      const isExpanded = this.getAttribute('aria-expanded') === 'true';
+      
+      this.setAttribute('aria-expanded', !isExpanded);
+      
+      if (!isExpanded) {
+        content.classList.remove('grid-rows-[0fr]');
+        content.classList.add('grid-rows-[1fr]');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.remove('grid-rows-[1fr]');
+        content.classList.add('grid-rows-[0fr]');
+        icon.classList.remove('rotate-180');
+      }
+    `}
+  >
+    <div class="w-full flex justify-between items-baseline">
+      <h3 class="font-medium text-zinc-900 dark:text-zinc-100 text-[15px] group-hover:text-zinc-900 dark:group-hover:text-zinc-50 transition-colors">
+        {title}
+      </h3>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-mono text-zinc-400 tabular-nums">{year}</span>
+        <svg class="chevron-icon w-4 h-4 text-zinc-400 group-hover:text-zinc-500 transition-all duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </div>
+    </div>
+    
+    <div class="flex justify-between w-full pr-8">
+      <span class="text-sm text-zinc-500 dark:text-zinc-400 font-medium">
+        {subtitle}
+      </span>
+    </div>
+    
+    {summary && (
+      <p class="text-sm text-zinc-500/80 dark:text-zinc-500 leading-relaxed pr-6 mt-1">
+        {summary}
+      </p>
+    )}
+  </button>
+
+  <div id={id} class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out">
+    <div class="overflow-hidden">
+      <div class="pt-4 text-sm text-zinc-600 dark:text-zinc-400 leading-7 prose-sm max-w-none border-t border-zinc-100 dark:border-zinc-800/50 mt-4">
+        {details.split('\n').map((paragraph) => (
+            <p class="mb-2 last:mb-0">{paragraph}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
