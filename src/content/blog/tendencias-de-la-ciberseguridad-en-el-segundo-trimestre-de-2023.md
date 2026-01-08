@@ -4,7 +4,7 @@ description: 'Según el informe del equipo de acción de ciberseguridad de Googl
 pubDate: '2023-11-08'
 category: 'Tendencias'
 tags: ['Cloud','Google','SaaS','Typosquatting']
-heroImage: "tendencias-de-la-ciberseguridad-en-el-segundo-trimestre-de-2023"
+heroImage: "tendencias-de-la-ciberseguridad-en-el-segundo-trimestre-de-2023.jpg"
 ---
 
 [Según el informe del equipo de acción de ciberseguridad de Google](https://services.google.com/fh/files/blogs/gcat_threathorizons_full_oct2023.pdf), en el segundo trimestre de 2023 se han identificado diversas tendencias y amenazas en el ámbito de la ciberseguridad. Entre las más destacadas se encuentran los ataques a la nube, el abuso de servicios de Software-as-a-Service (SaaS) y el aumento de la práctica de ciberocupación.

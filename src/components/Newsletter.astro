@@ -1,0 +1,87 @@
+---
+import Parser from 'rss-parser';
+
+// 1. Configuración del Feed
+const parser = new Parser();
+const FEED_URL = 'https://ciberseguridadtactica.substack.com/feed';
+let latestPost = null;
+let error = null;
+
+// 2. Obtención de datos (Fetch)
+try {
+  const feed = await parser.parseURL(FEED_URL);
+  // Obtenemos el primer item (el más reciente)
+  latestPost = feed.items[0];
+} catch (e) {
+  console.error("Error al obtener el feed de Substack:", e);
+  error = true;
+}
+
+// Función auxiliar para limpiar el snippet de texto
+const cleanSnippet = (text) => {
+  if (!text) return '';
+  return text.length > 150 ? text.substring(0, 150) + '...' : text;
+};
+---
+
+{!error && latestPost && (
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800">
+    
+    {/* COLUMNA 1: Llamada a la acción (Suscripción) */}
+    <div class="flex flex-col justify-center gap-4">
+      <div class="flex items-center gap-3">
+        <div class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-orange-600 dark:text-orange-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </div>
+        <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100">
+          Ciberseguridad Táctica
+        </h3>
+      </div>
+      
+      <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed text-pretty">
+        Informe ejecutivo diario para CISOs y CEOs sobre vulnerabilidades críticas, actores y TTPs. Únete a la comunidad.
+      </p>
+
+      <a 
+        href="https://ciberseguridadtactica.substack.com/subscribe" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex justify-center items-center px-4 py-2.5 text-sm font-medium rounded-lg text-white bg-orange-600 hover:bg-orange-700 transition-colors w-full sm:w-auto text-center"
+      >
+        Suscribirse gratis
+      </a>
+    </div>
+
+    {/* COLUMNA 2: Último Post (Dinámico) */}
+    <div class="relative group flex flex-col gap-3 p-5 rounded-xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-sm hover:border-orange-500/50 transition-colors">
+      <div class="flex justify-between items-start">
+        <span class="text-xs font-mono text-orange-600 dark:text-orange-400 font-medium uppercase tracking-wider">
+          Última edición
+        </span>
+        <span class="text-xs text-zinc-400 tabular-nums">
+          {new Date(latestPost.pubDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}
+        </span>
+      </div>
+
+      <h4 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-tight group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+        <a href={latestPost.link} target="_blank" rel="noopener noreferrer">
+          {latestPost.title}
+        </a>
+      </h4>
+
+      <p class="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-3">
+        {cleanSnippet(latestPost.contentSnippet)}
+      </p>
+
+      <a 
+        href={latestPost.link} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="text-sm font-medium text-zinc-900 dark:text-zinc-100 underline decoration-zinc-300 dark:decoration-zinc-700 underline-offset-4 hover:decoration-orange-500 mt-auto pt-2"
+      >
+        Leer edición completa &rarr;
+      </a>
+    </div>
+
+  </div>
+)}

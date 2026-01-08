@@ -1,0 +1,96 @@
+---
+import Parser from 'rss-parser';
+
+// 1. Obtención de datos
+const parser = new Parser();
+const FEED_URL = 'https://ciberseguridadtactica.substack.com/feed';
+let latestPost = null;
+let error = null;
+
+try {
+  const feed = await parser.parseURL(FEED_URL);
+  latestPost = feed.items[0];
+} catch (e) {
+  console.error("Error fetching Substack feed:", e);
+  error = true;
+}
+---
+
+{!error && latestPost && (
+  <aside 
+    id="newsletter-widget"
+    class="hidden xl:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-4 w-64 p-5 rounded-2xl bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 shadow-xl transition-all duration-500 ease-out opacity-0 translate-x-10 pointer-events-none hover:scale-105"
+  >
+    
+    {/* Botón de cerrar para siempre en esta sesión */}
+    <button id="close-widget" class="absolute top-2 right-2 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+
+    {/* Cabecera */}
+    <div class="flex items-center gap-3">
+        <div class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-orange-600 dark:text-orange-400 shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.03 12.7a1.94 1.94 0 0 1-2.06 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></svg>
+        </div>
+        <h3 class="font-bold text-sm text-zinc-900 dark:text-zinc-100 leading-tight">
+          Ciberseguridad Táctica
+        </h3>
+    </div>
+
+    {/* Último Post */}
+    <div class="space-y-2">
+      <p class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">
+        Newsletter: Última edición
+      </p>
+      <a href={latestPost.link} target="_blank" class="block font-medium text-sm text-zinc-800 dark:text-zinc-200 hover:text-orange-600 dark:hover:text-orange-400 transition-colors line-clamp-3">
+        {latestPost.title}
+      </a>
+    </div>
+
+    {/* CTA Botón */}
+    <a 
+      href="https://ciberseguridadtactica.substack.com/subscribe" 
+      target="_blank"
+      rel="noopener noreferrer"
+      class="mt-2 w-full flex justify-center items-center px-4 py-2 text-xs font-bold text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 rounded-lg hover:bg-orange-600 dark:hover:bg-orange-500 hover:text-white dark:hover:text-white transition-all shadow-sm"
+    >
+      Suscribirse
+    </a>
+
+  </aside>
+)}
+
+<script>
+  // Script para manejar la aparición al hacer scroll
+  const widget = document.getElementById('newsletter-widget');
+  const closeBtn = document.getElementById('close-widget');
+
+  if (widget && closeBtn) {
+    
+    // 1. Lógica de Scroll
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const threshold = 300; // Píxeles de scroll para que aparezca
+
+      if (scrollPosition > threshold) {
+        // Mostrar: Quitamos invisibilidad y desplazamiento
+        widget.classList.remove('opacity-0', 'translate-x-10', 'pointer-events-none');
+      } else {
+        // Ocultar: Volvemos a ponerlo invisible si sube arriba
+        widget.classList.add('opacity-0', 'translate-x-10', 'pointer-events-none');
+      }
+    };
+
+    // Escuchamos el evento scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // 2. Lógica de Cerrar (CORREGIDA)
+    closeBtn.addEventListener('click', () => {
+      // Usamos style.display = 'none' para imponerse sobre xl:flex
+      widget.style.display = 'none';
+      
+      // Quitamos el listener para que no vuelva a aparecer al hacer scroll
+      window.removeEventListener('scroll', handleScroll);
+    });
+  }
+</script>
