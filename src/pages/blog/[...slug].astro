@@ -65,7 +65,7 @@ const formattedDate = pubDate.toLocaleDateString('es-ES', {
 			{heroImage && (
 				<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800">
 					<img
-						src={heroImage}
+						src={heroImage.startsWith('http') || heroImage.startsWith('/') ? heroImage : `/${heroImage}`}
 						alt=""
 						class="object-cover w-full h-full"
 					/>

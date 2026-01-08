@@ -1,10 +1,10 @@
 ---
 title: 'Mayores brechas de datos del año 2023'
 description: 'Al comenzar el nuevo año, una vez más, hacemos resumen de las brechas de seguridad que han expuesto mayor número de datos personales. El año 2023 presenció un t...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/01/ilustracion-3d-fondo-oscuro-sistema-pirateado-o-desprotegido-scaled.jpg"
+pubDate: '2024-01-24'
+category: 'Tendencias'
+tags: ['Data Breach' , 'Data Leak']
+heroImage: "mayores-brechas-de-datos-del-ano-2023.jpg"
 ---
 
 Al comenzar el nuevo año, [una vez más](https://relucio.es/panorama-de-las-brechas-de-datos-personales-del-ano-2022/), hacemos resumen de las brechas de seguridad que han expuesto mayor número de datos personales.
@@ -92,21 +92,3 @@ La finalidad de esta entrada es concienciar sobre el avance de las brechas de da
 * * *
 
 Créditos: [Imagen de Kerfin7](https://www.freepik.es/foto-gratis/ilustracion-3d-fondo-oscuro-sistema-pirateado-o-desprotegido_32697236.htm#query=data%20leak&position=42&from_view=search&track=ais&uuid=d3b241fd-47e4-4200-8d1c-2c4e9bb0a9ca) en Freepik
-
-### Deja una respuesta [Cancelar la respuesta](/blog/mayores-brechas-de-datos-del-ano-2023#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

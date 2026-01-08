@@ -1,9 +1,9 @@
 ---
 title: 'Cómo proteger tus cuentas en línea'
 description: 'En un mundo cada vez más conectado, es fundamental proteger nuestros datos y cuentas en línea. Desde redes sociales hasta banca electrónica, todos tenemos infor...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
+pubDate: '2023-02-01'
+category: 'Consejos'
+tags: ['Contraseñas' , 'MFA' , 'Phishing' , 'Redes sociales']
 heroImage: "como-proteger-tus-cuentas-en-linea.png"
 ---
 
@@ -46,21 +46,3 @@ Además de seguir los consejos anteriores, es importante tomar medidas específi
 Mientras sigamos teniendo que utilizar contraseñas, [aunque probablemente no les quede tanto](https://en.wikipedia.org/wiki/FIDO_Alliance), es vital que, como mínimo, tengamos la cultura mínima necesaria para utilizarlas.
 
 **¡Mantente seguro en línea!**
-
-### Deja una respuesta [Cancelar la respuesta](/blog/como-proteger-tus-cuentas-en-linea#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

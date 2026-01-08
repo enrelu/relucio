@@ -1,10 +1,10 @@
 ---
 title: 'Protegiendo tu marca: DMARC'
 description: 'El correo electrónico es una herramienta clave para las empresas, pero su popularidad también lo convierte en un objetivo principal para los ciberdelincuentes. ...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/02/05f117dc-3f30-477e-aae9-0704a4e4b199.jpg"
+pubDate: '2024-05-02'
+category: 'Tecnologías'
+tags: ['Correo','DKIM','DMARC','SPF']
+heroImage: "protegiendo-tu-marca-dmarc.jpg"
 ---
 
 El correo electrónico es una herramienta clave para las empresas, pero su popularidad también lo convierte en un objetivo principal para los ciberdelincuentes. **Las estafas por correo electrónico**, especialmente los [ataques BEC](https://www.microsoft.com/es-es/security/business/security-101/what-is-business-email-compromise-bec), **han costado a las organizaciones miles de millones de dólares** **y han dañado la confianza del consumidor**. Es hora de tomar medidas proactivas. En este artículo, exploraremos DMARC, una herramienta que lucha contra el phishing y la suplantación de identidad.
@@ -44,21 +44,3 @@ Imaginemos una situación en la que un hacker se hace pasar por una marca, envia
 DMARC no solo protege a empleados, clientes y marcas, sino que también mejora la entregabilidad del correo, reduce los costes operativos y ofrece una visibilidad crucial ante amenazas.
 
 Es el momento de dar el paso con DMARC para garantizar la seguridad y confianza del canal de correo electrónico.
-
-### Deja una respuesta [Cancelar la respuesta](/blog/protegiendo-tu-marca-dmarc#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

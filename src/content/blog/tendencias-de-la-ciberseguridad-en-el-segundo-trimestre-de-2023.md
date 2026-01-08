@@ -1,10 +1,10 @@
 ---
 title: 'Tendencias de la ciberseguridad en el segundo trimestre de 2023'
 description: 'Según el informe del equipo de acción de ciberseguridad de Google, en el segundo trimestre de 2023 se han identificado diversas tendencias y amenazas en el ámbi...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/01/1699437279850.jpg"
+pubDate: '2023-11-08'
+category: 'Tendencias'
+tags: ['Cloud','Google','SaaS','Typosquatting']
+heroImage: "tendencias-de-la-ciberseguridad-en-el-segundo-trimestre-de-2023"
 ---
 
 [Según el informe del equipo de acción de ciberseguridad de Google](https://services.google.com/fh/files/blogs/gcat_threathorizons_full_oct2023.pdf), en el segundo trimestre de 2023 se han identificado diversas tendencias y amenazas en el ámbito de la ciberseguridad. Entre las más destacadas se encuentran los ataques a la nube, el abuso de servicios de Software-as-a-Service (SaaS) y el aumento de la práctica de ciberocupación.
@@ -42,21 +42,3 @@ La ciberocupación también puede ser utilizado para llevar a cabo ataques de ro
 ### Conclusión
 
 El análisis detallado de las tendencias de ciberseguridad en el segundo trimestre de 2023 ofrece una visión completa de los desafíos actuales que enfrentan las organizaciones en materia de seguridad. Las conclusiones subrayan la importancia de implementar estrategias de protección y vigilancia constante para mantener la integridad y seguridad de los sistemas y datos.
-
-### Deja una respuesta [Cancelar la respuesta](/blog/tendencias-de-la-ciberseguridad-en-el-segundo-trimestre-de-2023#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

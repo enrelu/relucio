@@ -13,6 +13,7 @@ const projects = [
   {
     id: "proj-1",
     title: "Servicio Virtual CISO",
+    category: "consultoria",
     client: "Hispasat",
     summary: "Gestión de riesgos y coordinación de seguridad integral.",
     details: `Responsable de la definición del Plan Director de Seguridad alineado con los objetivos de negocio. Implantación de normativas ISO 27001 y Esquema Nacional de Seguridad (ENS).
@@ -23,6 +24,7 @@ const projects = [
   {
     id: "proj-2",
     title: "Auditoría de Seguridad OT",
+    category: "consultoria",
     client: "Grupo Mahou San Miguel",
     summary: "Evaluación de vulnerabilidades en infraestructura industrial.",
     details: `Ejecución de pentesting en entornos SCADA/ICS bajo la normativa IEC 62443 sin afectar la disponibilidad de la planta. 
@@ -33,6 +35,7 @@ const projects = [
   {
     id: "proj-3",
     title: "Integración RAN & IP",
+    category: "consultoria",
     client: "Huawei",
     summary: "Liderazgo técnico para despliegue de redes 4G/5G en Europa.",
     details: `Coordinación de un equipo internacional de 30 ingenieros. Gestión de la migración de nodos y aseguramiento de la calidad (QA) en las entregas a clientes tier-1 como Vodafone y Orange.`,
@@ -41,6 +44,16 @@ const projects = [
   {
     id: "proj-4",
     title: "Ingeniería Aeroespacial",
+    category: "consultoria",
+    client: "Airbus Crisa",
+    summary: "Proyectos de electrónica de potencia para satélites.",
+    details: `Participación en el ciclo de vida completo del hardware de vuelo (Ariane 6). Diseño de bancos de pruebas automáticos y validación de requisitos críticos de misión.`,
+    year: "2018"
+  },
+  {
+    id: "proj-5",
+    title: "Web Emotion",
+    category: "desarrollo",
     client: "Airbus Crisa",
     summary: "Proyectos de electrónica de potencia para satélites.",
     details: `Participación en el ciclo de vida completo del hardware de vuelo (Ariane 6). Diseño de bancos de pruebas automáticos y validación de requisitos críticos de misión.`,
@@ -143,7 +156,7 @@ try {
 			<div class="flex items-start gap-6">
 				
 				<div class="shrink-0 h-25 w-25 bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm">
-					<img src="https://ui-avatars.com/api/?name=Enrique+Relucio&background=18181b&color=fff&size=128" alt="Enrique Relucio" class="object-cover w-full h-full grayscale opacity-90 hover:opacity-100 transition-opacity" />
+					<img src="Logo_ER_B&W.png" alt="Enrique Relucio" class="object-cover w-full h-full opacity-90 hover:opacity-100 transition-opacity" />
 				</div>
 
 				<div class="flex flex-col gap-2"> <h1 class="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
@@ -163,6 +176,9 @@ try {
                 </a>
                 <a href="/#experiencia" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">
                   Experiencia
+                </a>
+                <a href="/sobre-mi" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">
+                  Sobre mi
                 </a>
                 <a href="https://linkedin.com/in/enriquerelucio" target="_blank" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">LinkedIn</a>
                 <a href="mailto:contacto@relucio.es" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">Contacto</a>
@@ -187,19 +203,44 @@ try {
         )}
 
 		<Section title="Proyectos Seleccionados" id="proyectos">
-      <div class="flex flex-col">
-        {projects.map((project) => (
-          <ExpandableItem 
-            id={project.id}
-            title={project.title}
-            subtitle={`Cliente: ${project.client}`}
-            summary={project.summary}
-            details={project.details}
-            year={project.year}
-          />
+    
+    <div class="flex gap-2 mb-8 overflow-x-auto pb-2">
+        <button 
+            class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900" 
+            data-filter="todos"
+        >
+            Todos
+        </button>
+        <button 
+            class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700" 
+            data-filter="consultoria"
+        >
+            Consultoría
+        </button>
+        <button 
+            class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700" 
+            data-filter="desarrollo"
+        >
+            Desarrollo
+        </button>
+    </div>
+
+    <div class="flex flex-col gap-0"> {projects.map((project) => (
+            /* Envolvemos el componente en un div con el atributo data-category */
+            <div class="project-item transition-all duration-300" data-category={project.category}>
+                <ExpandableItem 
+                    id={project.id}
+                    title={project.title}
+                    subtitle={`Cliente: ${project.client}`}
+                    summary={project.summary}
+                    details={project.details}
+                    year={project.year}
+                />
+            </div>
         ))}
-      </div>
-    </Section>
+    </div>
+
+</Section>
 
         <Section title="Trayectoria" id="experiencia">
       <div class="flex flex-col">
@@ -242,3 +283,43 @@ try {
 
 	
 </Layout>
+
+<script>
+    // Esperamos a que el DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.filter-btn');
+        const items = document.querySelectorAll('.project-item');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 1. Gestionar estilos de los botones (Activo/Inactivo)
+                buttons.forEach(b => {
+                    // Quitamos estilo activo (negro/blanco) y ponemos estilo inactivo (gris)
+                    b.classList.remove('bg-zinc-900', 'text-white', 'dark:bg-zinc-100', 'dark:text-zinc-900');
+                    b.classList.add('bg-zinc-100', 'text-zinc-600', 'dark:bg-zinc-800', 'dark:text-zinc-400');
+                });
+                
+                // Ponemos estilo activo al botón pulsado
+                btn.classList.remove('bg-zinc-100', 'text-zinc-600', 'dark:bg-zinc-800', 'dark:text-zinc-400');
+                btn.classList.add('bg-zinc-900', 'text-white', 'dark:bg-zinc-100', 'dark:text-zinc-900');
+
+                // 2. Filtrar los elementos
+                const filterValue = btn.getAttribute('data-filter');
+
+                items.forEach((item) => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    // Si es 'todos' o coincide la categoría, mostramos. Si no, ocultamos.
+                    if (filterValue === 'todos' || itemCategory === filterValue) {
+                        (item as HTMLElement).style.display = 'block';
+                        // Pequeño timeout para animación de opacidad si quisieras
+                        setTimeout(() => (item as HTMLElement).style.opacity = '1', 10);
+                    } else {
+                        (item as HTMLElement).style.display = 'none';
+                        (item as HTMLElement).style.opacity = '0';
+                    }
+                });
+            });
+        });
+    });
+</script>

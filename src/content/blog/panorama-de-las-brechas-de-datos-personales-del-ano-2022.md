@@ -1,10 +1,10 @@
 ---
 title: 'Panorama de las brechas de datos personales del año 2022'
 description: 'Cada vez son más las organizaciones que sufren pérdidas de información confidencial debido a ataques cibernéticos, errores humanos o malas prácticas de segurida...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/01/1674487845041.png"
+pubDate: '2023-01-22'
+category: 'Tendencias'
+tags: ['Data Breach' ,'Data Leak']
+heroImage: "panorama-de-las-brechas-de-datos-personales-del-ano-2022.png"
 ---
 
 Cada vez son más las organizaciones que sufren pérdidas de información confidencial debido a ataques cibernéticos, errores humanos o malas prácticas de seguridad. Esto puede implicar no solo un **impacto económico** significativo, ya sea por el rescate de los datos o las sanciones, sino también **dañar la reputación de la empresa**.
@@ -50,25 +50,3 @@ Fuentes:
 
 [https://www.websiteplanet.com/blog/comcast-leak-report/](https://www.websiteplanet.com/blog/comcast-leak-report/)
 
-### Un comentario sobre “Panorama de las brechas de datos personales del año 2022”
-
-*   Pingback: [Mayores brechas de datos del año 2023 - Enrique Relucio](https://relucio.es/mayores-brechas-de-datos-del-ano-2023/)
-    
-
-### Deja una respuesta [Cancelar la respuesta](/blog/panorama-de-las-brechas-de-datos-personales-del-ano-2022#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

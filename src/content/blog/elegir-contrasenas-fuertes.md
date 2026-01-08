@@ -1,10 +1,10 @@
 ---
 title: 'Elegir contraseñas fuertes'
 description: 'Rompiendo mitos: La fuerza de la contraseña La fuerza de las contraseñas es importante en contextos específicos, como cuando se trata de proteger información va...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/01/1695726748678.jpg"
+pubDate: '2023-09-26'
+category: 'Consejos'
+tags: ['Contraseñas','MFA','RockYou']
+heroImage: "elegir-contrasenas-fuertes.jpg"
 ---
 
 ### Rompiendo mitos: La fuerza de la contraseña
@@ -40,21 +40,3 @@ Una forma típica de generar una frase de contraseña sería el [diceware](https
 Digamos que el resultado es ⚄⚃⚂⚅⚀, busca el 54361 en el diccionario y obtienes «silver». Esta es la primera palabra de tu frase de contraseña. Repite el proceso para obtener el número de palabras necesario. Este proceso es justo lo que hacen algunos generadores de contraseñas como el de [Bitwarden](https://www.linkedin.com/company/bitwarden1/).
 
 ¿Cuántas palabras necesitas? Como una «persona normal» probablemente puedas estar seguro si adivinar tu contraseña llevara un siglo a un hardware común. Aunque no es imposible, descifrar tus contraseñas simplemente costará demasiado incluso en el hardware del futuro y no valdrá la pena. Incluso si tu gestor de contraseñas no te protege bien y permite 1.000.000 de intentos por segundo, **una frase de contraseña de cuatro palabras (51 bits de entropía) debería ser suficiente**.
-
-### Deja una respuesta [Cancelar la respuesta](/blog/elegir-contrasenas-fuertes#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

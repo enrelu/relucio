@@ -1,10 +1,10 @@
 ---
 title: 'Vulnerabilidades y riesgos en VPNs: ataque de TunnelCrack'
 description: 'En un documento aceptado por USENIX Association, académicos de New York University y KU Leuven han detallado las vulnerabilidades conocidas colectivamente como ...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/01/1691738857286.jpg"
+pubDate: '2023-11-08'
+category: 'Vulnerabilidades'
+tags: ['HTTPS','TunnelCrack','VPN']
+heroImage: "vulnerabilidades-y-riesgos-en-vpns-ataque-de-tunnelcrack.jpg"
 ---
 
 [En un documento aceptado por](https://papers.mathyvanhoef.com/usenix2023-tunnelcrack.pdf) [USENIX Association](https://www.linkedin.com/company/usenix-association/), académicos de [New York University](https://www.linkedin.com/company/new-york-university/) y [KU Leuven](https://www.linkedin.com/company/ku_leuven/) han detallado las vulnerabilidades conocidas colectivamente como TunnelCrack, las cuales tienen el potencial de comprometer la seguridad de las redes privadas virtuales (VPN).
@@ -32,21 +32,3 @@ Si se utiliza VPNs para tener privacidad y seguridad, se pueden tomar medidas pa
 Por último, remarcar que, aunque estas vulnerabilidades son preocupantes, **las conexiones seguras que se cifran** antes de ingresar al túnel VPN, como conexiones HTTPS o SSH, **deberían permanecer protegidas y cifradas incluso si se redirigen con estas técnicas**.
 
 Para más detalles sobre las vulnerabilidades de TunnelCrack y cómo probar manualmente una VPN, se puede visitar el repositorio [GitHub](https://github.com/vanhoefm/vpnleaks) de los investigadores.
-
-### Deja una respuesta [Cancelar la respuesta](/blog/vulnerabilidades-y-riesgos-en-vpns-ataque-de-tunnelcrack#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

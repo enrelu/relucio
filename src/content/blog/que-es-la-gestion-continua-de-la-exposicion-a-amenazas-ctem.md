@@ -1,10 +1,10 @@
 ---
 title: '¿Qué es la gestión continua de la exposición a amenazas (CTEM)?'
 description: 'La Gestión Continua de la Exposición a Amenazas (CTEM, por sus siglas en inglés) es un programa proactivo y holístico de ciberseguridad diseñado para identifica...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/11/ctemsteps_.png"
+pubDate: '2024-11-27'
+category: 'Tendencias'
+tags: ['CTEM' , 'Gestión riesgos' , 'Superficie ataque' , 'Vulnerabilidades']
+heroImage: "que-es-la-gestion-continua-de-la-exposicion-a-amenazas-ctem.png"
 ---
 
 La Gestión Continua de la Exposición a Amenazas (CTEM, por sus siglas en inglés) es un programa proactivo y holístico de ciberseguridad diseñado para **identificar, evaluar y reducir continuamente la exposición de una organización a las amenazas**. Se trata de un marco de cinco etapas que ayuda a las organizaciones a identificar vulnerabilidades y exposiciones, correlacionarlas con posibles rutas de ataque, priorizarlas en función de su riesgo para los activos críticos y supervisar el progreso a medida que implementan actividades de remediación.
@@ -65,20 +65,4 @@ Tanto CTEM como la gestión de vulnerabilidades basada en riesgos (RBVM) son est
 
 CTEM se puede considerar como una **evolución de RBVM**, que aborda las limitaciones de este último al ampliar el alcance de las exposiciones consideradas, adoptando una visión holística del riesgo, priorizando la remediación en función del impacto real y enfatizando la evaluación y mejora continua.
 
-### Deja una respuesta [Cancelar la respuesta](/blog/que-es-la-gestion-continua-de-la-exposicion-a-amenazas-ctem#respond)
 
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

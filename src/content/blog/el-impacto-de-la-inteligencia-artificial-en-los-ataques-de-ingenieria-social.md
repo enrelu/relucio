@@ -1,10 +1,10 @@
 ---
 title: 'El impacto de la inteligencia artificial en los ataques de ingeniería social'
 description: 'La ingeniería social es un conjunto de técnicas utilizadas por los ciberdelincuentes para engañar a las personas y hacer que divulguen información confidencial ...'
-pubDate: '2026-01-08'
-category: 'General'
-tags: []
-heroImage: "https://relucio.es/wp-content/uploads/2024/01/1676377340618-1.png"
+pubDate: '2023-02-14'
+category: 'Tendencias'
+tags: ['Deepfake' , 'IA' , 'Phishing' , 'Voice cloning']
+heroImage: "el-impacto-de-la-inteligencia-artificial-en-los-ataques-de-ingenieria-social.png"
 ---
 
 La ingeniería social es un conjunto de técnicas utilizadas por los ciberdelincuentes para engañar a las personas y hacer que divulguen información confidencial o realicen acciones perjudiciales. En este post, discutiremos los tipos más comunes de ataques de ingeniería social y cómo se está usando la inteligencia artificial para mejorar la eficacia de estos.
@@ -26,21 +26,3 @@ Los deepfakes permite la creación de videos y fotos manipuladas con inteligenci
 Por último, un novedoso ataque utiliza chatbots para guiar a las víctimas a través del proceso y darle más credibilidad. El chatbot inicia una conversación en un sitio web legítimo y lleva a la víctima a un sitio de phishing. Un ataque real, según una publicación de [Trustwave](https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/interactive-phishing-mark-ii-messenger-chatbot-leveraged-in-a-new-facebook-themed-spam/), comienza con un correo electrónico que advierte a la víctima que su página de Facebook ha infringido las reglas de la comunidad y le pide que haga clic en el botón «Apelar ahora». Se dirige a la víctima a un sitio web que se hace pasar por un chat de soporte de Facebook, donde se le pide que envíe su información personal y la contraseña de la cuenta.
 
 En conclusión, la inteligencia artificial ha mejorado la eficacia de los ataques de ingeniería social. Es importante que las empresas y las personas tomen medidas para protegerse de estos ataques, como la verificación de la autenticidad de los correos electrónicos y las llamadas telefónicas, y la adopción de medidas de seguridad adecuadas. Además, es importante que las empresas inviertan en tecnología de detección y respuesta avanzada para identificar y mitigar los ataques de ingeniería social.
-
-### Deja una respuesta [Cancelar la respuesta](/blog/el-impacto-de-la-inteligencia-artificial-en-los-ataques-de-ingenieria-social#respond)
-
-Tu dirección de correo electrónico no será publicada. Los campos obligatorios están marcados con \*
-
-Comentario \*
-
-Nombre \* 
-
-Correo electrónico \* 
-
-Sitio web 
-
- Guardar mi nombre, correo electrónico y sitio web en este navegador para la próxima vez que comente
-
-  
-
-Δ

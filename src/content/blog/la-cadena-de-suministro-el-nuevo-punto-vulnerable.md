@@ -7,7 +7,7 @@ tags: ['Cadena suministro' , 'DORA' , 'Gestión riesgos' , 'NIS2' , 'NIST' , 'Vu
 heroImage: "la-cadena-de-suministro-el-nuevo-punto-vulnerable.webp"
 ---
 
-La cadena de suministro digital se ha convertido en uno de los eslabones más débiles en la ciberseguridad corporativa, transformándose de una preocupación secundaria a una prioridad estratégica para las organizaciones. **Los ataques dirigidos a proveedores de software, hardware y servicios están experimentando un crecimiento**, permitiendo a los ciberdelincuentes infiltrarse en numerosas empresas simultáneamente a través de un único punto. Este artículo analiza la naturaleza de estas amenazas, examina casos significativos, y proporciona estrategias para transformar este punto vulnerable en una fortaleza, ofreciendo un marco integral para la protección de la cadena de suministro digital en el entorno actual de amenazas persistentes.\n\n
+La cadena de suministro digital se ha convertido en uno de los eslabones más débiles en la ciberseguridad corporativa, transformándose de una preocupación secundaria a una prioridad estratégica para las organizaciones. **Los ataques dirigidos a proveedores de software, hardware y servicios están experimentando un crecimiento**, permitiendo a los ciberdelincuentes infiltrarse en numerosas empresas simultáneamente a través de un único punto. Este artículo analiza la naturaleza de estas amenazas, examina casos significativos, y proporciona estrategias para transformar este punto vulnerable en una fortaleza, ofreciendo un marco integral para la protección de la cadena de suministro digital en el entorno actual de amenazas persistentes.
 
 ## Comprendiendo la cadena de suministro digital
 
