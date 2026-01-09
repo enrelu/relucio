@@ -15,7 +15,7 @@ const projects = [
   id: "proj-1",
   title: "EmotionScore: Algoritmo de Calidad Deportiva (LLES)",
   category: "desarrollo",
-  client: "Proyecto Personal (Open Source)",
+  client: "Proyecto Personal",
   summary: "Desarrollo de un modelo matemático predictivo para calificar la 'espectacularidad' deportiva sin spoilers.",
   details: `Diseño y desarrollo integral de una plataforma que resuelve la "Paradoja del Spoiler" mediante el procesamiento de métricas avanzadas. El sistema ingesta datos de La Liga y aplica un algoritmo propio (LLES) para puntuar partidos del 0 al 5 basándose en la narrativa del juego y no solo en el resultado.
 
@@ -28,9 +28,30 @@ const projects = [
   - Innovación: Creación de métricas propias (IAO - Índice de Amenaza Ofensiva) normalizadas contra datos históricos.
   - Escalabilidad: Arquitectura preparada para procesar temporadas históricas y generar recomendaciones automatizadas.`,
   year: "2026"
+}, {
+  id: "proj-2",
+  title: "Rediseño relucio.es",
+  category: "desarrollo",
+  client: "Proyecto Personal",
+  summary: "Desarrollo de una plataforma estática de alto rendimiento orientada a la conversión y branding profesional mediante arquitectura moderna.",
+  details: `Rediseño y desarrollo integral de mi plataforma profesional, migrando de un CMS convencional a una arquitectura de componentes moderna. El objetivo principal fue optimizar la velocidad de carga (Core Web Vitals) y la experiencia de usuario (UX) para un perfil de ingeniería y desarrollo de negocio.
+
+  Arquitectura y Desafíos Técnicos:
+  - Framework Astro: Implementación de arquitectura de islas para minimizar el JavaScript enviado al cliente, logrando tiempos de carga instantáneos.
+  - UI/UX con Tailwind CSS: Diseño minimalista con soporte nativo para modo oscuro y adaptabilidad total (Responsive Design) para evitar solapamientos en dispositivos móviles.
+  - Integración de Microservicios:
+      * Pipeline de Datos: Conexión mediante RSS Parser para la ingesta dinámica de contenidos desde Substack, permitiendo la promoción cruzada de la newsletter "Ciberseguridad Táctica".
+      * Componentes Reactivos: Desarrollo de widgets inteligentes con Intersection Observer para animaciones de estadísticas y elementos flotantes condicionados al scroll del usuario.
+  - Despliegue & CI/CD: Configuración de flujo de trabajo automatizado mediante GitHub Actions y despliegue continuo en la red Edge de Vercel con gestión avanzada de DNS en OVH.
+
+  Impacto:
+  - Rendimiento: Puntuación de 100/100 en Google Lighthouse para Performance, SEO y Mejores Prácticas.
+  - Conversión: Implementación de un widget de suscripción optimizado que aumenta la visibilidad de la newsletter sin comprometer la lectura del contenido principal.
+  - Escalabilidad: Sistema preparado para la creación de contenido mediante Markdown/MDX, facilitando la publicación de artículos técnicos de forma ágil.`,
+  year: "2026"
 },
   {
-  id: "proj-2",
+  id: "proj-3",
   title: "Gobierno del Dato & DLP",
   category: "consultoria",
   client: "Entidad Bancaria Tier-1",
@@ -44,7 +65,7 @@ const projects = [
   year: "2025"
 },
   {
-  id: "proj-3",
+  id: "proj-4",
   title: "Protección de Correo & Cultura de Seguridad",
   category: "consultoria",
   client: "Empresa Sector Energía",
@@ -58,7 +79,7 @@ const projects = [
   year: "2025"
 },
   {
-  id: "proj-4",
+  id: "proj-5",
   title: "Estrategia de Seguridad & vCISO",
   category: "consultoria",
   client: "Grupo Industrial Textil",
