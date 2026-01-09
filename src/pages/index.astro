@@ -242,9 +242,20 @@ try {
 		<header class="flex flex-col gap-6">
 			<div class="flex items-start gap-6">
 				
-				<div class="shrink-0 h-25 w-25 bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm">
-					<img src="Logo_ER_B&W.png" alt="Enrique Relucio" class="object-cover w-full h-full opacity-90 hover:opacity-100 transition-opacity" />
-				</div>
+				<div class="shrink-0 h-25 w-25 bg-zinc-100 dark:bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-sm relative group">
+    {/* Logo Modo Claro */}
+    <img 
+        src="Logo_ER_B&W.png" 
+        alt="Enrique Relucio" 
+        class="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity dark:hidden" 
+    />
+    {/* Logo Modo Oscuro */}
+    <img 
+        src="Logo_ER_White.png" 
+        alt="Enrique Relucio" 
+        class="hidden dark:block object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity" 
+    />
+</div>
 
 				<div class="flex flex-col gap-2"> <h1 class="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl">
 						Enrique Relucio

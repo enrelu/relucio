@@ -4,12 +4,25 @@ interface Props {
   title: string;
   date: Date;
   url: string;
-  heroImage?: string;
+  heroImage?: string; // Nombre que viene de la colección de Astro
+  image?: string;     // Nombre que podrías estar pasando manualmente
   category: string;
   tags: string[];
 }
 
-const { title, date, url, image, category = 'General', tags = [] } = Astro.props;
+// Extraemos ambos posibles nombres y priorizamos uno
+const { 
+  title, 
+  date, 
+  url, 
+  heroImage, 
+  image, 
+  category = 'General', 
+  tags = [] 
+} = Astro.props;
+
+// Esta es la clave: usamos la que tenga contenido
+const finalImage = image || heroImage;
 
 const formattedDate = date.toLocaleDateString('es-ES', {
   year: 'numeric',
@@ -18,62 +31,52 @@ const formattedDate = date.toLocaleDateString('es-ES', {
 });
 ---
 
-<article class="group relative flex flex-col sm:flex-row gap-4 p-4 -mx-4 rounded-lg transition-all duration-200 border border-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900 hover:border-zinc-200 dark:hover:border-zinc-800">
+<article class="group relative flex flex-row gap-4 md:gap-6 p-4 -mx-4 rounded-xl transition-all duration-300 border border-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900/50 hover:border-zinc-200 dark:hover:border-zinc-800">
   
-  {/* 1. IMAGEN (Solo se renderiza si existe) */}
-  {image && (
+  {/* 1. IMAGEN: Usamos finalImage */}
+  {finalImage && (
     <div class="shrink-0">
-      <a href={url} tabindex="-1" aria-hidden="true">
+      <div class="w-32 h-20 md:w-40 md:h-24 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800">
         <img 
-          src={image} 
+          src={finalImage} 
           alt="" 
-          class="w-full sm:w-32 h-32 sm:h-24 object-cover rounded-md border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800"
+          class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
           loading="lazy"
         />
-      </a>
+      </div>
     </div>
   )}
 
-  {/* 2. CONTENIDO (Texto y Metadatos) */}
-  <div class="flex flex-col justify-between flex-grow order-2">
+  {/* 2. CONTENIDO */}
+  <div class="flex flex-col flex-1 min-w-0 justify-center">
     
-    <div>
-      <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-        <h3 class="font-medium text-lg text-zinc-900 dark:text-zinc-100 transition-colors">
-          <a href={url} class="hover:underline focus:outline-none">
-            {title}
-          </a>
-        </h3>
-        
-        <time datetime={date.toISOString()} class="text-xs font-mono text-zinc-400 whitespace-nowrap shrink-0">
-          {formattedDate}
-        </time>
+    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
+      <h3 class="font-bold text-lg text-zinc-900 dark:text-zinc-100 transition-colors group-hover:text-orange-600 dark:group-hover:text-orange-400 leading-tight">
+        <a href={url} class="focus:outline-none">
+          {title}
+        </a>
+      </h3>
+      
+      <time datetime={date.toISOString()} class="text-xs font-mono text-zinc-400 whitespace-nowrap shrink-0 uppercase tracking-tighter">
+        {formattedDate}
+      </time>
+    </div>
+
+    {/* METADATOS */}
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-3 text-[10px]">
+      
+      <div class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest border-r border-zinc-200 dark:border-zinc-800 pr-3 leading-none">
+        {category}
       </div>
 
-      {/* METADATOS: Categoría y Etiquetas */}
-      <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-2 text-xs">
-        
-        {/* Categoría */}
-        <a href={`/blog/category/${category}`} class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider hover:underline z-10 relative">
-          {category}
-        </a>
-
-        <span class="text-zinc-300 dark:text-zinc-700">|</span>
-
-        {/* Etiquetas (Protegido con || []) */}
-        <div class="flex flex-wrap gap-2 z-10 relative">
-          {(tags || []).map((tag) => (
-            <a 
-              href={`/blog/tag/${tag}`} 
-              class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-            >
-              #{tag}
-            </a>
-          ))}
-        </div>
+      <div class="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <span class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700/50">
+            #{tag}
+          </span>
+        ))}
       </div>
     </div>
   </div>
 
 </article>
-

@@ -4,11 +4,20 @@
 <header class="relative flex justify-between items-center pb-6 mb-10 border-b border-zinc-200 dark:border-zinc-800">
   
   <a href="/" class="z-50 group flex items-center gap-3 font-medium text-zinc-900 dark:text-zinc-50 transition-opacity hover:opacity-80">
+    <div class="relative w-9 h-9">
+    {/* Logo para Modo Claro (Se oculta en dark) */}
     <img 
       src="/Logo_ER_B&W.png" 
-      alt="Logo" 
-      class="w-9 h-9 rounded-full shadow-sm border border-zinc-200 dark:border-zinc-700 group-hover:scale-105 transition-transform"
+      alt="Logo Enrique Relucio" 
+      class="absolute inset-0 w-9 h-9 rounded-full border border-zinc-200 shadow-sm transition-transform group-hover:scale-105 dark:hidden"
     />
+    {/* Logo para Modo Oscuro (Se oculta en light) */}
+    <img 
+      src="/Logo_ER_White.png" 
+      alt="Logo Enrique Relucio" 
+      class="absolute inset-0 w-9 h-9 rounded-full border border-zinc-700 shadow-sm transition-transform group-hover:scale-105 hidden dark:block"
+    />
+  </div>
     <span class="tracking-tight">Enrique Relucio</span>
   </a>
 

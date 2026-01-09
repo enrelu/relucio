@@ -3,9 +3,14 @@
 @plugin "@tailwindcss/typography";
 @theme {
   /* Reemplaza la fuente sans por defecto con Inter */
+  --breakpoint-*: initial;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
   --font-sans: 'Inter', sans-serif;
 }
 html {
+  transition: background-color 0.3s ease, color 0.3s ease;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
@@ -15,3 +20,5 @@ html {
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background-color: #e4e4e7; border-radius: 20px; }
 .dark ::-webkit-scrollbar-thumb { background-color: #27272a; }
+
+@custom-variant dark (&:where(.dark, .dark *));
