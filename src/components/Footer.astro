@@ -1,17 +1,55 @@
 ---
+// src/components/Footer.astro
 const today = new Date();
 ---
 
-<footer class="pt-10 border-t border-zinc-100 dark:border-zinc-900 pb-10">
-  <div class="flex justify-between items-center">
-    <p class="text-xs text-zinc-400">
-      &copy; {today.getFullYear()} Enrique Relucio
-    </p>
-    <a href="https://ciberseguridadtactica.substack.com/subscribe" target="_blank"  class="text-xs text-zinc-400 hover:text-zinc-500 dark:hover:text-zinc-200 transition-colors">
-    Newsletter
-    </a>
-     <a href="https://github.com/enrelu/relucio" target="_blank"  class="text-xs text-zinc-400 hover:text-zinc-500 dark:hover:text-zinc-200 transition-colors">
-    Diseñado con Astro y Tailwind CSS
-    </a>
+<footer class="pt-10 border-t border-zinc-100 dark:border-zinc-900 pb-20 md:pb-10">
+  <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
+    
+    {/* Copyright y Créditos */}
+    <div class="flex flex-col items-center md:items-start gap-1">
+      <p class="text-xs text-zinc-400">
+        &copy; {today.getFullYear()} Enrique Relucio
+      </p>
+      <a 
+        href="https://github.com/enrelu/relucio" 
+        target="_blank" 
+        class="text-[10px] text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors"
+      >
+        Diseñado con Astro & Tailwind
+      </a>
+    </div>
+
+    {/* Enlaces y Redes Sociales */}
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+      <a 
+        href="https://linkedin.com/in/enriquerelucio" 
+        target="_blank" 
+        class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+      >
+        LinkedIn
+      </a>
+      <a 
+        href="https://twitter.com/enriquerelucio" 
+        target="_blank" 
+        class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+      >
+        Twitter
+      </a>
+      <a 
+        href="https://ciberseguridadtactica.substack.com/subscribe" 
+        target="_blank" 
+        class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+      >
+        Newsletter
+      </a>
+      <a 
+        href="mailto:contacto@relucio.es" 
+        class="text-xs font-medium text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+      >
+        Contacto
+      </a>
+    </nav>
+
   </div>
 </footer>

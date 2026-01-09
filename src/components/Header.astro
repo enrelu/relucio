@@ -1,9 +1,9 @@
 ---
 // src/components/Header.astro
 ---
-<header class="flex justify-between items-center pb-6 mb-10 border-b border-zinc-200 dark:border-zinc-800">
+<header class="relative flex justify-between items-center pb-6 mb-10 border-b border-zinc-200 dark:border-zinc-800">
   
-  <a href="/" class="group flex items-center gap-3 font-medium text-zinc-900 dark:text-zinc-50 transition-opacity hover:opacity-80">
+  <a href="/" class="z-50 group flex items-center gap-3 font-medium text-zinc-900 dark:text-zinc-50 transition-opacity hover:opacity-80">
     <img 
       src="/Logo_ER_B&W.png" 
       alt="Logo" 
@@ -12,25 +12,70 @@
     <span class="tracking-tight">Enrique Relucio</span>
   </a>
 
-  <nav class="flex gap-4 sm:gap-6 text-sm font-medium">
-    <a href="/blog" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+  <button 
+    id="menu-toggle" 
+    aria-label="Abrir menú" 
+    class="z-50 block md:hidden p-2 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors"
+  >
+    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+  </button>
+
+  <nav 
+    id="nav-menu" 
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none md:static md:inset-auto md:flex md:flex-row md:bg-transparent md:backdrop-blur-none md:opacity-100 md:pointer-events-auto md:gap-6 text-sm font-medium"
+  >
+    <a href="/blog" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
       Blog
     </a>
-    <a href="/#proyectos" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+    <a href="/#proyectos" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
       Proyectos
     </a>
-    <a href="/#experiencia" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+    <a href="/#experiencia" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
       Experiencia
     </a>
-    <a href="/sobre-mi" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+    <a href="/sobre-mi" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
       Sobre mi
     </a>
-    <a href="https://linkedin.com/in/enriquerelucio" target="_blank"  class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
-      Linkedin
-    </a>
-    <a href="mailto:contacto@relucio.es" class="text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+    <a href="mailto:contacto@relucio.es" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
       Contacto
     </a>
   </nav>
 
 </header>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function toggleMenu() {
+    const isMenuOpen = navMenu?.classList.contains('opacity-100');
+    
+    // Toggle clases del menú
+    navMenu?.classList.toggle('opacity-0');
+    navMenu?.classList.toggle('pointer-events-none');
+    navMenu?.classList.toggle('opacity-100');
+    navMenu?.classList.toggle('pointer-events-auto');
+    
+    // Toggle iconos
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+
+    // Bloquear scroll del body al abrir
+    document.body.style.overflow = isMenuOpen ? 'auto' : 'hidden';
+  }
+
+  menuToggle?.addEventListener('click', toggleMenu);
+
+  // Cerrar menú al hacer clic en un enlace (importante para navegación interna con anclas)
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 768) { // Solo en móviles
+        toggleMenu();
+      }
+    });
+  });
+</script>
