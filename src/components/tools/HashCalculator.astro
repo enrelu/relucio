@@ -1,0 +1,61 @@
+---
+---
+<div class="h-full flex flex-col">
+    <div class="mb-4">
+        <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">Calculadora Hash</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400">Genera hashes SHA-256 y SHA-512 en local de forma segura.</p>
+    </div>
+
+    <div class="flex-grow space-y-4">
+        <div>
+            <label for="hash-input" class="sr-only">Texto a hashear</label>
+            <textarea id="hash-input" rows="3" placeholder="Escribe algo aquí..." 
+                class="w-full px-4 py-3 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all resize-none"></textarea>
+        </div>
+
+        <div class="space-y-3">
+            <div>
+                <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">SHA-256</label>
+                <div class="relative group">
+                    <input type="text" id="sha256-output" readonly class="w-full mt-1 px-3 py-2 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 rounded text-xs font-mono text-zinc-600 dark:text-zinc-400" />
+                </div>
+            </div>
+            
+            <div>
+                <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest">SHA-1 (Legacy)</label>
+                <div class="relative group">
+                    <input type="text" id="sha1-output" readonly class="w-full mt-1 px-3 py-2 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 rounded text-xs font-mono text-zinc-600 dark:text-zinc-400" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById('hash-input');
+    const sha256Output = document.getElementById('sha256-output');
+    const sha1Output = document.getElementById('sha1-output');
+
+    async function digestMessage(message, algorithm) {
+        if (!message) return '';
+        const msgUint8 = new TextEncoder().encode(message);
+        const hashBuffer = await crypto.subtle.digest(algorithm, msgUint8);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        return hashHex;
+    }
+
+    async function updateHashes() {
+        const text = input.value;
+        if (!text) {
+            sha256Output.value = '';
+            sha1Output.value = '';
+            return;
+        }
+
+        sha256Output.value = await digestMessage(text, 'SHA-256');
+        sha1Output.value = await digestMessage(text, 'SHA-1');
+    }
+
+    input.addEventListener('input', updateHashes);
+</script>

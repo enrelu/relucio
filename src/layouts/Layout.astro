@@ -5,6 +5,7 @@ import NewsletterWidget from '../components/NewsletterWidget.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css'
 import CommandPalette from '../components/CommandPalette.astro';
+import SecurityHeaders from '../components/SecurityHeaders.astro';
 
 interface Props {
 	title: string;
@@ -19,6 +20,7 @@ const { title, description = "Enrique Relucio Portfolio", showHeader = true } = 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
 	<head>
+		<SecurityHeaders />
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />

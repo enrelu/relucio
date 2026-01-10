@@ -1,0 +1,122 @@
+---
+---
+<div class="h-full flex flex-col">
+    <div class="mb-4">
+        <h3 class="text-xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">Cifrado de Texto (AES)</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400">Cifrado AES-GCM seguro en el navegador.</p>
+    </div>
+
+    <div class="flex-grow space-y-4">
+        <div>
+            <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1 block">Mensaje</label>
+            <textarea id="aes-message" rows="3" placeholder="Mensaje secreto..." 
+                class="w-full px-4 py-2 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all font-mono text-sm"></textarea>
+        </div>
+
+        <div>
+            <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1 block">Contraseña</label>
+            <input type="password" id="aes-password" placeholder="Clave secreta" 
+                class="w-full px-4 py-2 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all" />
+        </div>
+
+        <div class="flex gap-2">
+            <button id="btn-encrypt" class="flex-1 px-4 py-2 bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-bold rounded-lg hover:bg-orange-600 dark:hover:bg-orange-400 hover:text-white transition-colors">
+                🔒 Cifrar
+            </button>
+            <button id="btn-decrypt" class="flex-1 px-4 py-2 bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm font-bold rounded-lg hover:bg-zinc-300 dark:hover:bg-zinc-700 transition-colors">
+                🔓 Descifrar
+            </button>
+        </div>
+
+        <div>
+            <label class="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-1 block">Resultado</label>
+            <textarea id="aes-output" rows="3" readonly class="w-full px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none font-mono text-xs break-all" placeholder="..."></textarea>
+        </div>
+    </div>
+</div>
+
+<script>
+    const messageEl = document.getElementById('aes-message');
+    const passwordEl = document.getElementById('aes-password');
+    const outputEl = document.getElementById('aes-output');
+    const btnEncrypt = document.getElementById('btn-encrypt');
+    const btnDecrypt = document.getElementById('btn-decrypt');
+
+    // Helper functions for Web Crypto API
+    async function getKey(password, salt) {
+        const enc = new TextEncoder();
+        const keyMaterial = await window.crypto.subtle.importKey(
+            "raw", enc.encode(password), { name: "PBKDF2" }, false, ["deriveKey"]
+        );
+        return window.crypto.subtle.deriveKey(
+            { name: "PBKDF2", salt, iterations: 100000, hash: "SHA-256" },
+            keyMaterial, { name: "AES-GCM", length: 256 }, false, ["encrypt", "decrypt"]
+        );
+    }
+
+    async function encrypt(text, password) {
+        try {
+            const salt = window.crypto.getRandomValues(new Uint8Array(16));
+            const iv = window.crypto.getRandomValues(new Uint8Array(12));
+            const key = await getKey(password, salt);
+            const enc = new TextEncoder();
+            const encrypted = await window.crypto.subtle.encrypt(
+                { name: "AES-GCM", iv }, key, enc.encode(text)
+            );
+
+            // Combine salt + iv + ciphertext for portability
+            const buffer = new Uint8Array(salt.byteLength + iv.byteLength + encrypted.byteLength);
+            buffer.set(salt, 0);
+            buffer.set(iv, salt.byteLength);
+            buffer.set(new Uint8Array(encrypted), salt.byteLength + iv.byteLength);
+
+            // Convert to Base64
+            return btoa(String.fromCharCode(...buffer));
+        } catch (e) {
+            console.error(e);
+            return "Error al cifrar";
+        }
+    }
+
+    async function decrypt(base64, password) {
+        try {
+            const str = atob(base64);
+            const buffer = new Uint8Array(str.length);
+            for (let i = 0; i < str.length; i++) buffer[i] = str.charCodeAt(i);
+
+            const salt = buffer.slice(0, 16);
+            const iv = buffer.slice(16, 16 + 12);
+            const data = buffer.slice(16 + 12);
+
+            const key = await getKey(password, salt);
+            const decrypted = await window.crypto.subtle.decrypt(
+                { name: "AES-GCM", iv }, key, data
+            );
+
+            const dec = new TextDecoder();
+            return dec.decode(decrypted);
+        } catch (e) {
+            console.error(e);
+            return "Error: Contraseña incorrecta o datos corruptos";
+        }
+    }
+
+    btnEncrypt.addEventListener('click', async () => {
+        if (!messageEl.value || !passwordEl.value) {
+            outputEl.value = "Introduce mensaje y contraseña";
+            return;
+        }
+        outputEl.value = "Cifrando...";
+        outputEl.value = await encrypt(messageEl.value, passwordEl.value);
+    });
+
+    btnDecrypt.addEventListener('click', async () => {
+        if (!messageEl.value || !passwordEl.value) {
+            outputEl.value = "Pon el texto cifrado en 'Mensaje' y la clave";
+            return;
+        }
+        outputEl.value = "Descifrando...";
+        outputEl.value = await decrypt(messageEl.value, passwordEl.value); // Decrypt contents of message box
+    });
+
+</script>

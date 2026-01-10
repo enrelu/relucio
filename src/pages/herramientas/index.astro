@@ -1,0 +1,102 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PasswordGenerator from '../../components/tools/PasswordGenerator.astro';
+import HashCalculator from '../../components/tools/HashCalculator.astro';
+import SystemInfo from '../../components/tools/SystemInfo.astro';
+import PasswordStrength from '../../components/tools/PasswordStrength.astro';
+import EncoderDecoder from '../../components/tools/EncoderDecoder.astro';
+import TextEncryptor from '../../components/tools/TextEncryptor.astro';
+
+const tools = [
+    { id: 'password-generator', name: 'Generador de Contraseñas', icon: '🔒' },
+    { id: 'password-strength', name: 'Analizador de Contraseñas', icon: '🚥' },
+    { id: 'text-encryptor', name: 'Cifrado de Texto', icon: '🤐' },
+    { id: 'hash-calculator', name: 'Calculadora Hash', icon: '#️⃣' },
+    { id: 'encoder-decoder', name: 'Codificador Base64/URL', icon: '🔄' },
+    { id: 'system-info', name: 'Info de Sistema', icon: '💻' },
+];
+---
+
+<Layout title="Kit de Seguridad - Enrique Relucio" description="Herramientas de ciberseguridad gratuitas: Generador de contraseñas, Calculadora Hash y Análisis de sistema.">
+    
+    <div class="flex flex-col gap-12 max-w-4xl mx-auto animate-fade-in mb-20">
+        
+        {/* CABECERA Y LISTA DE HERRAMIENTAS */}
+        <div class="space-y-8">
+            <div class="space-y-4">
+                <h1 class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                    Kit de Ciberseguridad
+                </h1>
+                <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl text-pretty">
+                    Herramientas esenciales para proteger tu vida digital. Todo se ejecuta <strong class="text-zinc-900 dark:text-zinc-100">localmente en tu navegador</strong>.
+                </p>
+            </div>
+
+            {/* TOC / LINKS RÁPIDOS */}
+            <div class="flex flex-wrap gap-4">
+                {tools.map(tool => (
+                    <a href={`#${tool.id}`} 
+                       class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 hover:bg-orange-100 dark:hover:bg-orange-900/30 hover:text-orange-700 dark:hover:text-orange-300 transition-colors text-sm font-medium border border-transparent hover:border-orange-200 dark:hover:border-orange-800">
+                        <span>{tool.icon}</span>
+                        {tool.name}
+                    </a>
+                ))}
+            </div>
+        </div>
+
+        {/* HERRAMIENTAS - ONE PER LINE */}
+        <div class="flex flex-col gap-12">
+            
+            <div id="password-generator" class="scroll-mt-32">
+                <div class="p-6 md:p-8 bg-white dark:bg-zinc-900/30 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-sm">
+                    <PasswordGenerator />
+                </div>
+            </div>
+
+            <div id="password-strength" class="scroll-mt-32">
+                <div class="p-6 md:p-8 bg-white dark:bg-zinc-900/30 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-sm">
+                   <PasswordStrength />
+                </div>
+            </div>
+
+            <div id="text-encryptor" class="scroll-mt-32">
+                <div class="p-6 md:p-8 bg-white dark:bg-zinc-900/30 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-sm">
+                   <TextEncryptor />
+                </div>
+            </div>
+
+            <div id="hash-calculator" class="scroll-mt-32">
+                <div class="p-6 md:p-8 bg-white dark:bg-zinc-900/30 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-sm">
+                    <HashCalculator />
+                </div>
+            </div>
+
+            <div id="encoder-decoder" class="scroll-mt-32">
+                <div class="p-6 md:p-8 bg-white dark:bg-zinc-900/30 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-sm">
+                   <EncoderDecoder />
+                </div>
+            </div>
+
+            <div id="system-info" class="scroll-mt-32">
+                <div class="p-6 md:p-8 bg-white dark:bg-zinc-900/30 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:border-orange-500/50 transition-colors shadow-sm">
+                   <SystemInfo />
+                </div>
+            </div>
+
+        </div>
+
+        <div class="p-4 bg-orange-50 dark:bg-orange-900/10 border border-orange-100 dark:border-orange-900/20 rounded-lg flex gap-4 items-start">
+            <div class="text-orange-600 dark:text-orange-400 mt-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg>
+            </div>
+            <div>
+                <h4 class="font-bold text-orange-900 dark:text-orange-100">Privacidad Garantizada</h4>
+                <p class="text-sm text-orange-800/80 dark:text-orange-200/70 text-pretty">
+                    Estas herramientas utilizan APIs nativas de tu navegador (Web Crypto API). Las contraseñas y hashes se generan en tu dispositivo y nunca se envían a ningún servidor.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+</Layout>
