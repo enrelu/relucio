@@ -1,0 +1,315 @@
+---
+// src/components/CommandPalette.astro
+import { getCollection } from 'astro:content';
+
+let blogData = [];
+try {
+  const posts = await getCollection('blog');
+  if (posts) {
+    blogData = posts.map(post => ({
+      title: post.data.title,
+      url: `/blog/${post.slug}/`
+    }));
+  }
+} catch (e) {
+  console.log('Error loading blog posts for command palette', e);
+}
+---
+
+<div 
+  id="command-palette-backdrop" 
+  class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm hidden transition-opacity opacity-0" 
+  aria-hidden="true"
+  data-blog-posts={JSON.stringify(blogData)}
+>
+  <div id="command-palette-container" class="fixed inset-0 z-[101] flex items-start justify-center pt-[20vh] px-4">
+    
+    <div 
+      class="w-full max-w-xl bg-white dark:bg-zinc-900 rounded-xl shadow-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800 transform transition-all scale-95 opacity-0"
+      id="command-palette-modal"
+    >
+      
+      {/* Search Input */}
+      <div class="relative border-b border-zinc-200 dark:border-zinc-800">
+        <svg class="absolute left-4 top-3.5 w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input 
+          type="text" 
+          id="cmd-input"
+          class="w-full bg-transparent border-none px-12 py-3.5 text-zinc-900 dark:text-zinc-100 placeholder:text-zinc-500 text-lg focus:outline-none focus:ring-0"
+          placeholder="Buscar..."
+          autocomplete="off"
+        />
+        <div class="absolute right-4 top-4 px-2 py-0.5 rounded text-xs font-mono bg-zinc-100 dark:bg-zinc-800 text-zinc-500 border border-zinc-200 dark:border-zinc-700">
+          ESC
+        </div>
+      </div>
+
+      {/* Results List */}
+      <div class="max-h-[60vh] overflow-y-auto p-2" id="cmd-results">
+        {/* Los resultados se inyectan vía JS */}
+      </div>
+
+      {/* Footer */}
+      <div class="px-4 py-2 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 flex justify-between items-center text-xs text-zinc-400">
+        <div class="flex gap-3">
+            <span><kbd class="font-sans bg-zinc-200 dark:bg-zinc-700 px-1 rounded">↑↓</kbd> navegar</span>
+            <span><kbd class="font-sans bg-zinc-200 dark:bg-zinc-700 px-1 rounded">↵</kbd> seleccionar</span>
+        </div>
+        <span>Relucio Cmd v1.0</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Floating Trigger Button -->
+<button 
+    id="cmd-floating-trigger"
+    class="fixed bottom-6 right-6 z-40 hidden lg:flex items-center gap-2 px-4 py-2 bg-white dark:bg-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 rounded-full shadow-lg text-zinc-500 text-sm transition-all hover:scale-105 group"
+>
+    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    <span class="font-medium text-zinc-600 dark:text-zinc-300">Buscar</span>
+    <kbd class="inline-flex h-5 items-center gap-1 rounded border border-zinc-200 dark:border-zinc-600 bg-zinc-100 dark:bg-zinc-900 px-1.5 font-mono text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
+      <span class="text-xs">⌘</span>K
+    </kbd>
+</button>
+
+<script>
+  // Datos de comandos
+  const staticCommands = [
+    { category: "Navegación", name: "Ir a Inicio", icon: "home", action: () => window.location.href = "/" },
+    { category: "Navegación", name: "Leer Blog", icon: "book", action: () => window.location.href = "/blog" },
+    { category: "Navegación", name: "Ver Proyectos", icon: "briefcase", action: () => window.location.href = "/#proyectos" },
+    { category: "Navegación", name: "Ver Experiencia", icon: "trending-up", action: () => window.location.href = "/#experiencia" },
+    { category: "Navegación", name: "Sobre mí", icon: "user", action: () => window.location.href = "/sobre-mi" },
+    { category: "Navegación", name: "Contacto", icon: "mail", action: () => window.location.href = "/contacto" },
+    
+    { category: "Acciones", name: "Cambiar Tema (Claro/Oscuro)", icon: "moon", action: () => document.getElementById('theme-toggle')?.click() },
+    { category: "Acciones", name: "Copiar Email", icon: "copy", action: async () => {
+        try {
+            await navigator.clipboard.writeText("contacto@relucio.es"); // Reemplazar con email real si se desea
+            alert("Email copiado al portapapeles");
+        } catch (err) {
+            console.error('Error al copiar', err);
+        }
+    }},
+    { category: "Social", name: "LinkedIn", icon: "linkedin", action: () => window.open("https://linkedin.com/in/enriquerelucio", "_blank") },
+    { category: "Social", name: "Twitter / X", icon: "twitter", action: () => window.open("https://twitter.com/enrelu", "_blank") },
+  ];
+
+  // Recuperar datos del blog desde el atributo data
+  let blogCommands = [];
+  try {
+    const backdropElement = document.getElementById('command-palette-backdrop');
+    if (backdropElement && backdropElement.dataset.blogPosts) {
+        const blogData = JSON.parse(backdropElement.dataset.blogPosts);
+        blogCommands = Array.isArray(blogData) ? blogData.map(post => ({
+            category: "Blog",
+            name: post.title,
+            icon: "book",
+            action: () => window.location.href = post.url
+        })) : [];
+    }
+  } catch (e) {
+    console.error("Error parsing blog commands", e);
+  }
+
+  const commands = [...staticCommands, ...blogCommands];
+
+  // Iconos SVG simples
+  const icons = {
+    home: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><path d="M9 22V12h6v10"></path></svg>`,
+    book: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path></svg>`,
+    briefcase: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"></path></svg>`,
+    "trending-up": `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>`,
+    user: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>`,
+    mail: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>`,
+    moon: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>`,
+    copy: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path></svg>`,
+    linkedin: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+    twitter: `<svg viewBox="0 0 24 24" fill="none" class="w-5 h-5" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg>`,
+  };
+
+  // Estado
+  let isOpen = false;
+  let selectedIndex = 0;
+  let filteredCommands = commands;
+
+  // Referencias DOM
+  const backdrop = document.getElementById('command-palette-backdrop');
+  const modal = document.getElementById('command-palette-modal');
+  const input = document.getElementById('cmd-input') as HTMLInputElement;
+  const resultsContainer = document.getElementById('cmd-results');
+
+  // Funciones
+  function openPalette() {
+    isOpen = true;
+    backdrop?.classList.remove('hidden');
+    // Forzar reflow para animación
+    void backdrop?.offsetWidth;
+    backdrop?.classList.remove('opacity-0');
+    modal?.classList.remove('opacity-0', 'scale-95');
+    modal?.classList.add('opacity-100', 'scale-100');
+    
+    input.value = '';
+    filterCommands('');
+    setTimeout(() => input.focus(), 50);
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePalette() {
+    isOpen = false;
+    backdrop?.classList.add('opacity-0');
+    modal?.classList.remove('opacity-100', 'scale-100');
+    modal?.classList.add('opacity-0', 'scale-95');
+    
+    setTimeout(() => {
+        backdrop?.classList.add('hidden');
+    }, 200);
+    document.body.style.overflow = '';
+  }
+
+  function filterCommands(query: string) {
+    const q = query.toLowerCase();
+    filteredCommands = commands.filter(cmd => 
+        cmd.name.toLowerCase().includes(q) || 
+        cmd.category.toLowerCase().includes(q)
+    );
+    selectedIndex = 0;
+    renderResults();
+  }
+
+  function renderResults() {
+    if (!resultsContainer) return;
+    resultsContainer.innerHTML = '';
+
+    if (filteredCommands.length === 0) {
+        resultsContainer.innerHTML = `
+            <div class="p-4 text-center text-zinc-500">
+                No se encontraron resultados
+            </div>
+        `;
+        return;
+    }
+
+    // Agrupar por categoría
+    const categories = [...new Set(filteredCommands.map(c => c.category))];
+    
+    // Convertir a lista plana para manejar índice visualmente
+    let currentIndex = 0;
+
+    categories.forEach(cat => {
+        const catHeader = document.createElement('div');
+        catHeader.className = "px-3 py-2 text-xs font-semibold text-zinc-400 uppercase tracking-widest";
+        catHeader.innerText = cat;
+        resultsContainer.appendChild(catHeader);
+
+        const catCmds = filteredCommands.filter(c => c.category === cat);
+        catCmds.forEach(cmd => {
+            const el = document.createElement('button');
+            const isActive = currentIndex === selectedIndex;
+            el.className = `w-full text-left px-3 py-3 rounded-lg flex items-center gap-3 transition-colors ${
+                isActive 
+                ? 'bg-orange-600 text-white dark:bg-orange-500' // Estilo activo naranja
+                : 'text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800'
+            }`;
+            
+            // Icono
+            const iconDiv = document.createElement('div');
+            iconDiv.className = isActive ? 'text-white' : 'text-zinc-400';
+            iconDiv.innerHTML = icons[cmd.icon as keyof typeof icons] || '';
+            
+            // Texto
+            const textDiv = document.createElement('div');
+            textDiv.innerText = cmd.name;
+            textDiv.className = "font-medium flex-1";
+
+            el.appendChild(iconDiv);
+            el.appendChild(textDiv);
+            
+            // Evento click
+            el.onclick = () => {
+                cmd.action();
+                closePalette();
+            };
+            // Mouse over para actualizar selección
+            const thisIndex = currentIndex;
+            el.onmouseenter = () => {
+                if (selectedIndex !== thisIndex) {
+                    selectedIndex = thisIndex; // Actualizar índice global
+                    renderResults(); // Re-renderizar para actualizar estilos visuales
+                }
+            };
+
+            resultsContainer.appendChild(el);
+            currentIndex++;
+        });
+    });
+
+    // Scroll al elemento seleccionado si es necesario
+    // (Implementación básica podría añadirse aquí)
+  }
+
+  // Event Listeners Globales
+  document.addEventListener('keydown', (e) => {
+    // Abrir con Cmd+K o Ctrl+K
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (isOpen) closePalette();
+        else openPalette();
+    }
+    
+    // Cerrar con Escape
+    if (e.key === 'Escape' && isOpen) {
+        closePalette();
+    }
+
+    if (!isOpen) return;
+
+    // Navegación
+    if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % filteredCommands.length;
+        renderResults();
+    } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + filteredCommands.length) % filteredCommands.length;
+        renderResults();
+    } else if (e.key === 'Enter') {
+        e.preventDefault();
+        const cmd = filteredCommands[selectedIndex];
+        if (cmd) {
+            cmd.action();
+            closePalette();
+        }
+    }
+  });
+
+  // Cerrar al click fuera (Backdrop o Container)
+  const container = document.getElementById('command-palette-container');
+  
+  const handleOutsideClick = (e: MouseEvent) => {
+    if (e.target === backdrop || e.target === container) {
+        closePalette();
+    }
+  };
+
+  backdrop?.addEventListener('mousedown', handleOutsideClick);
+  container?.addEventListener('mousedown', handleOutsideClick);
+
+  // Filtrado
+  input?.addEventListener('input', (e) => {
+    filterCommands((e.target as HTMLInputElement).value);
+  });
+
+  // Escuchar evento personalizado para abrir desde otros componentes
+  window.addEventListener('open-cmd-palette', () => {
+    if (!isOpen) openPalette();
+  });
+
+  // Listener para el botón flotante
+  document.getElementById('cmd-floating-trigger')?.addEventListener('click', openPalette);
+
+</script>

@@ -308,7 +308,7 @@ try {
     
     <div class="flex gap-2 mb-8 overflow-x-auto pb-2">
         <button 
-            class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900" 
+            class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all bg-orange-600 text-white dark:bg-orange-500 dark:text-white" 
             data-filter="todos"
         >
             Todos
@@ -396,14 +396,14 @@ try {
             btn.addEventListener('click', () => {
                 // 1. Gestionar estilos de los botones (Activo/Inactivo)
                 buttons.forEach(b => {
-                    // Quitamos estilo activo (negro/blanco) y ponemos estilo inactivo (gris)
-                    b.classList.remove('bg-zinc-900', 'text-white', 'dark:bg-zinc-100', 'dark:text-zinc-900');
+                    // Quitamos estilo activo (naranja) y ponemos estilo inactivo (gris)
+                    b.classList.remove('bg-orange-600', 'text-white', 'dark:bg-orange-500', 'dark:text-white');
                     b.classList.add('bg-zinc-100', 'text-zinc-600', 'dark:bg-zinc-800', 'dark:text-zinc-400');
                 });
                 
                 // Ponemos estilo activo al botón pulsado
                 btn.classList.remove('bg-zinc-100', 'text-zinc-600', 'dark:bg-zinc-800', 'dark:text-zinc-400');
-                btn.classList.add('bg-zinc-900', 'text-white', 'dark:bg-zinc-100', 'dark:text-zinc-900');
+                btn.classList.add('bg-orange-600', 'text-white', 'dark:bg-orange-500', 'dark:text-white');
 
                 // 2. Filtrar los elementos
                 const filterValue = btn.getAttribute('data-filter');

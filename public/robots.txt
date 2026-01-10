@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://relucio.es/sitemap-index.xml
