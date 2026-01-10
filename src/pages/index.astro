@@ -3,7 +3,6 @@
 import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import ExpandableItem from '../components/ExpandableItem.astro';
-import Now from '../components/Now.astro';
 import BlogRow from '../components/BlogRow.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { getCollection } from 'astro:content';
@@ -268,17 +267,17 @@ try {
 			</div>
 
             <nav class="flex gap-4">
-                <a href="/blog" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">Blog</a>
-                <a href="/#proyectos" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">
+                <a href="/blog" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">Blog</a>
+                <a href="/#proyectos" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
                   Proyectos
                 </a>
-                <a href="/#experiencia" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">
+                <a href="/#experiencia" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
                   Experiencia
                 </a>
-                <a href="/sobre-mi" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">
+                <a href="/sobre-mi" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
                   Sobre mi
                 </a>
-                <a href="/contacto" class="text-sm font-medium text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors border-b border-transparent hover:border-zinc-400">Contacto</a>
+                <a href="/contacto" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">Contacto</a>
             </nav>
 		</header>
 
@@ -345,10 +344,6 @@ try {
 
 </Section>
 
-<Section title="En Foco">
-        <Now />
-    </Section>
-
         <Section title="Trayectoria" id="experiencia">
       <div class="flex flex-col">
         {experience.map((job) => (
@@ -373,7 +368,7 @@ try {
                         class="flex flex-col gap-1 p-3 -mx-3 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-900 transition-colors border border-transparent hover:border-zinc-200 dark:hover:border-zinc-800 group"
                     >
                         <div class="flex justify-between items-start w-full">
-                            <h3 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm">
+                            <h3 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                                 {cert.name}
                             </h3>
                             <span class="text-zinc-400 text-xs font-mono tabular-nums shrink-0 ml-2">
