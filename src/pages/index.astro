@@ -12,11 +12,11 @@ import { getCollection } from 'astro:content';
 const projects = [
   {
   id: "proj-1",
-  title: "EmotionScore: Algoritmo de Calidad Deportiva (LLES)",
+  title: "The Match Pulse: Algoritmo de Calidad Deportiva",
   category: "desarrollo",
   client: "Proyecto Personal",
   summary: "Desarrollo de un modelo matemático predictivo para calificar la 'espectacularidad' deportiva sin spoilers.",
-  details: `Diseño y desarrollo integral de una plataforma que resuelve la "Paradoja del Spoiler" mediante el procesamiento de métricas avanzadas. El sistema ingesta datos de La Liga y aplica un algoritmo propio (LLES) para puntuar partidos del 0 al 5 basándose en la narrativa del juego y no solo en el resultado.
+  details: `Diseño y desarrollo integral de una plataforma que resuelve la "Paradoja del Spoiler" mediante el procesamiento de métricas avanzadas. El sistema ingesta datos de La Liga y aplica un algoritmo propio para puntuar partidos del 0 al 5 basándose en la narrativa del juego y no solo en el resultado.
 
   Arquitectura y Desafíos Técnicos:
   - Ingeniería de Datos (ETL): Pipeline en Python (Pandas/Numpy) con extracción asíncrona (asyncio/aiohttp) de múltiples fuentes de datos (Understat, StatsBomb).
@@ -26,7 +26,8 @@ const projects = [
   Impacto:
   - Innovación: Creación de métricas propias (IAO - Índice de Amenaza Ofensiva) normalizadas contra datos históricos.
   - Escalabilidad: Arquitectura preparada para procesar temporadas históricas y generar recomendaciones automatizadas.`,
-  year: "2026"
+  year: "2026",
+  url: "https://thematchpulse.com"
 }, {
   id: "proj-2",
   title: "Rediseño relucio.es",
@@ -47,7 +48,8 @@ const projects = [
   - Rendimiento: Puntuación de 100/100 en Google Lighthouse para Performance, SEO y Mejores Prácticas.
   - Conversión: Implementación de un widget de suscripción optimizado que aumenta la visibilidad de la newsletter sin comprometer la lectura del contenido principal.
   - Escalabilidad: Sistema preparado para la creación de contenido mediante Markdown/MDX, facilitando la publicación de artículos técnicos de forma ágil.`,
-  year: "2026"
+  year: "2026",
+  url: "/"
 },
   {
   id: "proj-3",
@@ -272,9 +274,7 @@ try {
                 <a href="/sobre-mi" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
                   Sobre mi
                 </a>
-                <a href="/herramientas" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
-                  Herramientas
-                </a>
+                
                 <a href="/contacto" class="text-sm font-medium text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">Contacto</a>
             </nav>
 		</header>
@@ -344,6 +344,7 @@ try {
                     summary={project.summary}
                     details={project.details}
                     year={project.year}
+                    url={project.url}
                 />
             </div>
         ))}
@@ -378,9 +379,16 @@ try {
                             <h3 class="font-medium text-zinc-900 dark:text-zinc-100 text-sm group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
                                 {cert.name}
                             </h3>
-                            <span class="text-zinc-400 text-xs font-mono tabular-nums shrink-0 ml-2">
-                                {cert.year}
-                            </span>
+                            <div class="flex items-center gap-2 shrink-0 ml-2">
+                                {cert.url && (
+                                    <svg class="w-2.5 h-2.5 opacity-50 group-hover:opacity-100 transition-opacity text-zinc-400 group-hover:text-orange-600 dark:group-hover:text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                    </svg>
+                                )}
+                                <span class="text-zinc-400 text-xs font-mono tabular-nums">
+                                    {cert.year}
+                                </span>
+                            </div>
                         </div>
                         <span class="text-xs text-zinc-500 dark:text-zinc-500">
                             Emitido por <span class="text-zinc-700 dark:text-zinc-300 font-medium">{cert.issuer}</span>
