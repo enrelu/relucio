@@ -30,7 +30,6 @@ const { title, description = "Enrique Relucio Portfolio", showHeader = true } = 
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 		<title>{title}</title>
 		<script is:inline>
-            // Mantenemos este script aquí para que el color se aplique ANTES de pintar la web
 			const theme = (() => {
 				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
 					return localStorage.getItem('theme');
@@ -58,6 +57,10 @@ const { title, description = "Enrique Relucio Portfolio", showHeader = true } = 
 
 		</main>
 
+    <script>
+      import { inject } from '@vercel/analytics';
+      inject();
+    </script>
 	</body>
 </html>
 
