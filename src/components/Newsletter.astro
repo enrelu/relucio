@@ -58,22 +58,23 @@ const cleanSnippet = (text) => {
         <span class="text-xs font-mono text-orange-600 dark:text-orange-400 font-medium uppercase tracking-wider">
           Última edición
         </span>
-        <span class="text-xs text-zinc-400 tabular-nums">
+        <span id="newsletter-date" class="text-xs text-zinc-400 tabular-nums">
           {new Date(latestPost.pubDate).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' })}
         </span>
       </div>
 
       <h4 class="text-lg font-bold text-zinc-900 dark:text-zinc-100 leading-tight group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-        <a href={latestPost.link} target="_blank" rel="noopener noreferrer">
+        <a id="newsletter-title" href={latestPost.link} target="_blank" rel="noopener noreferrer">
           {latestPost.title}
         </a>
       </h4>
 
-      <p class="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-3">
+      <p id="newsletter-snippet" class="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-3">
         {cleanSnippet(latestPost.contentSnippet)}
       </p>
 
       <a 
+        id="newsletter-link"
         href={latestPost.link} 
         target="_blank" 
         rel="noopener noreferrer"
@@ -85,3 +86,56 @@ const cleanSnippet = (text) => {
 
   </div>
 )}
+
+<script>
+  const FEED_URL = 'https://ciberseguridadtactica.substack.com/feed';
+  const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(FEED_URL)}`;
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        const latestItem = data.items[0];
+        
+        // Element references
+        const dateEl = document.getElementById('newsletter-date');
+        const titleEl = document.getElementById('newsletter-title');
+        const snippetEl = document.getElementById('newsletter-snippet');
+        const linkEl = document.getElementById('newsletter-link');
+
+        // Update Date
+        if (dateEl) {
+          // rss2json date format "YYYY-MM-DD HH:mm:ss"
+          const dateStr = latestItem.pubDate.replace(/-/g, '/'); // safe parsing
+          const date = new Date(dateStr);
+          dateEl.textContent = date.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' });
+        }
+
+        // Update Title & Link
+        if (titleEl) {
+          titleEl.textContent = latestItem.title;
+          titleEl.setAttribute('href', latestItem.link);
+        }
+
+        // Update Snippet
+        if (snippetEl) {
+          // Remove HTML tags for snippet
+          const tmp = document.createElement('div');
+          tmp.innerHTML = latestItem.description || '';
+          let text = tmp.textContent || tmp.innerText || '';
+          if (text.length > 150) text = text.substring(0, 150) + '...';
+          snippetEl.textContent = text;
+        }
+
+        // Update Bottom Link
+        if (linkEl) {
+          linkEl.setAttribute('href', latestItem.link);
+        }
+      }
+    } catch (e) {
+      console.error("Client-side newsletter update failed:", e);
+    }
+  });
+</script>
