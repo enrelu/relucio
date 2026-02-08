@@ -48,7 +48,7 @@ try {
 
       <div class="space-y-2">
         <p class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Newsletter: Última edición</p>
-        <a href={latestPost.link} target="_blank" class="block font-medium text-sm text-zinc-800 dark:text-zinc-200 hover:text-orange-600 dark:hover:text-orange-400 transition-colors line-clamp-3">
+        <a id="widget-news-link" href={latestPost.link} target="_blank" class="block font-medium text-sm text-zinc-800 dark:text-zinc-200 hover:text-orange-600 dark:hover:text-orange-400 transition-colors line-clamp-3">
           {latestPost.title}
         </a>
       </div>
@@ -61,10 +61,36 @@ try {
 )}
 
 <script>
+  // UI Control
   const widget = document.getElementById('newsletter-widget');
   const mobileBtn = document.getElementById('open-widget-mobile');
   const closeBtn = document.getElementById('close-widget');
   let isClosedByUser = false;
+
+  // Data Fetching
+  const FEED_URL = 'https://ciberseguridadtactica.substack.com/feed';
+  const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(FEED_URL)}`;
+
+  const updateWidgetContent = async () => {
+    try {
+      const response = await fetch(API_URL);
+      const data = await response.json();
+      
+      if (data.status === 'ok' && data.items && data.items.length > 0) {
+        const latestItem = data.items[0];
+        const linkEl = document.getElementById('widget-news-link');
+        
+        if (linkEl) {
+          linkEl.textContent = latestItem.title;
+          linkEl.setAttribute('href', latestItem.link);
+        }
+      }
+    } catch (e) {
+      console.error("Widget update failed:", e);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', updateWidgetContent);
 
   const handleScroll = () => {
     if (!widget || !mobileBtn || isClosedByUser) return;
@@ -105,7 +131,7 @@ try {
   closeBtn?.addEventListener('click', () => {
     const isDesktop = window.innerWidth >= 1280;
     if (isDesktop) {
-      widget!.style.display = 'none';
+      widget.style.display = 'none';
       isClosedByUser = true;
     } else {
       widget?.classList.add('opacity-0', 'translate-y-10', 'pointer-events-none');
