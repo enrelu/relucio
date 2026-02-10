@@ -3,7 +3,7 @@ title: '¿Qué está pasando en España con la Directiva NIS2?'
 description: 'España lleva 16 meses de retraso con NIS2. Luchas de poder, chantaje parlamentario y 418 millones en riesgo mientras las infraestructuras críticas esperan...'
 pubDate: '2026-02-10'
 category: 'Estrategia'
-tags: ['CNI', 'Compliance', 'NIS2', 'Política','CNI']
+tags: ['CNI', 'Compliance', 'NIS2', 'Política']
 heroImage: "que-esta-pasando-en-españa-con-la-directiva-nis2.png"
 ---
 
