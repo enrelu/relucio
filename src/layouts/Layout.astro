@@ -11,10 +11,20 @@ interface Props {
 	title: string;
 	description?: string;
     showHeader?: boolean;
+    image?: string;
+    ogType?: string;
 }
 
 // 2. Le damos valor por defecto true (si no dices nada, se muestra)
-const { title, description = "Enrique Relucio Portfolio", showHeader = true } = Astro.props;
+const { 
+    title, 
+    description = "Enrique Relucio Portfolio - Ciberseguridad & Estrategia", 
+    showHeader = true,
+    image = "/Logo_ER_B&W.png", // Fallback image for social sharing
+    ogType = "website"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -29,6 +39,44 @@ const { title, description = "Enrique Relucio Portfolio", showHeader = true } = 
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 		<title>{title}</title>
+        <meta name="generator" content={Astro.generator} />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content={ogType} />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(image, Astro.url)} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+        <!-- JSON-LD Structured Data for Personal Website -->
+        <script type="application/ld+json" set:html={JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Enrique Relucio",
+            "url": "https://relucio.es",
+            "image": "https://relucio.es/sobre_mi.jpg",
+            "sameAs": [
+                "https://www.linkedin.com/in/enriquerelucio/",
+                "https://ciberseguridadtactica.substack.com/"
+            ],
+            "jobTitle": "Consultor de Ciberseguridad & Business Development",
+            "worksFor": {
+                "@type": "Organization",
+                "name": "Alcorce Ciberseguridad"
+            },
+            "description": description
+        })} />
 		<script is:inline>
 			const theme = (() => {
 				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {

@@ -33,18 +33,55 @@ const formattedDate = pubDate.toLocaleDateString('es-ES', {
 	month: 'short',
 	day: 'numeric',
 });
+
+// Resolver imagen para metadatos (absoluta)
+const socialImage = heroImage 
+    ? (heroImage.startsWith('http') ? heroImage : new URL(heroImage, Astro.site).toString())
+    : '/Logo_ER_B&W.png';
 ---
 
-<Layout title={title} description={description}>
+<Layout title={`${title} | Enrique Relucio`} description={description} image={socialImage} ogType="article">
+    
+    <!-- JSON-LD para Artículos de Blog -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "image": socialImage,
+        "datePublished": pubDate.toISOString(),
+        "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
+        "author": {
+            "@type": "Person",
+            "name": "Enrique Relucio",
+            "url": "https://relucio.es"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Enrique Relucio",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://relucio.es/Logo_ER_B&W.png"
+            }
+        },
+        "description": description
+    })} />
+
 		<article class="flex flex-col gap-8">
 			
 			{/* CABECERA DEL ARTÍCULO */}
 			<header class="flex flex-col gap-4">
 				
-				
+				{/* Breadcrumbs / Migas de Pan */}
+                <nav class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 mb-2">
+                    <a href="/" class="hover:text-orange-600 transition-colors">Inicio</a>
+                    <span>/</span>
+                    <a href="/blog" class="hover:text-orange-600 transition-colors">Blog</a>
+                    <span>/</span>
+                    <span class="text-zinc-900 dark:text-zinc-200 font-medium truncate max-w-[200px]">{title}</span>
+                </nav>
 
 				{/* Título */}
-				<h1 class="text-3xl pt-10 md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+				<h1 class="text-3xl pt-2 md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
 					{title}
 				</h1>
 				{/* Meta superior: Fecha y Categoría */}
@@ -76,7 +113,7 @@ const formattedDate = pubDate.toLocaleDateString('es-ES', {
 				<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800">
 					<img
 						src={heroImage.startsWith('http') || heroImage.startsWith('/') ? heroImage : `/${heroImage}`}
-						alt=""
+						alt={title}
 						class="object-cover w-full h-full"
 					/>
 				</div>
