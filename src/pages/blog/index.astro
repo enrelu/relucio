@@ -34,6 +34,7 @@ const description = "Artículos sobre ciberseguridad, estrategia y tecnología."
 				posts.map((post) => (
 					<BlogRow 
 						title={post.data.title}
+						description={post.data.description}
 						date={post.data.pubDate}
 						url={`/blog/${post.slug}/`}
 						category={post.data.category} 

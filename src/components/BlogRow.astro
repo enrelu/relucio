@@ -2,6 +2,7 @@
 // src/components/BlogRow.astro
 interface Props {
   title: string;
+  description?: string;
   date: Date;
   url: string;
   heroImage?: string; // Nombre que viene de la colección de Astro
@@ -13,6 +14,7 @@ interface Props {
 // Extraemos ambos posibles nombres y priorizamos uno
 const { 
   title, 
+  description,
   date, 
   url, 
   heroImage, 
@@ -62,18 +64,30 @@ const formattedDate = date.toLocaleDateString('es-ES', {
       </time>
     </div>
 
+    {description && (
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2 md:line-clamp-3 leading-relaxed">
+        {description}
+      </p>
+    )}
+
     {/* METADATOS */}
     <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-3 text-[10px]">
       
-      <div class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest border-r border-zinc-200 dark:border-zinc-800 pr-3 leading-none">
+      <a 
+        href={`/blog/category/${category}`}
+        class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest border-r border-zinc-200 dark:border-zinc-800 pr-3 leading-none hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+      >
         {category}
-      </div>
+      </a>
 
       <div class="flex flex-wrap gap-2">
         {tags.map((tag) => (
-          <span class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700/50">
+          <a 
+            href={`/blog/tag/${tag}`}
+            class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700/50 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all"
+          >
             #{tag}
-          </span>
+          </a>
         ))}
       </div>
     </div>
