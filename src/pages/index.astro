@@ -4,12 +4,38 @@ import Layout from '../layouts/Layout.astro';
 import Section from '../components/Section.astro';
 import ExpandableItem from '../components/ExpandableItem.astro';
 import BlogRow from '../components/BlogRow.astro';
-import Newsletter from '../components/Newsletter.astro';
 import { getCollection } from 'astro:content';
 
 // 2. DATOS DE PROYECTOS Y EXPERIENCIA
 // PROYECTOS (Añadido campo 'details' con texto extendido)
 const projects = [
+  {
+  id: "proj-0",
+  title: "Fidus OS: Sales OS (anti-CRM) y LinkedIn Scraper",
+  category: "desarrollo",
+  client: "Proyecto Personal",
+  summary: "Arquitectura full-stack de un CRM moderno con FastAPI, SQLModel, React y automatizaciones asíncronas con Celery para priorización comercial inteligente.",
+  details: `Arquitectura CRM multi-tenant orientada a productividad comercial.
+
+  Backend:
+  - FastAPI + SQLModel sobre PostgreSQL (Supabase), con autenticacion JWT/OAuth.
+  - Modulos CRM para leads, clientes, oportunidades, tareas y activity log.
+  - Motor Sales OS (signals/scoring/today) que prioriza acciones por impacto.
+  - Integraciones con IA (GPT/Gemini), email, llamadas, calendario y Stripe.
+
+  Procesamiento asincrono:
+  - Redis como broker y Celery (worker + beat) para tareas pesadas y jobs programados.
+  - Job nocturno que analiza pipeline, detecta riesgos/oportunidades y prepara briefings para la vista Today.
+
+  Frontend:
+  - React + Vite con rutas protegidas y gestion centralizada de estado.
+  - Contextos de autenticacion y tenant para aislamiento por cliente.
+  - Vistas clave: Dashboard, Today, Feed y tablas de Leads/Clientes con modales operativos.
+
+  Resultado: plataforma escalable que combina operativa CRM, automatizacion e inteligencia comercial en tiempo real.`,
+  year: "2026",
+  url: "https://fidusos.com"
+},
   {
   id: "proj-1",
   title: "The Match Pulse: Algoritmo de Calidad Deportiva",
@@ -282,12 +308,38 @@ try {
 
     
 
-    <Section title="Newsletter Diaria">
-        <Newsletter />
+    <Section title="">
+      <div class="p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800">
+        <div class="flex flex-col justify-center gap-4 w-full">
+          <div class="flex items-center gap-3">
+            <img
+              src="/fidus-os-logo.png"
+              alt="Fidus OS"
+              class="h-8 w-auto"
+              loading="lazy"
+              decoding="async"
+            />
+            
+          </div>
+
+          <p class="w-full text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed text-pretty">
+            Fidus es un <strong>Sistema Operativo de ventas diseñado por comerciales para comerciales</strong>. Esta pensado para trabajar para ti: combina IA, automatizaciones e integraciones para predecir el siguiente paso.
+          </p>
+
+          <a
+            href="https://fidusos.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex justify-center items-center px-4 py-2.5 text-sm font-medium rounded-lg text-white bg-orange-600 hover:bg-orange-700 transition-colors w-full sm:w-auto text-center"
+          >
+            Ver Fidus OS
+          </a>
+        </div>
+      </div>
     </Section>
 
         {latestPosts.length > 0 && (
-            <Section title="Blog - Artículos Recientes">
+            <Section title="Blog">
                 <div class="flex flex-col">
                     {latestPosts.map((post) => (
                         <BlogRow 
@@ -326,13 +378,13 @@ try {
             class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700" 
             data-filter="consultoria"
         >
-            Consultoría
+            Ciberseguridad
         </button>
         <button 
             class="filter-btn px-4 py-1.5 rounded-full text-sm font-medium transition-all bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-700" 
             data-filter="desarrollo"
         >
-            Desarrollo
+            Desarrollo Software
         </button>
     </div>
 
