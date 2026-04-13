@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
 // 1. Generamos las rutas para cada post
@@ -10,7 +10,7 @@ export async function getStaticPaths() {
 	const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 	return sortedPosts.map((post, index) => ({
-		params: { slug: post.slug },
+		params: { slug: post.id },
 		props: { 
 			post,
 			// El "Siguiente" es el índice anterior (porque es más nuevo)
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 
 // 2. Obtenemos los datos del post actual
 const { post, prevPost, nextPost } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 
 // 3. Extraemos las propiedades (Frontmatter)
 const { title, description, pubDate, updatedDate, heroImage, category = 'General', tags = [] } = post.data;
@@ -130,7 +130,7 @@ const socialImage = heroImage
 		<div class="flex flex-col sm:flex-row justify-between gap-4 mt-16 mb-8">
 			{/* Botón Anterior (Más antiguo) */}
 			{prevPost ? (
-				<a href={`/blog/${prevPost.slug}/`} class="group flex flex-col gap-1 text-left sm:max-w-[45%]">
+				<a href={`/blog/${prevPost.id}/`} class="group flex flex-col gap-1 text-left sm:max-w-[45%]">
 					<span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
 						← Anterior
 					</span>
@@ -144,7 +144,7 @@ const socialImage = heroImage
 
 			{/* Botón Siguiente (Más nuevo) */}
 			{nextPost ? (
-				<a href={`/blog/${nextPost.slug}/`} class="group flex flex-col gap-1 text-right sm:max-w-[45%] items-end">
+				<a href={`/blog/${nextPost.id}/`} class="group flex flex-col gap-1 text-right sm:max-w-[45%] items-end">
 					<span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
 						Siguiente →
 					</span>
