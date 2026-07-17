@@ -1,11 +1,10 @@
-\---
-
+---
 title: '¿El SPAM puede llegar a salir caro?'
 description: 'Vender bases de datos con tu correo es ilegal, pero denunciarlo es una cruzada perdida. Hay una herramienta que no cuesta nada y hace mucho más daño al spammer...'
 pubDate: '2026-07-17'
 category: 'Consejos'
-tags: \['Correo' , 'Compliance']
-heroImage: "el\_spam\_puede\_llegar\_a\_salir\_caro.jpg"
+tags: ['Correo' , 'Compliance']
+heroImage: "el_spam_puede_llegar_a_salir_caro.jpg"
 ---
 
 Hace tiempo me registré en un evento de ciberseguridad dando mi correo electrónico, lo normal, vaya. Abajo había una casilla obligatoria por la que aceptabas contenido publicitario. Lo normal.
