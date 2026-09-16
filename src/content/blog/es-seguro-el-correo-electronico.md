@@ -4,7 +4,7 @@ description: 'El correo parece un trayecto directo, pero atraviesa clientes, ser
 pubDate: '2026-09-16'
 category: 'Tecnología'
 tags: ['Correo']
-heroImage: "es-seguro-el-correo-electronico.jpg"
+heroImage: "es-seguro-el-correo-electronico.svg"
 ---
 
 Pulsas «Enviar» y el mensaje desaparece. Unos segundos después aparece en otra bandeja de entrada.
