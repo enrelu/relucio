@@ -2,7 +2,7 @@
 const navigation = [
   { label: 'Qué ofrezco', href: '/#oferta' },
   { label: 'Cómo trabajo', href: '/#metodo' },
-  { label: 'Experiencia', href: '/#experiencia' },
+  { label: 'Blog', href: '/blog' },
 ];
 ---
 <header class="site-header">
@@ -20,6 +20,10 @@ const navigation = [
     </div>
     <nav id="nav-menu" class="site-nav" aria-label="Navegación principal">
       {navigation.map(item => <a href={item.href}>{item.label}</a>)}
+      <details class="nav-about" id="nav-about">
+        <summary>Sobre mí <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg></summary>
+        <div class="nav-about-links"><a href="/sobre-mi">Sobre mí</a><a href="/trayectoria">Trayectoria y CV</a><a href="/proyectos">Proyectos</a></div>
+      </details>
       <a class="button button-primary" href="/contacto">Hablemos</a>
     </nav>
   </div>
@@ -27,14 +31,21 @@ const navigation = [
 <script>
   const toggle = document.getElementById('menu-toggle');
   const nav = document.getElementById('nav-menu');
+  const about = document.getElementById('nav-about') as HTMLDetailsElement | null;
   function setMenu(open: boolean) {
     nav?.classList.toggle('is-open', open);
+    if (!open && about) about.open = false;
     toggle?.setAttribute('aria-expanded', String(open));
     toggle?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
   }
   toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
   nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { setMenu(false); } });
+  document.addEventListener('click', e => { if (about?.open && e.target instanceof Node && !about.contains(e.target)) about.open = false; });
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    if (about?.open) { about.open = false; about.querySelector('summary')?.focus(); }
+    else if (toggle?.getAttribute('aria-expanded') === 'true') { setMenu(false); toggle.focus(); }
+  });
   const themeButton = document.getElementById('theme-toggle');
   function syncTheme() {
     const dark = document.documentElement.classList.contains('dark');
@@ -48,4 +59,4 @@ const navigation = [
   });
   syncTheme();
 </script>
-<noscript><style>.menu-button{display:none!important}@media(max-width:767px){.site-header-inner{flex-wrap:wrap}.site-nav{display:flex!important;position:static!important;flex-direction:row!important;flex-wrap:wrap;width:100%;padding:0!important;border:0!important;gap:12px!important}}</style></noscript>
+<noscript><style>.menu-button{display:none!important}@media(max-width:900px){.site-header-inner{flex-wrap:wrap}.site-nav{display:flex!important;position:static!important;flex-direction:row!important;flex-wrap:wrap;width:100%;padding:0!important;border:0!important;gap:12px!important}}</style></noscript>
