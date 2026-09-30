@@ -19,7 +19,7 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial';
       <noscript><style>#contact-form{display:none}</style><p>Activa JavaScript para completar el formulario y elegir un horario. No se han enviado datos ni se ha reservado ninguna reunión.</p></noscript>
     </section>
     <section id="booking-panel" class="booking-panel" aria-labelledby="booking-title" hidden>
-      <div class="booking-heading"><div><p class="eyebrow">Paso 2</p><h2 id="booking-title" tabindex="-1">Elige un horario.</h2><p>Tu contexto ya está rellenado en las notas de Calendly. Revisa los datos y confirma la reserva.</p></div><button id="back-btn" type="button" class="text-link">← Editar mis respuestas</button></div>
+      <div class="booking-heading"><div><p class="eyebrow">Paso 2</p><h2 id="booking-title" tabindex="-1">Elige un horario.</h2></div><button id="back-btn" type="button" class="text-link">← Editar mis respuestas</button></div>
       <p id="booking-status" class="form-status" role="status" aria-live="polite">Cargando horarios…</p>
       <div id="calendar-error" class="form-error" role="alert" hidden><p>El calendario está tardando en cargar. Tus respuestas siguen aquí; puedes reintentarlo o volver al formulario.</p><button id="retry-btn" type="button" class="text-link">Reintentar calendario</button></div>
       <div id="calendly-embed" class="calendly-embed" data-booking-url={booking}></div>
