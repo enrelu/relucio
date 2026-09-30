@@ -11,113 +11,94 @@ import { getCollection } from 'astro:content';
 const projects = [
   {
   id: "proj-0",
-  title: "Fidus OS: Sales OS (anti-CRM) y LinkedIn Scraper",
+  title: "Fidus OS: plataforma de gestión y automatización comercial",
   category: "desarrollo",
   client: "Proyecto Personal",
-  summary: "Arquitectura full-stack de un CRM moderno con FastAPI, SQLModel, React y automatizaciones asíncronas con Celery para priorización comercial inteligente.",
-  details: `Arquitectura CRM multi-tenant orientada a productividad comercial.
+  summary: "Creación de una plataforma comercial con gestión de clientes y oportunidades, análisis del pipeline y automatización de tareas mediante IA.",
+  details: `Diseño y desarrollo de Fidus OS, una plataforma que reúne la operativa comercial y la priorización de acciones en un mismo producto.
 
-  Backend:
-  - FastAPI + SQLModel sobre PostgreSQL (Supabase), con autenticacion JWT/OAuth.
-  - Modulos CRM para leads, clientes, oportunidades, tareas y activity log.
-  - Motor Sales OS (signals/scoring/today) que prioriza acciones por impacto.
-  - Integraciones con IA (GPT/Gemini), email, llamadas, calendario y Stripe.
+  - Desarrollo de módulos para leads, clientes, oportunidades, tareas e historial de actividad.
+  - Diseño de una arquitectura multiempresa, con autenticación y separación de datos por cliente.
+  - Implementación de un motor de señales y puntuación para priorizar las acciones comerciales.
+  - Automatización del análisis nocturno del pipeline, con detección de riesgos y oportunidades y preparación de resúmenes para la jornada.
+  - Integración con servicios de IA, correo, llamadas, calendario y pagos.
 
-  Procesamiento asincrono:
-  - Redis como broker y Celery (worker + beat) para tareas pesadas y jobs programados.
-  - Job nocturno que analiza pipeline, detecta riesgos/oportunidades y prepara briefings para la vista Today.
-
-  Frontend:
-  - React + Vite con rutas protegidas y gestion centralizada de estado.
-  - Contextos de autenticacion y tenant para aislamiento por cliente.
-  - Vistas clave: Dashboard, Today, Feed y tablas de Leads/Clientes con modales operativos.
-
-  Resultado: plataforma escalable que combina operativa CRM, automatizacion e inteligencia comercial en tiempo real.`,
+  Tecnologías: FastAPI, SQLModel, PostgreSQL/Supabase, React, Redis y Celery.`,
   year: "2026",
   url: "https://fidusos.com"
 },
   {
   id: "proj-1",
-  title: "The Match Pulse: Algoritmo de Calidad Deportiva",
+  title: "The Match Pulse: valoración de partidos sin spoilers",
   category: "desarrollo",
   client: "Proyecto Personal",
-  summary: "Desarrollo de un modelo matemático predictivo para calificar la 'espectacularidad' deportiva sin spoilers.",
-  details: `Diseño y desarrollo integral de una plataforma que resuelve la "Paradoja del Spoiler" mediante el procesamiento de métricas avanzadas. El sistema ingesta datos de La Liga y aplica un algoritmo propio para puntuar partidos del 0 al 5 basándose en la narrativa del juego y no solo en el resultado.
+  summary: "Creación de una plataforma que puntúa partidos de La Liga de 0 a 5 para ayudar a elegir qué ver sin conocer el resultado.",
+  details: `Diseño y desarrollo de The Match Pulse, con un algoritmo propio para valorar el interés de los partidos a partir de su desarrollo y sus estadísticas.
 
-  Arquitectura y Desafíos Técnicos:
-  - Ingeniería de Datos (ETL): Pipeline en Python (Pandas/Numpy) con extracción asíncrona (asyncio/aiohttp) de múltiples fuentes de datos (Understat, StatsBomb).
-  - Modelado Matemático: Creación de un algoritmo multifactorial que pondera Goles Esperados (xG), Volatilidad de Victoria (WPA) e Índices de Caos para calcular la "Tensión Competitiva".
-  - Full Stack: Backend ligero en FastAPI y Frontend en React diseñado con "Modo Ciego" para ocultar el marcador final.
-
-  Impacto:
-  - Innovación: Creación de métricas propias (IAO - Índice de Amenaza Ofensiva) normalizadas contra datos históricos.
-  - Escalabilidad: Arquitectura preparada para procesar temporadas históricas y generar recomendaciones automatizadas.`,
+  - Construcción de un pipeline de datos en Python, con extracción asíncrona de fuentes como Understat y StatsBomb.
+  - Diseño de un algoritmo que combina goles esperados (xG), volatilidad de victoria (WPA) e índices de caos.
+  - Creación del Índice de Amenaza Ofensiva (IAO), con normalización frente a datos históricos.
+  - Desarrollo de un backend en FastAPI y una interfaz en React con modo sin spoilers.
+  - Preparación del procesamiento de temporadas históricas y de recomendaciones automatizadas.`,
   year: "2026",
   url: "https://thematchpulse.com"
 }, {
   id: "proj-2",
-  title: "Rediseño relucio.es",
+  title: "relucio.es: desarrollo de web personal y portfolio",
   category: "desarrollo",
   client: "Proyecto Personal",
-  summary: "Desarrollo de una plataforma estática de alto rendimiento orientada a la conversión y branding profesional mediante arquitectura moderna.",
-  details: `Rediseño y desarrollo integral de mi plataforma profesional, migrando de un CMS convencional a una arquitectura de componentes moderna. El objetivo principal fue optimizar la velocidad de carga (Core Web Vitals) y la experiencia de usuario (UX) para un perfil de ingeniería y desarrollo de negocio.
+  summary: "Rediseño y desarrollo de una web estática con Astro y Tailwind CSS, con blog, portfolio y fotografía integrada desde Flickr.",
+  details: `Migración de un CMS a una web basada en componentes para presentar trayectoria profesional, proyectos y artículos.
 
-  Arquitectura y Desafíos Técnicos:
-  - Framework Astro: Implementación de arquitectura de islas para minimizar el JavaScript enviado al cliente, logrando tiempos de carga instantáneos.
-  - UI/UX con Tailwind CSS: Diseño minimalista con soporte nativo para modo oscuro y adaptabilidad total (Responsive Design) para evitar solapamientos en dispositivos móviles.
-  - Integración de Microservicios:
-      * Pipeline de Datos: Conexión mediante RSS Parser para la ingesta dinámica de contenidos desde Substack, permitiendo la promoción cruzada de la newsletter "Ciberseguridad Táctica".
-      * Componentes Reactivos: Desarrollo de widgets inteligentes con Intersection Observer para animaciones de estadísticas y elementos flotantes condicionados al scroll del usuario.
-  - Despliegue & CI/CD: Configuración de flujo de trabajo automatizado mediante GitHub Actions y despliegue continuo en la red Edge de Vercel con gestión avanzada de DNS en OVH.
-
-  Impacto:
-  - Rendimiento: Puntuación de 100/100 en Google Lighthouse para Performance, SEO y Mejores Prácticas.
-  - Conversión: Implementación de un widget de suscripción optimizado que aumenta la visibilidad de la newsletter sin comprometer la lectura del contenido principal.
-  - Escalabilidad: Sistema preparado para la creación de contenido mediante Markdown/MDX, facilitando la publicación de artículos técnicos de forma ágil.`,
+  - Desarrollo con Astro para reducir el JavaScript enviado al navegador.
+  - Diseño adaptable a móvil y escritorio, con modo claro y oscuro.
+  - Implementación del blog mediante colecciones de contenido Markdown/MDX.
+  - Configuración de metadatos SEO, datos estructurados y sitemap.
+  - Integración de fotografía con el feed público de Flickr, selección aleatoria al cargar y navegación entre imágenes.
+  - Despliegue continuo en Vercel desde el repositorio de GitHub.`,
   year: "2026",
   url: "/"
 },
   {
   id: "proj-3",
-  title: "Gobierno del Dato & DLP",
+  title: "Gobierno del dato y prevención de fugas (DLP)",
   category: "consultoria",
   client: "Entidad Bancaria Tier-1",
-  summary: "Implementación de arquitectura Data-Centric Security para cumplimiento DORA/GDPR.",
-  details: `Despliegue de una estrategia de seguridad centrada en el dato para resolver riesgos críticos de fuga de información y cumplimiento normativo. Se sustituyó un modelo ineficiente por clasificación automática y políticas unificadas en Endpoint y Cloud.
+  summary: "Proyecto de clasificación y protección de información, con contrato de 350.000 € y reducción del 85% de falsos positivos.",
+  details: `Implantación de clasificación automática y políticas DLP unificadas en endpoints y cloud, dentro de un proyecto de protección del dato y adecuación a requisitos de DORA y GDPR.
 
-  Resultados e Impacto:
-  - Volumen de Negocio: Cierre de contrato de 350.000€ (Licencias + Servicios) con validación directa de CISO y DPO.
-  - Eficiencia Operativa: Reducción del 85% de falsos positivos, eliminando fricción en la operativa bancaria.
-  - Cumplimiento: Trazabilidad del 100% en documentación confidencial y superación de auditoría regulatoria sin hallazgos.`,
+  - Cierre de un contrato de 350.000 € en licencias y servicios, con validación del CISO y el DPO.
+  - Reducción del 85% de falsos positivos mediante la revisión del modelo de clasificación y las políticas de protección.
+  - Trazabilidad del 100% de la documentación confidencial.
+  - Superación de la auditoría regulatoria sin hallazgos.`,
   year: "2025"
 },
   {
   id: "proj-4",
-  title: "Protección de Correo & Cultura de Seguridad",
+  title: "Protección del correo y concienciación frente al phishing",
   category: "consultoria",
   client: "Empresa Sector Energía",
-  summary: "Estrategia de defensa híbrida (IA + Factor Humano) contra fraude CEO y Phishing.",
-  details: `Implementación de respuesta crítica ante intentos de fraude BEC (Business Email Compromise). Diseño de una arquitectura de seguridad en capas: protección perimetral con IA y activación del usuario como "Human Firewall".
+  summary: "Proyecto de seguridad del correo para 2.500 licencias, con contrato de tres años y reducción de la tasa de clics en phishing del 32% al 4%.",
+  details: `Diseño de una estrategia frente al phishing y al fraude por correo empresarial (BEC), combinando protección del correo con IA y concienciación de usuarios.
 
-  Resultados e Impacto:
-  - Transformación Cultural: Reducción del Click-Rate del 32% al 4% en 12 meses y aumento del reporte proactivo al SOC (80% de las alertas provienen ahora de usuarios).
-  - Eficacia Técnica: 99.9% de bloqueo de amenazas antes del buzón mediante Secure Email Gateway (SEG).
-  - Negocio: Cierre de contrato SaaS recurrente de 3 años para 2.500 licencias.`,
+  - Cierre de un contrato SaaS de tres años para 2.500 licencias.
+  - Reducción de la tasa de clics en phishing del 32% al 4% en 12 meses.
+  - Bloqueo del 99,9% de las amenazas antes de su llegada al buzón mediante una pasarela de seguridad de correo (SEG).
+  - Reportes de usuarios como origen del 80% de las alertas al SOC.`,
   year: "2025"
 },
   {
   id: "proj-5",
-  title: "Estrategia de Seguridad & vCISO",
+  title: "Estrategia de ciberseguridad y servicio vCISO",
   category: "consultoria",
   client: "Grupo Industrial Textil",
-  summary: "Gobernanza unificada y obtención de ISO 27001 para grupo en expansión (M&A).",
-  details: `Transformación integral de la postura de seguridad en un entorno descentralizado por crecimiento inorgánico. Asumí el rol de CISO Virtual (vCISO) para definir la hoja de ruta a 3 años (Plan Director), centralizar la gestión de riesgos y diseñar el SGSI.
+  summary: "Definición del gobierno de seguridad y del SGSI para un grupo industrial, con certificación ISO 27001 y ahorro del 15% en costes operativos.",
+  details: `Servicio de CISO virtual (vCISO) para un grupo industrial en expansión mediante adquisiciones, con centralización de la gestión de riesgos y definición de un plan director de seguridad a tres años.
 
-  Resultados e Impacto:
-  - Madurez NIST: Incremento del índice de ciber-resiliencia de 1.2 (Inicial) a 3.5 (Definido) en 18 meses.
-  - Habilitador de Negocio: Obtención de la certificación ISO 27001, desbloqueando el acceso a nuevas licitaciones comerciales.
-  - Eficiencia Financiera: Ahorro del 15% en costes operativos (OPEX) mediante la consolidación de proveedores duplicados.
-  - Relación a Largo Plazo: Contrato de 3 años como "Trusted Advisor" exclusivo para inversiones tecnológicas.`,
+  - Diseño del Sistema de Gestión de Seguridad de la Información (SGSI) y obtención de la certificación ISO 27001, con acceso a nuevas licitaciones.
+  - Ahorro del 15% en costes operativos mediante la consolidación de proveedores duplicados.
+  - Definición de prioridades e inversiones tecnológicas dentro del plan director.
+  - Contrato de asesoramiento de tres años para dar continuidad al gobierno de seguridad.`,
   year: "2025"
 }
 ];
