@@ -65,7 +65,13 @@ const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayecto
     </section>
     <section id="certificaciones" class="profile-panel" data-profile-panel aria-labelledby="tab-certificaciones">
       <div class="profile-section-heading"><p class="eyebrow">Formación acreditada</p><h2>Certificaciones</h2></div>
-      <div class="cert-grid">{certifications.map(cert=><article><h3>{cert.name}</h3><p>{cert.issuer} · {cert.year}</p>{'url' in cert && <a class="text-link" href={cert.url} target="_blank" rel="noopener noreferrer">Ver credencial ↗</a>}</article>)}</div>
+      <div class="cert-grid profile-certifications">{certifications.map(cert=>{
+        const Tag = 'url' in cert ? 'a' : 'article';
+        return <Tag class="profile-certification" href={'url' in cert ? cert.url : undefined} target={'url' in cert ? '_blank' : undefined} rel={'url' in cert ? 'noopener noreferrer' : undefined}>
+          <div class="certification-title"><h3>{cert.name}</h3><div class="certification-meta">{'url' in cert && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-label="Ver credencial"><path d="M14 4h6v6m0-6L10 14M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" /></svg>}<span>{cert.year}</span></div></div>
+          <p>Emitido por <strong>{cert.issuer}</strong></p>
+        </Tag>;
+      })}</div>
     </section>
   </div>
 </Layout>

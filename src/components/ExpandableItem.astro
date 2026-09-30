@@ -4,8 +4,13 @@ const {title,subtitle,year,summary,details,id,url}=Astro.props;
 ---
 <article class="portfolio-record">
   <details id={id} class="portfolio-item">
-    <summary><div class="portfolio-title"><h3>{title}</h3><span>{year}</span></div><p class="portfolio-subtitle">{subtitle}</p>{summary && <p class="portfolio-summary">{summary}</p>}<span class="portfolio-expand">Ver detalle <span aria-hidden="true">↓</span></span></summary>
+    <summary>
+      <div class="portfolio-title"><h3>{title}</h3><div class="portfolio-meta">
+        {url && <a class="portfolio-project-link" href={url} target="_blank" rel="noopener noreferrer">Ver proyecto <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M14 4h6v6m0-6L10 14M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" /></svg></a>}
+        <span class="portfolio-year">{year}</span><svg class="portfolio-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+      </div></div>
+      <p class="portfolio-subtitle">{subtitle}</p>{summary && <p class="portfolio-summary">{summary}</p>}
+    </summary>
     <div class="portfolio-details">{details.split('\n').filter(line=>line.trim()).map(line=><p>{line.trim()}</p>)}</div>
   </details>
-  {url && <a class="text-link portfolio-project-link" href={url} target="_blank" rel="noopener noreferrer">Ver proyecto ↗</a>}
 </article>
