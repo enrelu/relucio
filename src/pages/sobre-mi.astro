@@ -28,12 +28,11 @@ const metrics = [
 ];
 const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayectoria'},{id:'proyectos',label:'Proyectos'},{id:'certificaciones',label:'Certificaciones'}];
 ---
-<Layout wide title="Sobre mí y CV | Enrique Relucio" description="Perfil, experiencia profesional, proyectos y certificaciones de Enrique Relucio. Creación y dirección de unidades de negocio.">
+<Layout title="Sobre mí y CV | Enrique Relucio" description="Perfil, experiencia profesional, proyectos y certificaciones de Enrique Relucio. Creación y dirección de unidades de negocio.">
   <div class="profile-page">
     <header class="profile-heading">
       <img src="/sobre_mi.jpg" alt="Enrique Relucio" width="144" height="144" />
-      <div><p class="eyebrow">Sobre mí</p><h1>Enrique Relucio</h1><p class="profile-subtitle">Ingeniero de Telecomunicación · Desarrollo de negocio · Consultoría estratégica</p><div class="profile-contact"><a href="mailto:enrique@relucio.es">enrique@relucio.es</a><a href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div>
-      <button id="print-cv" class="button button-secondary" type="button">Guardar CV como PDF</button>
+      <div><p class="eyebrow">Sobre mí</p><h1>Enrique Relucio</h1><p class="profile-subtitle">Ingeniero de Telecomunicación · Desarrollo de negocio · Consultoría estratégica</p><div class="profile-contact"><a href="mailto:enrique@relucio.es">enrique@relucio.es</a><a href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="/fotografia">Fotografía</a></div></div>
     </header>
     <nav class="profile-tabs" aria-label="Secciones de mi perfil">
       {sections.map(section=><a id={`tab-${section.id}`} href={`#${section.id}`} data-profile-tab={section.id}>{section.label}</a>)}
@@ -110,5 +109,4 @@ const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayecto
   let hiddenPanels: HTMLElement[]=[];
   window.addEventListener('beforeprint',()=>{hiddenPanels=panels.filter(panel=>panel.hidden);panels.forEach(panel=>panel.hidden=false);closed=Array.from(document.querySelectorAll<HTMLDetailsElement>('.profile-page .portfolio-item:not([open])'));closed.forEach(detail=>detail.open=true);});
   window.addEventListener('afterprint',()=>{closed.forEach(detail=>detail.open=false);closed=[];hiddenPanels.forEach(panel=>panel.hidden=true);hiddenPanels=[];});
-  document.getElementById('print-cv')?.addEventListener('click',()=>window.print());
 </script>
