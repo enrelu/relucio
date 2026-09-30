@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Section from '../components/Section.astro';
-
-// Datos de competencias
+import ExpandableItem from '../components/ExpandableItem.astro';
+import { experience, certifications, projects } from '../data/portfolio';
 const skills = [
   {
     title: "Desarrollo de Negocio",
@@ -21,42 +20,27 @@ const skills = [
     description: "Dirección de equipos multidisciplinares y supervisión financiera de la ejecución para garantizar el margen del proyecto."
   }
 ];
+const metrics = [
+  {value:'+150',label:'Proyectos liderados'},
+  {value:'+60',label:'Clientes gestionados'},
+  {value:'+10 M€',label:'Volumen de negocio'},
+  {value:'+50',label:'Equipo de ingenieros'},
+];
+const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayectoria'},{id:'proyectos',label:'Proyectos'},{id:'certificaciones',label:'Certificaciones'}];
 ---
-
-<Layout title="Sobre mí - Enrique Relucio" description="Ingeniero de Telecomunicación especializado en Desarrollo de Negocio y Ciberseguridad.">
-  
-  <div class="flex flex-col gap-12">
-    
-    {/* CABECERA: Foto + Titular */}
-    <div class="flex flex-col md:flex-row items-center gap-8 mt-2 animate-fade-in">
-      <div class="shrink-0 relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-zinc-200 to-zinc-400 dark:from-zinc-700 dark:to-zinc-800 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-        <img 
-          src="/sobre_mi.jpg" 
-          alt="Enrique Relucio" 
-          class="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-800 object-cover"
-        />
-      </div>
-      <div class="flex flex-col gap-4 text-center md:text-left">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-          Sobre mí
-        </h1>
-        <h2 class="text-lg md:text-xl font-medium text-zinc-500 dark:text-zinc-400 text-pretty">
-          Ingeniero de Telecomunicación <span class="text-zinc-300 dark:text-zinc-700">|</span> Desarrollo de negocio <span class="text-zinc-300 dark:text-zinc-700">|</span> Consultoría estratégica
-        </h2>
-      </div>
-    </div>
-
-    <nav class="profile-links" aria-label="Más sobre mí">
-      <a class="button button-secondary" href="/trayectoria">Trayectoria y certificaciones</a>
-      <a class="text-link" href="/proyectos">Proyectos personales y profesionales</a>
-      <a class="text-link" href="/fotografia">Fotografía</a>
-      <a class="text-link" href="/blog">Blog</a>
+<Layout wide title="Sobre mí y CV | Enrique Relucio" description="Perfil, experiencia profesional, proyectos y certificaciones de Enrique Relucio. Creación y dirección de unidades de negocio.">
+  <div class="profile-page">
+    <header class="profile-heading">
+      <img src="/sobre_mi.jpg" alt="Enrique Relucio" width="144" height="144" />
+      <div><p class="eyebrow">Sobre mí</p><h1>Enrique Relucio</h1><p class="profile-subtitle">Ingeniero de Telecomunicación · Desarrollo de negocio · Consultoría estratégica</p><div class="profile-contact"><a href="mailto:enrique@relucio.es">enrique@relucio.es</a><a href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div>
+      <button id="print-cv" class="button button-secondary" type="button">Guardar CV como PDF</button>
+    </header>
+    <nav class="profile-tabs" aria-label="Secciones de mi perfil">
+      {sections.map(section=><a id={`tab-${section.id}`} href={`#${section.id}`} data-profile-tab={section.id}>{section.label}</a>)}
     </nav>
-
-    {/* BIO PRINCIPAL */}
-    <Section title="Trayectoria">
-      <div class="prose prose-lg prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
+    <section id="perfil" class="profile-panel" data-profile-panel aria-labelledby="tab-perfil">
+      <div class="profile-section-heading"><p class="eyebrow">Perfil profesional</p><h2>Creación y dirección de negocio.</h2></div>
+      <div class="profile-bio">
         <p>
           Cuento con ocho años de experiencia impulsando el crecimiento de negocio en el sector tecnológico, tanto en el ámbito corporativo como en el público (B2B/B2G). Mi trayectoria se define por la capacidad de <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">transformar capacidades técnicas en unidades de negocio rentables</strong>.
         </p>
@@ -64,80 +48,61 @@ const skills = [
           He liderado la creación de nuevas líneas de actividad desde su planificación estratégica hasta su maduración financiera. Mi gestión abarca el ciclo completo: definición de portfolio, servitización, captación de clientes clave y responsabilidad sobre la cuenta de resultados (P&L).
         </p>
       </div>
-    </Section>
-
-    {/* ESTADÍSTICAS */}
-    <div class="grid grid-cols-2 gap-4 my-6">
-      
-      {/* CARD 1: Proyectos */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-        <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span>150</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Proyectos Liderados</span>
-        </div>
-      </div>
-
-      {/* CARD 2: Clientes */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-         <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span>60</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Clientes Gestionados</span>
-         </div>
-      </div>
-
-       {/* CARD 3: Negocio */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-         <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span>10</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Volumen de Negocio (M€)</span>
-         </div>
-      </div>
-
-      {/* CARD 4: Personas */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-         <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span>50</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Equipo de Ingenieros</span>
-         </div>
-      </div>
-
-    </div>
-
-    {/* COMPETENCIAS */}
-    <Section title="Competencias Clave">
-      <p class="mb-8 text-zinc-500 dark:text-zinc-400 text-lg">
-        Más allá de la venta, aporto una visión integral de ingeniería:
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {skills.map((skill) => (
-          <div class="group p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/60 transition-colors duration-300">
-            <h3 class="font-semibold text-lg text-zinc-900 dark:text-zinc-100 mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-              {skill.title}
-            </h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed text-pretty">
-              {skill.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </Section>
-
+      <div class="profile-metrics">{metrics.map(metric=><article><strong>{metric.value}</strong><p>{metric.label}</p></article>)}</div>
+      <h2>Competencias clave</h2><p class="profile-lead">Más allá de la venta, aporto una visión integral de ingeniería:</p>
+      <div class="profile-skills">{skills.map(skill=><article><h3>{skill.title}</h3><p>{skill.description}</p></article>)}</div>
+    </section>
+    <section id="trayectoria" class="profile-panel" data-profile-panel aria-labelledby="tab-trayectoria">
+      <div class="profile-section-heading"><p class="eyebrow">Experiencia profesional</p><h2>Trayectoria</h2><p>El recorrido que respalda mi trabajo en dirección comercial y desarrollo de negocio.</p></div>
+      {experience.map(job=><ExpandableItem id={job.id} title={job.role} subtitle={job.company} summary={job.summary} details={job.details} year={job.year} />)}
+    </section>
+    <section id="proyectos" class="profile-panel" data-profile-panel aria-labelledby="tab-proyectos">
+      <div class="profile-section-heading"><p class="eyebrow">Productos y casos profesionales</p><h2>Proyectos</h2></div>
+      <h3 class="profile-group-title">Productos y proyectos personales</h3>
+      {projects.filter(p=>p.category==='desarrollo').map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} url={'url' in p?p.url:undefined} />)}
+      <h3 class="profile-group-title">Proyectos de ciberseguridad</h3><p class="profile-lead">Casos profesionales del ámbito de ciberseguridad, separados de la oferta actual de dirección comercial.</p>
+      {projects.filter(p=>p.category==='consultoria').map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} />)}
+    </section>
+    <section id="certificaciones" class="profile-panel" data-profile-panel aria-labelledby="tab-certificaciones">
+      <div class="profile-section-heading"><p class="eyebrow">Formación acreditada</p><h2>Certificaciones</h2></div>
+      <div class="cert-grid">{certifications.map(cert=><article><h3>{cert.name}</h3><p>{cert.issuer} · {cert.year}</p>{'url' in cert && <a class="text-link" href={cert.url} target="_blank" rel="noopener noreferrer">Ver credencial ↗</a>}</article>)}</div>
+    </section>
   </div>
 </Layout>
-
-
-<style>
-@media(max-width:767px) { .text-5xl { font-size:2.1rem; } .p-8 { padding:1.25rem; } }
-</style>
+<script>
+  document.querySelector('.profile-page')?.classList.add('is-enhanced');
+  const tabs = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-profile-tab]'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-profile-panel]'));
+  document.querySelector('.profile-tabs')?.setAttribute('role', 'tablist');
+  tabs.forEach(tab => { tab.setAttribute('role','tab'); tab.setAttribute('aria-controls',tab.dataset.profileTab!); });
+  panels.forEach(panel => panel.setAttribute('role','tabpanel'));
+  function activate(id: string, focus = false) {
+    tabs.forEach(tab => {const active=tab.dataset.profileTab===id; tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus();});
+    panels.forEach(panel=>{panel.hidden=panel.id!==id;panel.tabIndex=panel.hidden?-1:0;});
+  }
+  function readHash() {
+    const id=location.hash.slice(1);
+    const target=document.getElementById(id);
+    const panel=panels.find(panel=>panel.id===id||!!target&&panel.contains(target));
+    activate(panel?.id||'perfil');
+    if(target instanceof HTMLDetailsElement)target.open=true;
+  }
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',e=>{e.preventDefault();history.pushState(null,'','#'+tab.dataset.profileTab);activate(tab.dataset.profileTab!);});
+    tab.addEventListener('keydown',e=>{
+      let next=index;
+      if(e.key==='ArrowRight')next=(index+1)%tabs.length;
+      else if(e.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')next=0;
+      else if(e.key==='End')next=tabs.length-1;
+      else return;
+      e.preventDefault();const id=tabs[next].dataset.profileTab!;history.replaceState(null,'','#'+id);activate(id,true);
+    });
+  });
+  window.addEventListener('hashchange',readHash);window.addEventListener('popstate',readHash);readHash();
+  let closed: HTMLDetailsElement[]=[];
+  let hiddenPanels: HTMLElement[]=[];
+  window.addEventListener('beforeprint',()=>{hiddenPanels=panels.filter(panel=>panel.hidden);panels.forEach(panel=>panel.hidden=false);closed=Array.from(document.querySelectorAll<HTMLDetailsElement>('.profile-page .portfolio-item:not([open])'));closed.forEach(detail=>detail.open=true);});
+  window.addEventListener('afterprint',()=>{closed.forEach(detail=>detail.open=false);closed=[];hiddenPanels.forEach(panel=>panel.hidden=true);hiddenPanels=[];});
+  document.getElementById('print-cv')?.addEventListener('click',()=>window.print());
+</script>
