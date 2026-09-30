@@ -1,90 +1,51 @@
 ---
-// src/components/Header.astro
+const navigation = [
+  { label: 'Qué ofrezco', href: '/#oferta' },
+  { label: 'Cómo trabajo', href: '/#metodo' },
+  { label: 'Experiencia', href: '/#experiencia' },
+];
 ---
-<header class="relative flex justify-between items-center pb-6 mb-10 border-b border-zinc-200 dark:border-zinc-800">
-  
-  <a href="/" class="z-50 group flex items-center gap-3 font-medium text-zinc-900 dark:text-zinc-50 transition-colors hover:text-orange-600 dark:hover:text-orange-400">
-    <div class="relative w-9 h-9">
-    {/* Logo para Modo Claro (Se oculta en dark) */}
-    <img 
-      src="/Logo_ER_B&W.png" 
-      alt="Logo Enrique Relucio" 
-      class="absolute inset-0 w-9 h-9 rounded-full border border-zinc-200 shadow-sm transition-transform group-hover:scale-105 dark:hidden"
-    />
-    {/* Logo para Modo Oscuro (Se oculta en light) */}
-    <img 
-      src="/Logo_ER_White.png" 
-      alt="Logo Enrique Relucio" 
-      class="absolute inset-0 w-9 h-9 rounded-full border border-zinc-700 shadow-sm transition-transform group-hover:scale-105 hidden dark:block"
-    />
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-brand" href="/" aria-label="Enrique Relucio, inicio">
+      <img src="/Logo_ER_B&W.png" alt="" width="36" height="36" class="dark:hidden" />
+      <img src="/Logo_ER_White.png" alt="" width="36" height="36" class="hidden dark:block" />
+      <span>Enrique Relucio</span>
+    </a>
+    <div class="header-controls">
+      <button id="theme-toggle" class="icon-button" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false"><span aria-hidden="true">◐</span></button>
+      <button id="menu-toggle" class="icon-button menu-button" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+      </button>
+    </div>
+    <nav id="nav-menu" class="site-nav" aria-label="Navegación principal">
+      {navigation.map(item => <a href={item.href}>{item.label}</a>)}
+      <a class="button button-primary" href="/contacto">Hablemos</a>
+    </nav>
   </div>
-    <span class="tracking-tight">Enrique Relucio</span>
-  </a>
-
-  <button 
-    id="menu-toggle" 
-    aria-label="Abrir menú" 
-    class="z-50 block md:hidden mr-12 p-2 text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
-  >
-    <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
-    <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 hidden"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
-  </button>
-
-  <nav 
-    id="nav-menu" 
-    class="fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none md:static md:inset-auto md:flex md:flex-row md:bg-transparent md:backdrop-blur-none md:opacity-100 md:pointer-events-auto md:gap-6 text-sm font-medium"
-  >
-    <a href="/" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
-      Inicio
-    </a>
-    <a href="/blog" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
-      Blog
-    </a>
-    <a href="/sobre-mi" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
-      Sobre mi
-    </a>
-    <a href="/fotografia" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
-      Fotografía
-    </a>
-    <a href="/contacto" class="nav-link text-lg md:text-sm text-zinc-500 hover:text-orange-600 dark:hover:text-orange-400 transition-colors">
-      Contacto
-    </a>
-  </nav>
-
 </header>
-
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  const menuIcon = document.getElementById('menu-icon');
-  const closeIcon = document.getElementById('close-icon');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  function toggleMenu() {
-    const isMenuOpen = navMenu?.classList.contains('opacity-100');
-    
-    // Toggle clases del menú
-    navMenu?.classList.toggle('opacity-0');
-    navMenu?.classList.toggle('pointer-events-none');
-    navMenu?.classList.toggle('opacity-100');
-    navMenu?.classList.toggle('pointer-events-auto');
-    
-    // Toggle iconos
-    menuIcon?.classList.toggle('hidden');
-    closeIcon?.classList.toggle('hidden');
-
-    // Bloquear scroll del body al abrir
-    document.body.style.overflow = isMenuOpen ? 'auto' : 'hidden';
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('nav-menu');
+  function setMenu(open: boolean) {
+    nav?.classList.toggle('is-open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    toggle?.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
   }
-
-  menuToggle?.addEventListener('click', toggleMenu);
-
-  // Cerrar menú al hacer clic en un enlace (importante para navegación interna con anclas)
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth < 768) { // Solo en móviles
-        toggleMenu();
-      }
-    });
+  toggle?.addEventListener('click', () => setMenu(toggle.getAttribute('aria-expanded') !== 'true'));
+  nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { setMenu(false); } });
+  const themeButton = document.getElementById('theme-toggle');
+  function syncTheme() {
+    const dark = document.documentElement.classList.contains('dark');
+    themeButton?.setAttribute('aria-pressed', String(dark));
+    themeButton?.setAttribute('aria-label', dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+  }
+  themeButton?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    try { localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); } catch {}
+    syncTheme();
   });
+  syncTheme();
 </script>
+<noscript><style>.menu-button{display:none!important}@media(max-width:767px){.site-header-inner{flex-wrap:wrap}.site-nav{display:flex!important;position:static!important;flex-direction:row!important;flex-wrap:wrap;width:100%;padding:0!important;border:0!important;gap:12px!important}}</style></noscript>

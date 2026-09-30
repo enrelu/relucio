@@ -1,194 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Section from '../components/Section.astro';
-
-const contactMethods = [
-  {
-    title: "Email",
-    description: "enrique.relucio@example.com",
-    link: "mailto:enrique.relucio@example.com"
-  },
-  {
-    title: "LinkedIn",
-    description: "Conecta profesionalmente conmigo",
-    link: "https://www.linkedin.com/in/enriquerelucio/"
-  },
-  {
-    title: "Ubicación",
-    description: "Madrid, España",
-    link: null
-  }
-];
+const booking = 'https://calendar.notion.so/meet/djrelu/30bi4z8a';
 ---
-
-<Layout title="Contacto - Enrique Relucio" description="Ponte en contacto para oportunidades de negocio y consultoría.">
-  
-  <div class="flex flex-col gap-12 max-w-5xl mx-auto">
-    
-    {/* CABECERA SIMPLE */}
-    <div class="flex flex-col gap-4 mt-2 animate-fade-in">
-      <h1 class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-        Contacto
-      </h1>
-      <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl text-pretty">
-         Transformo desafíos técnicos en oportunidades de negocio. Si buscas un socio estratégico para escalar proyectos de <strong class="text-zinc-900 dark:text-zinc-100 font-medium">Ciberseguridad</strong> o necesitas consultoría para resolver tus <strong class="text-zinc-900 dark:text-zinc-100 font-medium">Retos de Seguridad</strong>, hablemos de cómo alcanzar tus objetivos.
-      </p>
-    </div>
-
-    <div class="flex flex-col gap-12">
-      
-      {/* SECCIÓN 1: FORMULARIO (Arriba, ancho completo) */}
-             {/* Contenedor con estilo exacto de BlogRow: hover effect, border transparent default */}
-            <div class="group relative p-6 md:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 min-h-[400px]">
-                
-                <form id="contact-form" class="space-y-6" action="https://formsubmit.co/enrique@relucio.es" method="POST">
-                    {/* Configuración de Formsubmit */}
-                    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web de Relucio" />
-                    <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value="https://relucio.es/contacto" />
-                    
-                    <!-- Honeypot anti-spam -->
-                    <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off" />
-                    <div style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1;">
-                        <input type="text" name="website_hp" tabindex="-1" autocomplete="off" />
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                             <label for="name" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Nombre</label>
-                             <input type="text" id="name" name="name" required 
-                                class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-zinc-400"
-                                placeholder="Tu nombre"
-                             />
-                        </div>
-                        <div class="space-y-2">
-                             <label for="email" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Email</label>
-                             <input type="email" id="email" name="email" required 
-                                class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-zinc-400"
-                                placeholder="usuario@ejemplo.com"
-                             />
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                         <label for="subject" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Asunto</label>
-                         <input type="text" id="subject" name="subject" required 
-                            class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-zinc-400"
-                            placeholder="Consultoría estratégica..."
-                         />
-                    </div>
-
-                    <div class="space-y-2">
-                         <label for="message" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Mensaje</label>
-                         <textarea id="message" name="message" rows="5" required 
-                            class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all resize-none placeholder:text-zinc-400"
-                            placeholder="Escribe aquí tu mensaje..."
-                         ></textarea>
-                    </div>
-
-                    <div class="pt-2 flex justify-end">
-                        <button type="submit" id="submit-btn" class="px-6 py-2.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold hover:bg-orange-600 dark:hover:bg-orange-400 hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                            Enviar Mensaje
-                        </button>
-                    </div>
-                </form>
-
-                <div id="success-message" class="hidden h-full flex flex-col items-center justify-center text-center space-y-4 animate-fade-in py-12">
-                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-2">
-                        <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">¡Mensaje Enviado!</h3>
-                    <p class="text-zinc-600 dark:text-zinc-400 max-w-sm">
-                        Gracias por contactar. He recibido tu mensaje correctamente y te responderé lo antes posible.
-                    </p>
-                    <button id="reset-btn" class="mt-4 px-6 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
-                        Enviar otro mensaje
-                    </button>
-                </div>
-            </div>
-         {/* STATS / INFO ADICIONAL */}
-         <div class="md:col-span-1 flex flex-col gap-6 pt-2 md:pt-2"> 
-             {/* Nota: pt-20 para alinear visualmente con el título de 'Vías de contacto' si se desea, o simplemente dejar flow normal */}
-             <div class="p-6 bg-zinc-50 dark:bg-zinc-900/30 rounded-2xl border border-zinc-100 dark:border-zinc-800/50 h-fit">
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    </span>
-                    <span class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Estado</span>
-                </div>
-                <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Respondiendo normalmente en <span class="text-zinc-900 dark:text-zinc-100 font-bold">menos de 24h</span>.
-                </p>
-             </div>
-         </div>
-      </div>
-    
-    </div>
+<Layout wide title="Hablemos de tu negocio | Enrique Relucio" description="Cuéntame qué ocurre en tu actividad comercial y reserva una conversación inicial.">
+  <div class="contact-layout">
+    <header class="contact-intro"><p class="eyebrow">Conversación inicial</p><h1>Hablemos de tu negocio.</h1><p>Cuéntame qué está pasando en tu actividad comercial y qué te gustaría cambiar. Así podemos empezar la conversación con contexto.</p><div class="contact-alternatives"><a class="text-link" href={booking} target="_blank" rel="noopener noreferrer">Reservar directamente ↗</a><a class="text-link" href="mailto:enrique@relucio.es">enrique@relucio.es</a></div><p class="contact-note">Primero valoramos si tiene sentido trabajar juntos. El alcance y la dedicación se acuerdan después.</p></header>
+    <section class="form-panel" aria-label="Formulario de contacto">
+      <form id="contact-form" action="https://formsubmit.co/enrique@relucio.es" method="POST">
+        <input type="hidden" name="_subject" value="Consulta de dirección comercial desde relucio.es" />
+        <input type="hidden" name="_next" value={booking} />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <div class="honeypot" aria-hidden="true"><label for="company-fax">Deja este campo vacío</label><input id="company-fax" type="text" name="_honey" tabindex="-1" autocomplete="off" /></div>
+        <div class="form-row"><div><label for="name">Nombre</label><input id="name" name="name" type="text" autocomplete="name" maxlength="120" required /></div><div><label for="email">Email profesional</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required /></div></div>
+        <div><label for="company">Empresa o web</label><input id="company" name="company" type="text" autocomplete="organization" maxlength="200" required /></div>
+        <div><label for="situation">¿Qué está pasando en tu actividad comercial?</label><textarea id="situation" name="situation" rows="4" maxlength="5000" required></textarea></div>
+        <div><label for="goal">¿Qué te gustaría cambiar?</label><textarea id="goal" name="goal" rows="3" maxlength="3000" required></textarea></div>
+        <p class="form-privacy">Los datos se utilizarán para responder a esta solicitud. El envío se procesa mediante <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a>. Para consultas sobre tus datos, escribe a enrique@relucio.es. La reserva se realiza en Notion Calendar.</p>
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+        <button id="submit-btn" type="submit" class="button button-primary">Enviar y reservar una conversación <span aria-hidden="true">↗</span></button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+      <div id="success-message" class="success-panel" hidden tabindex="-1"><p class="eyebrow">Solicitud enviada</p><h2>Ahora podemos hablar.</h2><p>El formulario se ha enviado. Elige un horario para nuestra conversación inicial.</p><a class="button button-primary" href={booking} target="_blank" rel="noopener noreferrer">Reservar la conversación ↗</a><button id="reset-btn" type="button" class="text-link">Enviar otra consulta</button></div>
+    </section>
   </div>
-
-  <script is:inline>
-    const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('success-message');
-    const submitBtn = document.getElementById('submit-btn');
-    const resetBtn = document.getElementById('reset-btn');
-
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      // Feedback visual inmediato
-      if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerText = 'Enviando...';
-      }
-
-      const formData = new FormData(e.target);
-      
-      // Client-side Honeypot Check
-      if (formData.get('website_hp')) {
-          // Si el bot rellenó el campo oculto, simulamos éxito pero no enviamos nada
-          form.classList.add('hidden');
-          successMessage.classList.remove('hidden');
-          form.reset();
-          if (submitBtn) {
-               submitBtn.disabled = false;
-               submitBtn.innerText = 'Enviar Mensaje';
-          }
-          return;
-      }
-      
-      try {
-          const response = await fetch('https://formsubmit.co/ajax/enrique@relucio.es', {
-              method: 'POST',
-              body: formData,
-              headers: { 
-                  'Accept': 'application/json' 
-              }
-          });
-
-          if (response.ok) {
-              form.classList.add('hidden');
-              successMessage.classList.remove('hidden');
-              form.reset();
-          } else {
-              throw new Error('Error en el envío');
-          }
-      } catch (error) {
-          alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo o escribe directamente a enrique@relucio.es');
-      } finally {
-          if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerText = 'Enviar Mensaje';
-          }
-      }
-    });
-
-    // Resetear formulario para enviar otro
-    resetBtn?.addEventListener('click', () => {
-        successMessage.classList.add('hidden');
-        form.classList.remove('hidden');
-    });
-  </script>
 </Layout>
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const button = document.getElementById('submit-btn') as HTMLButtonElement | null;
+  const success = document.getElementById('success-message');
+  const error = document.getElementById('form-error');
+  const status = document.getElementById('form-status');
+  let sending = false;
+  form?.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (sending || !form || !button || !success || !error || !status || !form.reportValidity()) return;
+    const data = new FormData(form);
+    if (data.get('_honey')) return;
+    sending = true; button.disabled = true; error.hidden = true; status.textContent = 'Enviando tu consulta…';
+    form.setAttribute('aria-busy','true');
+    const controller = new AbortController();
+    const timer = setTimeout(()=>controller.abort(),15000);
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/enrique@relucio.es',{method:'POST',body:data,headers:{Accept:'application/json'},signal:controller.signal});
+      const result = await response.json();
+      if (!response.ok || (result.success !== true && result.success !== 'true')) throw new Error('El proveedor no confirmó el envío');
+      form.hidden = true; success.hidden = false; success.focus(); form.reset();
+    } catch {
+      error.textContent = 'No se ha confirmado el envío. Tus datos siguen aquí: puedes reintentar, escribir por correo o reservar directamente.';
+      error.hidden = false;
+    } finally {
+      clearTimeout(timer);sending = false;button.disabled = false;form.setAttribute('aria-busy','false');status.textContent = '';
+    }
+  });
+  document.getElementById('reset-btn')?.addEventListener('click',()=>{
+    if (!form || !success || !error) return;
+    success.hidden = true;form.hidden = false;error.hidden = true;
+    document.getElementById('name')?.focus();
+  });
+</script>

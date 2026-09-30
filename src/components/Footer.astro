@@ -1,62 +1,10 @@
 ---
-// src/components/Footer.astro
-const today = new Date();
+const year = new Date().getFullYear();
 ---
-
-<footer class="pt-10 border-t border-zinc-100 dark:border-zinc-900 pb-20 md:pb-10">
-  <div class="flex flex-col md:flex-row justify-between items-center gap-6 md:gap-4">
-    
-    {/* Copyright y Créditos */}
-    <div class="flex flex-col items-center md:items-start gap-1">
-      <p class="text-xs text-zinc-400">
-        &copy; {today.getFullYear()} Enrique Relucio
-      </p>
-      <a 
-        href="https://github.com/enrelu/relucio" 
-        target="_blank" 
-        class="text-[10px] text-zinc-400 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
-      >
-        Diseñado con Astro & Tailwind
-      </a>
-    </div>
-
-    {/* Enlaces y Redes Sociales */}
-    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-      <a 
-        href="https://linkedin.com/in/enriquerelucio" 
-        target="_blank" 
-        class="text-xs font-medium text-zinc-500 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors"
-      >
-        LinkedIn
-      </a>
-      <a 
-        href="https://twitter.com/enrelu" 
-        target="_blank" 
-        class="text-xs font-medium text-zinc-500 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors"
-      >
-        Twitter
-      </a>
-      <a 
-        href="https://www.flickr.com/photos/enrelu/" 
-        target="_blank" 
-        class="text-xs font-medium text-zinc-500 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors"
-      >
-        Fotografía
-      </a>
-      <a 
-        href="https://github.com/enrelu" 
-        target="_blank" 
-        class="text-xs font-medium text-zinc-500 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors"
-      >
-        GitHub
-      </a>
-      <a 
-        href="/contacto" 
-        class="text-xs font-medium text-zinc-500 hover:text-orange-600 dark:text-zinc-400 dark:hover:text-orange-400 transition-colors"
-      >
-        Contacto
-      </a>
-    </nav>
-
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><a class="footer-name" href="/">Enrique Relucio</a><p>Dirección comercial y desarrollo de negocio.</p><a class="text-link" href="mailto:enrique@relucio.es">enrique@relucio.es</a></div>
+    <nav aria-label="Contenido personal"><a href="/sobre-mi">Sobre mí</a><a href="/trayectoria">Trayectoria y CV</a><a href="/proyectos">Proyectos</a><a href="/blog">Blog</a><a href="/fotografia">Fotografía</a><a href="/herramientas">Herramientas</a></nav>
+    <div class="footer-last"><a class="text-link" href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><p>© {year} Enrique Relucio</p><a class="text-link" href="https://github.com/enrelu/relucio" target="_blank" rel="noopener noreferrer">Código de esta web ↗</a></div>
   </div>
 </footer>
