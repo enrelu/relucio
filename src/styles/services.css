@@ -61,3 +61,8 @@ body{color:var(--muted)}
 
 .profile-page,.profile-page .profile-heading,.profile-page .profile-tabs,.profile-page .profile-panel{width:100%;box-sizing:border-box}.profile-heading>div{min-width:0}.profile-subtitle{max-width:none}
 @media print{.profile-page #fotografia{display:none!important}}
+
+/* Copy focused on established technology businesses and founder-led sales. */
+.problem-section .two-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}.section-heading>p.fit-sectors,.section-heading>p.experience-context{margin-top:12px;font-size:14px}.form-help{font-size:14px;line-height:1.6;margin:0 0 12px}.profile-product-note{margin:32px 0 0;padding-top:24px;border-top:1px solid var(--line);font-size:14px;line-height:1.7}.profile-product-note a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
+@media(max-width:900px){.problem-section .two-columns{grid-template-columns:1fr}}
+@media print{.profile-product-note{display:none}}

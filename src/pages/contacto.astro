@@ -9,7 +9,7 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial';
       <form id="contact-form" method="POST">
         <div class="form-row"><div><label for="name">Nombre</label><input id="name" name="name" type="text" autocomplete="name" maxlength="120" required /></div><div><label for="email">Email profesional</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required /></div></div>
         <div><label for="company">Empresa o web</label><input id="company" name="company" type="text" autocomplete="organization" maxlength="200" required /></div>
-        <div><label for="situation">¿Qué está pasando en tu actividad comercial?</label><textarea id="situation" name="situation" rows="4" maxlength="5000" required></textarea></div>
+        <div><label for="situation">¿Qué está pasando en tu actividad comercial?</label><p id="situation-help" class="form-help">Cuéntame qué vendéis, quién se ocupa hoy de la actividad comercial y dónde encontráis más dificultades.</p><textarea id="situation" name="situation" rows="4" maxlength="5000" aria-describedby="situation-help" required></textarea></div>
         <div><label for="goal">¿Qué te gustaría cambiar?</label><textarea id="goal" name="goal" rows="3" maxlength="3000" required></textarea></div>
         <p class="form-privacy">La reserva se completa al confirmar el horario</p>
         <p id="form-error" class="form-error" role="alert" hidden></p>
