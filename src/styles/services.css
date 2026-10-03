@@ -66,3 +66,6 @@ body{color:var(--muted)}
 .problem-section .two-columns{grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}.section-heading>p.fit-sectors,.section-heading>p.experience-context{margin-top:12px;font-size:14px}.form-help{font-size:14px;line-height:1.6;margin:0 0 12px}.profile-product-note{margin:32px 0 0;padding-top:24px;border-top:1px solid var(--line);font-size:14px;line-height:1.7}.profile-product-note a{color:var(--ink);text-decoration:underline;text-underline-offset:4px}
 @media(max-width:900px){.problem-section .two-columns{grid-template-columns:1fr}}
 @media print{.profile-product-note{display:none}}
+
+/* Keep the disclosure beside the title when a case has no supplied date or link. */
+.profile-page .portfolio-title.portfolio-title-simple{flex-direction:row;align-items:baseline}.profile-page .portfolio-title-simple .portfolio-meta{width:auto}

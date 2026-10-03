@@ -52,15 +52,15 @@ const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayecto
       <div class="profile-product-note"><h3 class="text-xl font-medium text-zinc-900 dark:text-zinc-100 mb-3">Fidus OS</h3><p>También desarrollo <a href="https://fidusos.com" target="_blank" rel="noopener noreferrer">Fidus OS ↗</a>, un producto propio de gestión y seguimiento comercial. Es independiente de este servicio.</p></div>
     </section>
     <section id="trayectoria" class="profile-panel" data-profile-panel aria-labelledby="tab-trayectoria">
-      <div class="profile-section-heading"><p class="eyebrow">Experiencia profesional</p><h2>Trayectoria</h2><p>El recorrido que respalda mi trabajo en dirección comercial y desarrollo de negocio.</p></div>
+      <div class="profile-section-heading"><p class="eyebrow">Experiencia profesional</p><h2>Trayectoria en desarrollo y dirección de negocio.</h2><p>He pasado de diseñar propuestas técnicas para grandes cuentas a crear y dirigir unidades de negocio. Un recorrido que conecta clientes, oferta, equipos y resultados, y que hoy aporta criterio a mi servicio de dirección comercial.</p></div>
       {experience.map(job=><ExpandableItem id={job.id} title={job.role} subtitle={job.company} summary={job.summary} details={job.details} year={job.year} />)}
     </section>
     <section id="proyectos" class="profile-panel" data-profile-panel aria-labelledby="tab-proyectos">
-      <div class="profile-section-heading"><p class="eyebrow">Productos y casos profesionales</p><h2>Proyectos</h2></div>
-      <h3 class="profile-group-title">Productos y proyectos personales</h3>
-      {projects.filter(p=>p.category==='desarrollo').map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} url={'url' in p?p.url:undefined} />)}
-      <h3 class="profile-group-title">Proyectos de ciberseguridad</h3><p class="profile-lead">Casos profesionales del ámbito de ciberseguridad, separados de la oferta actual de dirección comercial.</p>
-      {projects.filter(p=>p.category==='consultoria').map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} />)}
+      <div class="profile-section-heading"><p class="eyebrow">Oferta, clientes y resultados</p><h2>Proyectos y productos.</h2><p>Iniciativas de desarrollo de negocio que he liderado dentro de empresas y productos que desarrollo por iniciativa propia.</p></div>
+      <h3 class="profile-group-title">Desarrollo de negocio</h3>
+      {projects.filter(p=>p.category==='negocio').map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} />)}
+      <h3 class="profile-group-title">Productos propios</h3><p class="profile-lead">Además de dirigir negocio, desarrollo productos propios. Es una forma de explorar problemas, construir soluciones y trabajar directamente con la tecnología.</p>
+      {projects.filter(p=>['proj-0','proj-1'].includes(p.id)).map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} url={'url' in p?p.url:undefined} />)}
     </section>
     <section id="certificaciones" class="profile-panel" data-profile-panel aria-labelledby="tab-certificaciones">
       <div class="profile-section-heading"><p class="eyebrow">Formación acreditada</p><h2>Certificaciones</h2></div>
