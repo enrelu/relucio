@@ -7,9 +7,9 @@ const responsibilities = [
   ['Seguimiento y resultados', 'Revisar avances, próximos pasos e indicadores para corregir a tiempo.'],
 ];
 const cases = [
-  { company: 'Alcorce', period: '2022 · Actualidad', title: 'Creación de una unidad de ciberseguridad', text: 'Definición de la oferta, acuerdos con fabricantes y mayoristas, dirección comercial y responsabilidad sobre P&L.', metric: '+600%', detail: 'Crecimiento de facturación en 2025. +200% en 2024, tras el lanzamiento de la unidad en 2023.' },
-  { company: 'ALTEN Spain', period: '2018 · 2021', title: 'Creación y dirección de una unidad Telco', text: 'Apertura de cuentas, desarrollo de la oferta, dirección del equipo y gestión de márgenes y rentabilidad.', metric: '2,5 M€', detail: 'Cartera anual. Más de 35 ingenieros y crecimiento de facturación del +170% en 2019.' },
-  { company: 'Babel', period: '2021 · 2022', title: 'Dirección del negocio en Levante', text: 'Gestión del negocio de ciberseguridad y acompañamiento a clientes en sus planes de seguridad.', metric: '1 M€', detail: 'Cartera de clientes. Crecimiento interanual del +20% en 2021 y del +10% en 2022.' },
+  { company: 'Alcorce', title: 'Creación de una unidad de ciberseguridad', text: 'Definición de la oferta, acuerdos con fabricantes y mayoristas, dirección comercial y responsabilidad sobre P&L.', metric: '+600%', detail: 'Crecimiento de facturación en 2025. +200% en 2024, tras el lanzamiento de la unidad en 2023.' },
+  { company: 'ALTEN Spain', title: 'Creación y dirección de una unidad Telco', text: 'Apertura de cuentas, desarrollo de la oferta, dirección del equipo y gestión de márgenes y rentabilidad.', metric: '2,5 M€', detail: 'Cartera anual. Más de 35 ingenieros y crecimiento de facturación del +170% en 2019.' },
+  { company: 'Babel', title: 'Dirección del negocio en Levante', text: 'Gestión del negocio de ciberseguridad y acompañamiento a clientes en sus planes de seguridad.', metric: '1 M€', detail: 'Cartera de clientes. Crecimiento interanual del +20% en 2021 y del +10% en 2022.' },
 ];
 ---
 <Layout wide title="Enrique Relucio | Dirección comercial para empresas tecnológicas B2B" description="Dirección comercial externa para empresas tecnológicas B2B que ya venden. Prioridades, equipo y oportunidades para CEOs y fundadores.">
@@ -61,7 +61,7 @@ const cases = [
 
   <section id="experiencia" class="section-block" aria-labelledby="experience-title">
     <div class="section-heading"><p class="eyebrow">Por qué trabajar conmigo</p><h2 id="experience-title">Experiencia dirigiendo<br />negocio tecnológico.</h2><p>He creado y dirigido unidades de negocio con responsabilidad sobre oferta, clientes, equipos y resultados. Esta experiencia es la base de mi trabajo con empresas tecnológicas B2B.</p><p class="experience-context">Responsabilidades desempeñadas dentro de estas empresas.</p></div>
-    <div class="case-grid">{cases.map(item=><article class="case-card"><div class="case-top"><strong>{item.company}</strong><span>{item.period}</span></div><h3>{item.title}</h3><p>{item.text}</p><div class="case-result"><strong>{item.metric}</strong><p>{item.detail}</p></div></article>)}</div>
+    <div class="case-grid">{cases.map(item=><article class="case-card"><div class="case-top"><strong>{item.company}</strong></div><h3>{item.title}</h3><p>{item.text}</p><div class="case-result"><strong>{item.metric}</strong><p>{item.detail}</p></div></article>)}</div>
     <a class="text-link section-link" href="/sobre-mi#trayectoria">Ver trayectoria y certificaciones →</a>
   </section>
 
