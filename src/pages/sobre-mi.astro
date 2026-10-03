@@ -58,7 +58,10 @@ const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayecto
     <section id="proyectos" class="profile-panel" data-profile-panel aria-labelledby="tab-proyectos">
       <div class="profile-section-heading"><p class="eyebrow">Oferta, clientes y resultados</p><h2>Proyectos y productos.</h2><p>Iniciativas de desarrollo de negocio que he liderado dentro de empresas y productos que desarrollo por iniciativa propia.</p></div>
       <h3 class="profile-group-title">Desarrollo de negocio</h3>
-      {projects.filter(p=>p.category==='negocio').map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} />)}
+      {['Alcorce','Babel','ALTEN Spain'].map(company=><section aria-label={`Proyectos en ${company}`}>
+        <h4 class="mt-8 mb-4 text-base font-medium text-orange-700 dark:text-orange-300">{company}</h4>
+        {projects.filter(p=>p.category==='negocio' && 'company' in p && p.company===company).sort((a,b)=>a.id==='proj-huawei'?-1:b.id==='proj-huawei'?1:0).map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} />)}
+      </section>)}
       <h3 class="profile-group-title">Productos propios</h3><p class="profile-lead">Además de dirigir negocio, desarrollo productos propios. Es una forma de explorar problemas, construir soluciones y trabajar directamente con la tecnología.</p>
       {projects.filter(p=>['proj-0','proj-1'].includes(p.id)).map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} url={'url' in p?p.url:undefined} />)}
     </section>

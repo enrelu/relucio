@@ -2,13 +2,74 @@
 
 export const projects = [
   {
+    "id": "proj-alcorce-partners",
+    "company": "Alcorce",
+    "title": "Desarrollo del programa de partners",
+    "client": "Canal de partners",
+    "summary": "Diseño de un programa para que empresas de IT puedan ofrecer servicios de ciberseguridad a sus clientes: definición del servicio, modelo de ejecución, SLAs, prospección y acompañamiento para comercializarlo.",
+    "details": "Trabajé tanto la prestación del servicio como su comercialización a través de otras empresas de IT.\n\n- Diseño del servicio y de su forma de ejecución.\n- Definición de los acuerdos de nivel de servicio —SLAs—.\n- Prospección de empresas a las que ofrecer el programa.\n- Acompañamiento para que pudieran entender la oferta y venderla a sus propios clientes.",
+    "category": "negocio",
+    "year": ""
+  },
+  {
+    "id": "proj-alcorce-pentesting",
+    "company": "Alcorce",
+    "title": "Diseño y lanzamiento de una oferta de pentesting y phishing simulado",
+    "client": "Producto y estrategia de salida al mercado",
+    "summary": "Diseño de un producto propio de ciberseguridad y de su estrategia de salida al mercado, combinando pentesting y phishing simulado.",
+    "details": "Mi responsabilidad abarcó la definición del producto y la estrategia comercial para llevarlo al mercado.\n\n- Diseño del producto de pentesting y phishing simulado.\n- Definición de la estrategia de salida al mercado —go-to-market—.\n- Conexión entre la oferta de ciberseguridad y su presentación comercial.",
+    "category": "negocio",
+    "year": ""
+  },
+  {
+    "id": "proj-alcorce-eventos",
+    "company": "Alcorce",
+    "title": "Eventos y ferias como vía de captación",
+    "client": "Contenido y captación comercial",
+    "summary": "Desarrollo de contenido comercial y de marketing, charlas en eventos del sector y diseño del embudo posterior para dar continuidad comercial a la participación.",
+    "details": "El trabajo conectaba la presencia en eventos con la actividad comercial posterior, en lugar de tratar cada participación como una acción aislada.\n\n- Preparación de contenido comercial y de marketing.\n- Charlas en eventos y ferias del sector.\n- Diseño del embudo posterior para continuar la relación con los contactos.",
+    "category": "negocio",
+    "year": ""
+  },
+  {
+    "id": "proj-babel-equipo",
+    "company": "Babel",
+    "title": "Creación y dirección del equipo comercial de Levante",
+    "client": "Dirección comercial",
+    "summary": "Establecimiento y dirección de un equipo de cuatro comerciales para desarrollar el negocio en la zona de Levante.",
+    "details": "Asumí la puesta en marcha y la dirección del equipo comercial de la zona, con cuatro personas dedicadas al desarrollo del negocio.",
+    "category": "negocio",
+    "year": ""
+  },
+  {
+    "id": "proj-babel-webinars",
+    "company": "Babel",
+    "title": "Estrategia de webinars y contenido para captación",
+    "client": "Captación y embudo de ventas",
+    "summary": "Diseño de una estrategia de captación mediante webinars y contenido orgánico, incluyendo los contenidos y el embudo de ventas.",
+    "details": "Trabajé la iniciativa como parte de la actividad comercial: no solo qué contenido publicar, sino cómo conectarlo con un recorrido de captación y venta.\n\n- Diseño de la estrategia de webinars y contenido orgánico.\n- Definición de los contenidos.\n- Diseño del embudo de ventas asociado.",
+    "category": "negocio",
+    "year": ""
+  },
+  {
+    "id": "proj-crisa",
+    "company": "ALTEN Spain",
+    "title": "Apertura de la cuenta de CRISA — Airbus",
+    "client": "Servicios de ingeniería electrónica",
+    "summary": "Apertura de la cuenta de CRISA para servicios de ingeniería electrónica, con un equipo de diseño de FPGAs e ingenieros de circuitos de potencia y microelectrónica.",
+    "details": "La cuenta se desarrolló alrededor de capacidades especializadas de ingeniería electrónica.\n\n- Apertura de una nueva relación comercial con CRISA.\n- Servicios de diseño de FPGAs.\n- Equipo con perfiles de circuitos de potencia y microelectrónica.",
+    "category": "negocio",
+    "year": ""
+  },
+  {
     "id": "proj-huawei",
     "title": "Apertura y desarrollo de la cuenta de Huawei",
     "category": "negocio",
     "client": "ALTEN Spain · Desarrollo y dirección de negocio",
     "summary": "Lideré la apertura de la cuenta de Huawei para servicios de diseño y optimización radio y un proyecto de swap a 5G. Desde los primeros contactos hasta la homologación, la negociación y la dirección de un equipo que llegó a 20 personas, con responsabilidad sobre el resultado financiero de los proyectos.",
     "details": "De los primeros contactos a una cuenta con 20 personas.\n\nLa oportunidad exigía conectar las capacidades técnicas de ALTEN con las necesidades de Huawei y demostrar que podíamos asumir los proyectos, tanto en su ejecución como en su gestión.\n\nLideré todo el proceso:\n\n- Apertura de la relación: primeros contactos con Huawei y desarrollo de la oportunidad.\n- Preventa y propuesta: presentación de capacidades para diseño y optimización radio y el proyecto de swap a 5G.\n- Homologación como proveedor: preparación y defensa de las capacidades técnicas, financieras y de gestión en una jornada completa de evaluación.\n- Negociación y puesta en marcha: avance de la relación comercial y organización de los primeros equipos.\n- Dirección de la cuenta: gestión del equipo, que llegó a 20 personas, y responsabilidad sobre el resultado financiero de los proyectos.\n\nResultado: apertura de la cuenta y desarrollo de una actividad con hasta 20 personas, conectando la captación comercial con la ejecución y la gestión económica de los proyectos.",
-    "year": ""
+    "year": "",
+    "company": "ALTEN Spain"
   },
   {
     "id": "proj-0",
