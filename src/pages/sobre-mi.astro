@@ -5,20 +5,20 @@ import FlickrPhoto from '../components/FlickrPhoto.astro';
 import { experience, certifications, projects } from '../data/portfolio';
 const skills = [
   {
-    title: "Desarrollo de Negocio",
-    description: "Creación y escalado de unidades de negocio, gestión de ofertas complejas y negociación estratégica de alto nivel."
+    title: "Prioridades comerciales",
+    description: "Criterio para decidir qué cuentas y oportunidades merecen atención, dónde concentrar el esfuerzo y qué conviene dejar pasar."
   },
   {
-    title: "Gestión de Licitaciones",
-    description: "Experiencia sólida en la redacción técnica, defensa y gestión integral de RFPs y pliegos para el sector público (Bid Management)."
+    title: "Oferta y negociación",
+    description: "Experiencia definiendo ofertas tecnológicas y gestionando propuestas complejas, licitaciones y negociaciones. Con atención al valor para el cliente y a la capacidad de entrega de la empresa."
   },
   {
-    title: "Consultoría de Ciberseguridad",
-    description: "Profundo conocimiento del estado del arte y vendors. Capacidad para prescribir arquitecturas y traducir necesidades técnicas en valor de negocio."
+    title: "Dirección de equipos",
+    description: "Experiencia coordinando perfiles comerciales y técnicos, aclarando responsabilidades y conectando el trabajo del equipo con los objetivos del negocio."
   },
   {
-    title: "Project Management",
-    description: "Dirección de equipos multidisciplinares y supervisión financiera de la ejecución para garantizar el margen del proyecto."
+    title: "Gestión y rentabilidad",
+    description: "Responsabilidad sobre cuentas de resultados, márgenes y ejecución de proyectos. Una visión comercial que no termina en cerrar una venta, sino que considera el negocio que deja."
   }
 ];
 const metrics = [
@@ -39,19 +39,17 @@ const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayecto
       {sections.map(section=><a id={`tab-${section.id}`} href={`#${section.id}`} data-profile-tab={section.id}>{section.label}</a>)}
     </nav>
     <section id="perfil" class="profile-panel" data-profile-panel aria-labelledby="tab-perfil">
-      <div class="profile-section-heading"><p class="eyebrow">Perfil profesional</p><h2>Creación y dirección de negocio.</h2></div>
+      <div class="profile-section-heading"><p class="eyebrow">Perfil profesional</p><h2>Dirección comercial con criterio de negocio.</h2></div>
       <div class="profile-bio">
-        <p>
-          Cuento con ocho años de experiencia impulsando el crecimiento de negocio en el sector tecnológico, tanto en el ámbito corporativo como en el público (B2B/B2G). Mi trayectoria se define por la capacidad de <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">transformar capacidades técnicas en unidades de negocio rentables</strong>.
-        </p>
-        <p>
-          He liderado la creación de nuevas líneas de actividad desde su planificación estratégica hasta su maduración financiera. Mi gestión abarca el ciclo completo: definición de portfolio, servitización, captación de clientes clave y responsabilidad sobre la cuenta de resultados (P&L).
-        </p>
+        <p>Soy Ingeniero de Telecomunicación y he creado y dirigido unidades de negocio en telecomunicaciones y ciberseguridad. Mi experiencia conecta la oferta tecnológica con los clientes, los equipos y los resultados: <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">convertir capacidades técnicas en un negocio rentable</strong>.</p>
+        <p>He asumido responsabilidades sobre desarrollo de la oferta, apertura de cuentas, negociación, dirección de equipos y cuenta de resultados. Esa visión me permite trabajar la actividad comercial sin separarla de lo que la empresa puede entregar ni de los márgenes que necesita mantener.</p>
+        <p>Es la experiencia que aporto a empresas tecnológicas B2B que ya venden y necesitan reforzar su dirección comercial. <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">Mi servicio está pensado para CEOs y fundadores que siguen concentrando demasiadas decisiones comerciales:</strong> qué oportunidades priorizar, cómo orientar al equipo y cuándo intervenir.</p>
       </div>
+      <h3 class="profile-group-title">Cifras de mi trayectoria</h3>
       <div class="profile-metrics">{metrics.map(metric=><article><strong>{metric.value}</strong><p>{metric.label}</p></article>)}</div>
-      <h2>Competencias clave</h2><p class="profile-lead">Más allá de la venta, aporto una visión integral de ingeniería:</p>
+      <h2>Qué aporto a la dirección comercial</h2>
       <div class="profile-skills">{skills.map(skill=><article><h3>{skill.title}</h3><p>{skill.description}</p></article>)}</div>
-      <p class="profile-product-note">También desarrollo <a href="https://fidusos.com" target="_blank" rel="noopener noreferrer">Fidus OS ↗</a>, un producto propio de gestión y seguimiento comercial. Es independiente de este servicio.</p>
+      <div class="profile-product-note"><h3 class="text-xl font-medium text-zinc-900 dark:text-zinc-100 mb-3">Fidus OS</h3><p>También desarrollo <a href="https://fidusos.com" target="_blank" rel="noopener noreferrer">Fidus OS ↗</a>, un producto propio de gestión y seguimiento comercial. Es independiente de este servicio.</p></div>
     </section>
     <section id="trayectoria" class="profile-panel" data-profile-panel aria-labelledby="tab-trayectoria">
       <div class="profile-section-heading"><p class="eyebrow">Experiencia profesional</p><h2>Trayectoria</h2><p>El recorrido que respalda mi trabajo en dirección comercial y desarrollo de negocio.</p></div>
