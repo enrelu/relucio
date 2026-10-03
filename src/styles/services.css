@@ -58,3 +58,6 @@ body{color:var(--muted)}
 @media print{.profile-page .portfolio-record{padding:8pt 0;border:0;border-top:1px solid #ddd;border-radius:0;background:white!important}.profile-page .portfolio-title{flex-direction:row;gap:12pt}.portfolio-meta{width:auto;gap:8pt}.portfolio-year{font-size:10pt}.portfolio-chevron,.profile-page .portfolio-project-link,.certification-meta svg{display:none!important}.profile-page .portfolio-record h3{color:#222!important}.profile-page .profile-certifications{gap:4pt 12pt}.profile-page .profile-certification{padding:8pt 0;border:0;border-top:1px solid #ddd;border-radius:0;background:white!important;break-inside:avoid}.profile-page .certification-title h3{font-size:11pt!important}.certification-title{gap:8pt}.certification-meta{font-size:10pt}.profile-page .profile-certification p{margin-top:4pt;font-size:10pt!important}}
 
 @media screen{.site-main-reading .profile-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+.profile-page,.profile-page .profile-heading,.profile-page .profile-tabs,.profile-page .profile-panel{width:100%;box-sizing:border-box}.profile-heading>div{min-width:0}.profile-subtitle{max-width:none}
+@media print{.profile-page #fotografia{display:none!important}}

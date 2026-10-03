@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ExpandableItem from '../components/ExpandableItem.astro';
+import FlickrPhoto from '../components/FlickrPhoto.astro';
 import { experience, certifications, projects } from '../data/portfolio';
 const skills = [
   {
@@ -26,13 +27,13 @@ const metrics = [
   {value:'+10 M€',label:'Volumen de negocio'},
   {value:'+50',label:'Equipo de ingenieros'},
 ];
-const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayectoria'},{id:'proyectos',label:'Proyectos'},{id:'certificaciones',label:'Certificaciones'}];
+const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayectoria'},{id:'proyectos',label:'Proyectos'},{id:'certificaciones',label:'Certificaciones'},{id:'fotografia',label:'Fotografía'}];
 ---
 <Layout title="Sobre mí y CV | Enrique Relucio" description="Perfil, experiencia profesional, proyectos y certificaciones de Enrique Relucio. Creación y dirección de unidades de negocio.">
   <div class="profile-page">
     <header class="profile-heading">
       <img src="/sobre_mi.jpg" alt="Enrique Relucio" width="144" height="144" />
-      <div><p class="eyebrow">Sobre mí</p><h1>Enrique Relucio</h1><p class="profile-subtitle">Ingeniero de Telecomunicación · Desarrollo de negocio · Consultoría estratégica</p><div class="profile-contact"><a href="mailto:enrique@relucio.es">enrique@relucio.es</a><a href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="/fotografia">Fotografía</a></div></div>
+      <div><p class="eyebrow">Sobre mí</p><h1>Enrique Relucio</h1><p class="profile-subtitle">Ingeniero de Telecomunicación · Desarrollo de negocio · Consultoría estratégica</p></div>
     </header>
     <nav class="profile-tabs" aria-label="Secciones de mi perfil">
       {sections.map(section=><a id={`tab-${section.id}`} href={`#${section.id}`} data-profile-tab={section.id}>{section.label}</a>)}
@@ -72,6 +73,7 @@ const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayecto
         </Tag>;
       })}</div>
     </section>
+    <section id="fotografia" class="profile-panel" data-profile-panel aria-labelledby="tab-fotografia"><FlickrPhoto /></section>
   </div>
 </Layout>
 <script>
@@ -84,6 +86,7 @@ const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayecto
   function activate(id: string, focus = false) {
     tabs.forEach(tab => {const active=tab.dataset.profileTab===id; tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus();});
     panels.forEach(panel=>{panel.hidden=panel.id!==id;panel.tabIndex=panel.hidden?-1:0;});
+    window.dispatchEvent(new CustomEvent('profile-section-change', {detail:id}));
   }
   function readHash() {
     const id=location.hash.slice(1);
