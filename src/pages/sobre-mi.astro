@@ -1,182 +1,114 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Section from '../components/Section.astro';
-
-// Datos de competencias
+import ExpandableItem from '../components/ExpandableItem.astro';
+import FlickrPhoto from '../components/FlickrPhoto.astro';
+import { experience, certifications, projects } from '../data/portfolio';
 const skills = [
   {
-    title: "Desarrollo de Negocio",
-    description: "Creación y escalado de unidades de negocio, gestión de ofertas complejas y negociación estratégica de alto nivel."
+    title: "Prioridades comerciales",
+    description: "Criterio para decidir qué cuentas y oportunidades merecen atención, dónde concentrar el esfuerzo y qué conviene dejar pasar."
   },
   {
-    title: "Gestión de Licitaciones",
-    description: "Experiencia sólida en la redacción técnica, defensa y gestión integral de RFPs y pliegos para el sector público (Bid Management)."
+    title: "Oferta y negociación",
+    description: "Experiencia definiendo ofertas tecnológicas y gestionando propuestas complejas, licitaciones y negociaciones. Con atención al valor para el cliente y a la capacidad de entrega de la empresa."
   },
   {
-    title: "Consultoría de Ciberseguridad",
-    description: "Profundo conocimiento del estado del arte y vendors. Capacidad para prescribir arquitecturas y traducir necesidades técnicas en valor de negocio."
+    title: "Dirección de equipos",
+    description: "Experiencia coordinando perfiles comerciales y técnicos, aclarando responsabilidades y conectando el trabajo del equipo con los objetivos del negocio."
   },
   {
-    title: "Project Management",
-    description: "Dirección de equipos multidisciplinares y supervisión financiera de la ejecución para garantizar el margen del proyecto."
+    title: "Gestión y rentabilidad",
+    description: "Responsabilidad sobre cuentas de resultados, márgenes y ejecución de proyectos. Una visión comercial que no termina en cerrar una venta, sino que considera el negocio que deja."
   }
 ];
+const metrics = [
+  {value:'+150',label:'Proyectos liderados'},
+  {value:'+60',label:'Clientes gestionados'},
+  {value:'+10 M€',label:'Volumen de negocio'},
+  {value:'+50',label:'Equipo de ingenieros'},
+];
+const sections = [{id:'perfil',label:'Perfil'},{id:'trayectoria',label:'Trayectoria'},{id:'proyectos',label:'Proyectos'},{id:'certificaciones',label:'Certificaciones'},{id:'fotografia',label:'Fotografía'}];
 ---
-
-<Layout title="Sobre mí - Enrique Relucio" description="Ingeniero de Telecomunicación especializado en Desarrollo de Negocio y Ciberseguridad.">
-  
-  <div class="flex flex-col gap-12">
-    
-    {/* CABECERA: Foto + Titular */}
-    <div class="flex flex-col md:flex-row items-center gap-8 mt-2 animate-fade-in">
-      <div class="shrink-0 relative group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-zinc-200 to-zinc-400 dark:from-zinc-700 dark:to-zinc-800 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-        <img 
-          src="sobre_mi.jpg" 
-          alt="Enrique Relucio" 
-          class="relative w-32 h-32 md:w-40 md:h-40 rounded-2xl shadow-lg border border-zinc-100 dark:border-zinc-800 object-cover"
-        />
+<Layout title="Sobre mí y CV | Enrique Relucio" description="Perfil, experiencia profesional, proyectos y certificaciones de Enrique Relucio. Creación y dirección de unidades de negocio.">
+  <div class="profile-page">
+    <header class="profile-heading">
+      <img src="/sobre_mi.jpg" alt="Enrique Relucio" width="144" height="144" />
+      <div><p class="eyebrow">Sobre mí</p><h1>Enrique Relucio</h1><p class="profile-subtitle">Ingeniero de Telecomunicación · Desarrollo de negocio · Consultoría estratégica</p></div>
+    </header>
+    <nav class="profile-tabs" aria-label="Secciones de mi perfil">
+      {sections.map(section=><a id={`tab-${section.id}`} href={`#${section.id}`} data-profile-tab={section.id}>{section.label}</a>)}
+    </nav>
+    <section id="perfil" class="profile-panel" data-profile-panel aria-labelledby="tab-perfil">
+      <div class="profile-section-heading"><p class="eyebrow">Perfil profesional</p><h2>Dirección comercial con criterio de negocio.</h2></div>
+      <div class="profile-bio">
+        <p>Soy Ingeniero de Telecomunicación y he creado y dirigido unidades de negocio en telecomunicaciones y ciberseguridad. Mi experiencia conecta la oferta tecnológica con los clientes, los equipos y los resultados: <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">convertir capacidades técnicas en un negocio rentable</strong>.</p>
+        <p>He asumido responsabilidades sobre desarrollo de la oferta, apertura de cuentas, negociación, dirección de equipos y cuenta de resultados. Esa visión me permite trabajar la actividad comercial sin separarla de lo que la empresa puede entregar ni de los márgenes que necesita mantener.</p>
+        <p>Es la experiencia que aporto a empresas tecnológicas B2B que ya venden y necesitan reforzar su dirección comercial. <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">Mi servicio está pensado para CEOs y fundadores que siguen concentrando demasiadas decisiones comerciales:</strong> qué oportunidades priorizar, cómo orientar al equipo y cuándo intervenir.</p>
       </div>
-      <div class="flex flex-col gap-4 text-center md:text-left">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-          Sobre mi
-        </h1>
-        <h2 class="text-lg md:text-xl font-medium text-zinc-500 dark:text-zinc-400 text-pretty">
-          Ingeniero de Telecomunicación <span class="text-zinc-300 dark:text-zinc-700">|</span> Desarrollo de negocio <span class="text-zinc-300 dark:text-zinc-700">|</span> Consultoría estratégica
-        </h2>
-      </div>
-    </div>
-
-    {/* BIO PRINCIPAL */}
-    <Section title="Trayectoria">
-      <div class="prose prose-lg prose-zinc dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-400 leading-relaxed">
-        <p>
-          Cuento con ocho años de experiencia impulsando el crecimiento de negocio en el sector tecnológico, tanto en el ámbito corporativo como en el público (B2B/B2G). Mi trayectoria se define por la capacidad de <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">transformar capacidades técnicas en unidades de negocio rentables</strong>.
-        </p>
-        <p>
-          He liderado la creación de nuevas líneas de actividad desde su planificación estratégica hasta su maduración financiera. Mi gestión abarca el ciclo completo: definición de portfolio, servitización, captación de clientes clave y responsabilidad sobre la cuenta de resultados (P&L).
-        </p>
-      </div>
-    </Section>
-
-    {/* ESTADÍSTICAS ANIMADAS */}
-    <div class="grid grid-cols-2 gap-4 my-6">
-      
-      {/* CARD 1: Proyectos */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-        <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span class="counter" data-target="150">0</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Proyectos Liderados</span>
-        </div>
-      </div>
-
-      {/* CARD 2: Clientes */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-         <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span class="counter" data-target="60">0</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Clientes Gestionados</span>
-         </div>
-      </div>
-
-       {/* CARD 3: Negocio */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-         <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span class="counter" data-target="10">0</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Volúmen de Negocio (M€)</span>
-         </div>
-      </div>
-
-      {/* CARD 4: Personas */}
-      <div class="group relative flex flex-col items-center justify-center p-8 bg-zinc-50 dark:bg-zinc-900/40 rounded-3xl border border-zinc-100 dark:border-zinc-800 overflow-hidden hover:border-zinc-200 dark:hover:border-zinc-700 transition-all duration-500">
-        <div class="absolute inset-0 bg-gradient-to-br from-white via-transparent to-transparent dark:from-zinc-800/20 opacity-50"></div>
-         <div class="relative z-10 flex flex-col items-center">
-            <span class="text-5xl md:text-7xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 tracking-tighter tabular-nums">
-                +<span class="counter" data-target="50">0</span>
-            </span>
-            <span class="text-xs md:text-sm font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest text-center">Equipo de Ingenieros</span>
-         </div>
-      </div>
-
-    </div>
-
-    {/* COMPETENCIAS */}
-    <Section title="Competencias Clave">
-      <p class="mb-8 text-zinc-500 dark:text-zinc-400 text-lg">
-        Más allá de la venta, aporto una visión integral de ingeniería:
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {skills.map((skill) => (
-          <div class="group p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-50 dark:hover:bg-zinc-900/60 transition-colors duration-300">
-            <h3 class="font-semibold text-lg text-zinc-900 dark:text-zinc-100 mb-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
-              {skill.title}
-            </h3>
-            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed text-pretty">
-              {skill.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </Section>
-
+      <h3 class="profile-group-title">Cifras de mi trayectoria</h3>
+      <div class="profile-metrics">{metrics.map(metric=><article><strong>{metric.value}</strong><p>{metric.label}</p></article>)}</div>
+      <h2>Qué aporto a la dirección comercial</h2>
+      <div class="profile-skills">{skills.map(skill=><article><h3>{skill.title}</h3><p>{skill.description}</p></article>)}</div>
+      <div class="profile-product-note"><h3 class="text-xl font-medium text-zinc-900 dark:text-zinc-100 mb-3">Fidus OS</h3><p>También desarrollo <a href="https://fidusos.com" target="_blank" rel="noopener noreferrer">Fidus OS ↗</a>, un producto propio de gestión y seguimiento comercial. Es independiente de este servicio.</p></div>
+    </section>
+    <section id="trayectoria" class="profile-panel" data-profile-panel aria-labelledby="tab-trayectoria">
+      <div class="profile-section-heading"><p class="eyebrow">Experiencia profesional</p><h2>Trayectoria en desarrollo y dirección de negocio.</h2><p>He pasado de diseñar propuestas técnicas para grandes cuentas a crear y dirigir unidades de negocio. Un recorrido que conecta clientes, oferta, equipos y resultados, y que hoy aporta criterio a mi servicio de dirección comercial.</p></div>
+      {experience.map(job=><ExpandableItem id={job.id} title={job.role} subtitle={job.company} summary={job.summary} details={job.details} year={job.year} />)}
+    </section>
+    <section id="proyectos" class="profile-panel" data-profile-panel aria-labelledby="tab-proyectos">
+      <div class="profile-section-heading"><p class="eyebrow">Oferta, clientes y resultados</p><h2>Proyectos y productos.</h2><p>Iniciativas de desarrollo de negocio que he liderado dentro de empresas y productos que desarrollo por iniciativa propia.</p></div>
+      <h3 class="profile-group-title">Desarrollo de negocio</h3>
+      {projects.filter(p=>p.category==='negocio').sort((a,b)=>Number(b.year)-Number(a.year)).map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} />)}
+      <h3 class="profile-group-title">Productos propios</h3><p class="profile-lead">Además de dirigir negocio, desarrollo productos propios. Es una forma de explorar problemas, construir soluciones y trabajar directamente con la tecnología.</p>
+      {projects.filter(p=>['proj-0','proj-1'].includes(p.id)).map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} url={'url' in p?p.url:undefined} />)}
+    </section>
+    <section id="certificaciones" class="profile-panel" data-profile-panel aria-labelledby="tab-certificaciones">
+      <div class="profile-section-heading"><p class="eyebrow">Formación acreditada</p><h2>Certificaciones</h2></div>
+      <div class="cert-grid profile-certifications">{certifications.map(cert=>{
+        const Tag = 'url' in cert ? 'a' : 'article';
+        return <Tag class="profile-certification" href={'url' in cert ? cert.url : undefined} target={'url' in cert ? '_blank' : undefined} rel={'url' in cert ? 'noopener noreferrer' : undefined}>
+          <div class="certification-title"><h3>{cert.name}</h3><div class="certification-meta">{'url' in cert && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-label="Ver credencial"><path d="M14 4h6v6m0-6L10 14M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" /></svg>}<span>{cert.year}</span></div></div>
+          <p>Emitido por <strong>{cert.issuer}</strong></p>
+        </Tag>;
+      })}</div>
+    </section>
+    <section id="fotografia" class="profile-panel" data-profile-panel aria-labelledby="tab-fotografia"><FlickrPhoto /></section>
   </div>
 </Layout>
-
 <script>
-  // Función para animar un contador específico
-  const animateCounter = (counter: HTMLElement) => {
-    const target = +counter.getAttribute('data-target')!;
-    const duration = 2000; // Duración en ms
-    const startTime = performance.now();
-
-    const updateCount = (currentTime: number) => {
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      
-      // Easing: easeOutQuart
-      const ease = 1 - Math.pow(1 - progress, 4); 
-      
-      const currentVal = Math.floor(ease * target);
-      counter.innerText = currentVal.toString();
-
-      if (progress < 1) {
-        requestAnimationFrame(updateCount);
-      } else {
-        counter.innerText = target.toString();
-      }
-    };
-
-    requestAnimationFrame(updateCount);
-  };
-
-  // Configuración del Intersection Observer
-  const observerOptions = {
-    root: null,
-    rootMargin: '0px',
-    threshold: 0.1 // Se activa cuando el 10% del elemento es visible
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const counter = entry.target as HTMLElement;
-        animateCounter(counter);
-        observer.unobserve(counter); // Dejar de observar una vez animado
-      }
+  document.querySelector('.profile-page')?.classList.add('is-enhanced');
+  const tabs = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-profile-tab]'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-profile-panel]'));
+  document.querySelector('.profile-tabs')?.setAttribute('role', 'tablist');
+  tabs.forEach(tab => { tab.setAttribute('role','tab'); tab.setAttribute('aria-controls',tab.dataset.profileTab!); });
+  panels.forEach(panel => panel.setAttribute('role','tabpanel'));
+  function activate(id: string, focus = false) {
+    tabs.forEach(tab => {const active=tab.dataset.profileTab===id; tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus();});
+    panels.forEach(panel=>{panel.hidden=panel.id!==id;panel.tabIndex=panel.hidden?-1:0;});
+    window.dispatchEvent(new CustomEvent('profile-section-change', {detail:id}));
+  }
+  function readHash() {
+    const id=location.hash.slice(1);
+    const target=document.getElementById(id);
+    const panel=panels.find(panel=>panel.id===id||!!target&&panel.contains(target));
+    activate(panel?.id||'perfil');
+    if(target instanceof HTMLDetailsElement)target.open=true;
+  }
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',e=>{e.preventDefault();history.pushState(null,'','#'+tab.dataset.profileTab);activate(tab.dataset.profileTab!);});
+    tab.addEventListener('keydown',e=>{
+      let next=index;
+      if(e.key==='ArrowRight')next=(index+1)%tabs.length;
+      else if(e.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')next=0;
+      else if(e.key==='End')next=tabs.length-1;
+      else return;
+      e.preventDefault();const id=tabs[next].dataset.profileTab!;history.replaceState(null,'','#'+id);activate(id,true);
     });
-  }, observerOptions);
-
-  // Iniciar observación cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', () => {
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => observer.observe(counter));
   });
+  window.addEventListener('hashchange',readHash);window.addEventListener('popstate',readHash);readHash();
+  let closed: HTMLDetailsElement[]=[];
+  let hiddenPanels: HTMLElement[]=[];
+  window.addEventListener('beforeprint',()=>{hiddenPanels=panels.filter(panel=>panel.hidden);panels.forEach(panel=>panel.hidden=false);closed=Array.from(document.querySelectorAll<HTMLDetailsElement>('.profile-page .portfolio-item:not([open])'));closed.forEach(detail=>detail.open=true);});
+  window.addEventListener('afterprint',()=>{closed.forEach(detail=>detail.open=false);closed=[];hiddenPanels.forEach(panel=>panel.hidden=true);hiddenPanels=[];});
 </script>

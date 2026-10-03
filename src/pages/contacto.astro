@@ -1,194 +1,110 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Section from '../components/Section.astro';
-
-const contactMethods = [
-  {
-    title: "Email",
-    description: "enrique.relucio@example.com",
-    link: "mailto:enrique.relucio@example.com"
-  },
-  {
-    title: "LinkedIn",
-    description: "Conecta profesionalmente conmigo",
-    link: "https://www.linkedin.com/in/enriquerelucio/"
-  },
-  {
-    title: "Ubicación",
-    description: "Madrid, España",
-    link: null
-  }
-];
+const booking = 'https://calendly.com/enriquerelucio/conversacioninicial';
 ---
-
-<Layout title="Contacto - Enrique Relucio" description="Ponte en contacto para oportunidades de negocio y consultoría.">
-  
-  <div class="flex flex-col gap-12 max-w-5xl mx-auto">
-    
-    {/* CABECERA SIMPLE */}
-    <div class="flex flex-col gap-4 mt-2 animate-fade-in">
-      <h1 class="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-        Contacto
-      </h1>
-      <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl text-pretty">
-         Transformo desafíos técnicos en oportunidades de negocio. Si buscas un socio estratégico para escalar proyectos de <strong class="text-zinc-900 dark:text-zinc-100 font-medium">Ciberseguridad</strong> o necesitas consultoría para resolver tus <strong class="text-zinc-900 dark:text-zinc-100 font-medium">Retos de Seguridad</strong>, hablemos de cómo alcanzar tus objetivos.
-      </p>
-    </div>
-
-    <div class="flex flex-col gap-12">
-      
-      {/* SECCIÓN 1: FORMULARIO (Arriba, ancho completo) */}
-             {/* Contenedor con estilo exacto de BlogRow: hover effect, border transparent default */}
-            <div class="group relative p-6 md:p-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/20 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all duration-300 min-h-[400px]">
-                
-                <form id="contact-form" class="space-y-6" action="https://formsubmit.co/enrique@relucio.es" method="POST">
-                    {/* Configuración de Formsubmit */}
-                    <input type="hidden" name="_subject" value="Nuevo mensaje desde la web de Relucio" />
-                    <input type="hidden" name="_captcha" value="false" />
-                    <input type="hidden" name="_next" value="https://relucio.es/contacto" />
-                    
-                    <!-- Honeypot anti-spam -->
-                    <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off" />
-                    <div style="opacity: 0; position: absolute; top: 0; left: 0; height: 0; width: 0; z-index: -1;">
-                        <input type="text" name="website_hp" tabindex="-1" autocomplete="off" />
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="space-y-2">
-                             <label for="name" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Nombre</label>
-                             <input type="text" id="name" name="name" required 
-                                class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-zinc-400"
-                                placeholder="Tu nombre"
-                             />
-                        </div>
-                        <div class="space-y-2">
-                             <label for="email" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Email</label>
-                             <input type="email" id="email" name="email" required 
-                                class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-zinc-400"
-                                placeholder="usuario@ejemplo.com"
-                             />
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                         <label for="subject" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Asunto</label>
-                         <input type="text" id="subject" name="subject" required 
-                            class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all placeholder:text-zinc-400"
-                            placeholder="Consultoría estratégica..."
-                         />
-                    </div>
-
-                    <div class="space-y-2">
-                         <label for="message" class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Mensaje</label>
-                         <textarea id="message" name="message" rows="5" required 
-                            class="w-full px-4 py-3 rounded-lg bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition-all resize-none placeholder:text-zinc-400"
-                            placeholder="Escribe aquí tu mensaje..."
-                         ></textarea>
-                    </div>
-
-                    <div class="pt-2 flex justify-end">
-                        <button type="submit" id="submit-btn" class="px-6 py-2.5 rounded-lg bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-bold hover:bg-orange-600 dark:hover:bg-orange-400 hover:text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-                            Enviar Mensaje
-                        </button>
-                    </div>
-                </form>
-
-                <div id="success-message" class="hidden h-full flex flex-col items-center justify-center text-center space-y-4 animate-fade-in py-12">
-                    <div class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mb-2">
-                        <svg class="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </div>
-                    <h3 class="text-2xl font-bold text-zinc-900 dark:text-zinc-100">¡Mensaje Enviado!</h3>
-                    <p class="text-zinc-600 dark:text-zinc-400 max-w-sm">
-                        Gracias por contactar. He recibido tu mensaje correctamente y te responderé lo antes posible.
-                    </p>
-                    <button id="reset-btn" class="mt-4 px-6 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-medium hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors">
-                        Enviar otro mensaje
-                    </button>
-                </div>
-            </div>
-         {/* STATS / INFO ADICIONAL */}
-         <div class="md:col-span-1 flex flex-col gap-6 pt-2 md:pt-2"> 
-             {/* Nota: pt-20 para alinear visualmente con el título de 'Vías de contacto' si se desea, o simplemente dejar flow normal */}
-             <div class="p-6 bg-zinc-50 dark:bg-zinc-900/30 rounded-2xl border border-zinc-100 dark:border-zinc-800/50 h-fit">
-                <div class="flex items-center gap-3 mb-3">
-                    <span class="relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    </span>
-                    <span class="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">Estado</span>
-                </div>
-                <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                    Respondiendo normalmente en <span class="text-zinc-900 dark:text-zinc-100 font-bold">menos de 24h</span>.
-                </p>
-             </div>
-         </div>
-      </div>
-    
-    </div>
+<Layout wide title="Hablemos de tu negocio | Enrique Relucio" description="Cuéntame qué ocurre en tu actividad comercial y reserva una conversación inicial.">
+  <div id="contact-layout" class="contact-layout">
+    <header class="contact-intro"><p class="eyebrow">Conversación inicial · 30 minutos</p><h1>Hablemos de tu negocio.</h1><p>Primero cuéntame qué está pasando en tu actividad comercial y qué te gustaría cambiar. Después elige un horario para hablar.</p><ol class="booking-steps" aria-label="Pasos de la reserva"><li id="context-step" aria-current="step"><span>01</span> Tu negocio</li><li id="time-step"><span>02</span> Elegir horario</li></ol><p class="contact-note">El alcance y la dedicación se acuerdan después de conocer tu situación.</p></header>
+    <section id="context-panel" class="form-panel" aria-label="Contexto para la reunión">
+      <form id="contact-form" method="POST">
+        <div class="form-row"><div><label for="name">Nombre</label><input id="name" name="name" type="text" autocomplete="name" maxlength="120" required /></div><div><label for="email">Email profesional</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required /></div></div>
+        <div><label for="company">Empresa o web</label><input id="company" name="company" type="text" autocomplete="organization" maxlength="200" required /></div>
+        <div><label for="situation">¿Qué está pasando en tu actividad comercial?</label><p id="situation-help" class="form-help">Cuéntame qué vendéis, quién se ocupa hoy de la actividad comercial y dónde encontráis más dificultades.</p><textarea id="situation" name="situation" rows="4" maxlength="5000" aria-describedby="situation-help" required></textarea></div>
+        <div><label for="goal">¿Qué te gustaría cambiar?</label><textarea id="goal" name="goal" rows="3" maxlength="3000" required></textarea></div>
+        <p class="form-privacy">La reserva se completa al confirmar el horario</p>
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+        <button id="submit-btn" type="submit" class="button button-primary" disabled>Continuar y elegir horario <span aria-hidden="true">→</span></button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+      <noscript><style>#contact-form{display:none}</style><p>Activa JavaScript para completar el formulario y elegir un horario. No se han enviado datos ni se ha reservado ninguna reunión.</p></noscript>
+    </section>
+    <section id="booking-panel" class="booking-panel" aria-labelledby="booking-title" hidden>
+      <div class="booking-heading"><div><p class="eyebrow">Paso 2</p><h2 id="booking-title" tabindex="-1">Elige un horario.</h2></div><button id="back-btn" type="button" class="text-link">← Editar mis respuestas</button></div>
+      <p id="booking-status" class="form-status" role="status" aria-live="polite">Cargando horarios…</p>
+      <div id="calendar-error" class="form-error" role="alert" hidden><p>El calendario está tardando en cargar. Tus respuestas siguen aquí; puedes reintentarlo o volver al formulario.</p><button id="retry-btn" type="button" class="text-link">Reintentar calendario</button></div>
+      <div id="calendly-embed" class="calendly-embed" data-booking-url={booking}></div>
+    </section>
+    <section id="booking-confirmed" class="form-panel booking-confirmed" aria-labelledby="confirmed-title" hidden tabindex="-1"><p class="eyebrow">Reserva confirmada</p><h2 id="confirmed-title">Ya tenemos una conversación.</h2><p>Calendly ha confirmado la reserva. Encontrarás los detalles y las opciones para cambiarla o cancelarla en la confirmación de la reunión.</p><a class="text-link" href="/">Volver al inicio →</a></section>
   </div>
-
-  <script is:inline>
-    const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('success-message');
-    const submitBtn = document.getElementById('submit-btn');
-    const resetBtn = document.getElementById('reset-btn');
-
-    form?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      // Feedback visual inmediato
-      if (submitBtn) {
-          submitBtn.disabled = true;
-          submitBtn.innerText = 'Enviando...';
-      }
-
-      const formData = new FormData(e.target);
-      
-      // Client-side Honeypot Check
-      if (formData.get('website_hp')) {
-          // Si el bot rellenó el campo oculto, simulamos éxito pero no enviamos nada
-          form.classList.add('hidden');
-          successMessage.classList.remove('hidden');
-          form.reset();
-          if (submitBtn) {
-               submitBtn.disabled = false;
-               submitBtn.innerText = 'Enviar Mensaje';
-          }
-          return;
-      }
-      
-      try {
-          const response = await fetch('https://formsubmit.co/ajax/enrique@relucio.es', {
-              method: 'POST',
-              body: formData,
-              headers: { 
-                  'Accept': 'application/json' 
-              }
-          });
-
-          if (response.ok) {
-              form.classList.add('hidden');
-              successMessage.classList.remove('hidden');
-              form.reset();
-          } else {
-              throw new Error('Error en el envío');
-          }
-      } catch (error) {
-          alert('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo o escribe directamente a enrique@relucio.es');
-      } finally {
-          if (submitBtn) {
-              submitBtn.disabled = false;
-              submitBtn.innerText = 'Enviar Mensaje';
-          }
-      }
-    });
-
-    // Resetear formulario para enviar otro
-    resetBtn?.addEventListener('click', () => {
-        successMessage.classList.add('hidden');
-        form.classList.remove('hidden');
-    });
-  </script>
 </Layout>
+<script>
+  export {};
+  type CalendlyOptions = { url: string; parentElement: HTMLElement; prefill: { name: string; email: string; customAnswers: { a1: string } } };
+  declare global { interface Window { Calendly?: { initInlineWidget: (options: CalendlyOptions) => void } } }
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const button = document.getElementById('submit-btn') as HTMLButtonElement;
+  const contextPanel = document.getElementById('context-panel')!;
+  const bookingPanel = document.getElementById('booking-panel')!;
+  const layout = document.getElementById('contact-layout')!;
+  const embed = document.getElementById('calendly-embed')!;
+  const error = document.getElementById('form-error')!;
+  const status = document.getElementById('form-status')!;
+  const calendarError = document.getElementById('calendar-error')!;
+  const calendarStatus = document.getElementById('booking-status')!;
+  let loading = false;
+  let widgetPromise: Promise<void> | null = null;
+  let frameTimer: ReturnType<typeof setTimeout> | undefined;
+  let prefill: CalendlyOptions['prefill'] | null = null;
+  button.disabled = false;
+  const controls = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input,textarea'));
+  controls.forEach(control => control.addEventListener('input', () => control.setCustomValidity('')));
+  function loadWidget(): Promise<void> {
+    if (window.Calendly) return Promise.resolve();
+    if (widgetPromise) return widgetPromise;
+    widgetPromise = new Promise<void>((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js'; script.async = true;
+      const fail = () => { clearTimeout(timer); script.remove(); widgetPromise = null; reject(new Error('No se pudo cargar Calendly')); };
+      const timer = setTimeout(fail, 15000);
+      script.onerror = fail;
+      script.onload = () => { if (!window.Calendly) { fail(); return; } clearTimeout(timer); resolve(); };
+      document.head.append(script);
+    });
+    return widgetPromise;
+  }
+  function showCalendar() {
+    if (!window.Calendly || !prefill) throw new Error('Calendario no disponible');
+    clearTimeout(frameTimer); embed.replaceChildren(); calendarError.hidden = true;
+    calendarStatus.textContent = 'Cargando horarios…';
+    contextPanel.hidden = true; bookingPanel.hidden = false; layout.classList.add('is-booking');
+    document.getElementById('context-step')?.removeAttribute('aria-current');
+    document.getElementById('time-step')?.setAttribute('aria-current', 'step');
+    window.Calendly.initInlineWidget({ url: embed.dataset.bookingUrl!, parentElement: embed, prefill });
+    const frame = embed.querySelector('iframe');
+    if (!frame) throw new Error('Calendly no creó el calendario');
+    frame.title = 'Elegir horario y confirmar la conversación en Calendly';
+    frameTimer = setTimeout(() => { calendarStatus.textContent = ''; calendarError.hidden = false; }, 25000);
+    frame.addEventListener('load', () => { clearTimeout(frameTimer); calendarStatus.textContent = ''; calendarError.hidden = true; }, { once: true });
+    document.getElementById('booking-title')?.focus();
+  }
+  function backToForm() {
+    clearTimeout(frameTimer); bookingPanel.hidden = true; contextPanel.hidden = false;
+    embed.replaceChildren(); layout.classList.remove('is-booking');
+    document.getElementById('time-step')?.removeAttribute('aria-current');
+    document.getElementById('context-step')?.setAttribute('aria-current', 'step');
+  }
+  form.addEventListener('submit', async event => {
+    event.preventDefault(); if (loading) return;
+    controls.forEach(control => control.setCustomValidity(control.value.trim() ? '' : 'Completa este campo.'));
+    if (!form.reportValidity()) return;
+    const value = (name: string) => (form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement).value.trim();
+    // a1 corresponde al campo de notas (primera pregunta) del evento actual.
+    prefill = { name: value('name'), email: value('email'), customAnswers: { a1: `Empresa o web:\n${value('company')}\n\nSituación comercial:\n${value('situation')}\n\nQué le gustaría cambiar:\n${value('goal')}` } };
+    loading = true; button.disabled = true; error.hidden = true; status.textContent = 'Preparando el calendario…';
+    form.setAttribute('aria-busy','true');
+    try { await loadWidget(); showCalendar(); }
+    catch { backToForm(); error.textContent = 'No se ha podido cargar el calendario. Tus respuestas siguen aquí. Vuelve a pulsar Continuar para reintentarlo.'; error.hidden = false; }
+    finally { loading = false; button.disabled = false; status.textContent = ''; form.setAttribute('aria-busy','false'); }
+  });
+  document.getElementById('back-btn')?.addEventListener('click', () => { backToForm(); document.getElementById('name')?.focus(); });
+  document.getElementById('retry-btn')?.addEventListener('click', () => { try { showCalendar(); } catch { backToForm(); error.hidden = false; error.textContent = 'No se ha podido cargar el calendario. Puedes volver a intentarlo sin perder tus respuestas.'; } });
+  window.addEventListener('message', event => {
+    const frame = embed.querySelector('iframe');
+    if (bookingPanel.hidden || !frame || event.origin !== 'https://calendly.com' || event.source !== frame.contentWindow) return;
+    const data = event.data;
+    if (data?.event !== 'calendly.event_scheduled' || typeof data.payload?.event?.uri !== 'string' || !/^https:\/\/api\.calendly\.com\/scheduled_events\/[a-zA-Z0-9-]+$/.test(data.payload.event.uri)) return;
+    clearTimeout(frameTimer); bookingPanel.hidden = true; embed.replaceChildren(); prefill = null; form.reset();
+    const confirmed = document.getElementById('booking-confirmed')!; confirmed.hidden = false; confirmed.focus();
+    document.getElementById('time-step')?.removeAttribute('aria-current');
+  });
+</script>

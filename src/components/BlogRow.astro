@@ -24,7 +24,8 @@ const {
 } = Astro.props;
 
 // Esta es la clave: usamos la que tenga contenido
-const finalImage = image || heroImage;
+const imageSource = image || heroImage;
+const finalImage = imageSource && (/^(https?:\/\/|\/)/.test(imageSource) ? imageSource : `/${imageSource}`);
 
 const formattedDate = date.toLocaleDateString('es-ES', {
   year: 'numeric',

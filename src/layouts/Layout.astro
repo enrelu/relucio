@@ -1,16 +1,15 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import NewsletterWidget from '../components/NewsletterWidget.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
-import '../styles/global.css'
-import CommandPalette from '../components/CommandPalette.astro';
+import '../styles/global.css';
+import '../styles/services.css';
 import SecurityHeaders from '../components/SecurityHeaders.astro';
 
 interface Props {
 	title: string;
 	description?: string;
     showHeader?: boolean;
+    wide?: boolean;
     image?: string;
     ogType?: string;
 }
@@ -18,8 +17,9 @@ interface Props {
 // 2. Le damos valor por defecto true (si no dices nada, se muestra)
 const { 
     title, 
-    description = "Enrique Relucio Portfolio - Ciberseguridad & Estrategia", 
+    description = "Dirección comercial y desarrollo de negocio para empresas tecnológicas B2B.", 
     showHeader = true,
+    wide = false,
     image = "/Logo_ER_B&W.png", // Fallback image for social sharing
     ogType = "website"
 } = Astro.props;
@@ -40,6 +40,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 		<title>{title}</title>
         <meta name="generator" content={Astro.generator} />
+        {import.meta.env.VERCEL_ENV === "preview" && <meta name="robots" content="noindex, nofollow" />}
         <link rel="sitemap" href="/sitemap-index.xml" />
 
         <!-- Canonical URL -->
@@ -67,10 +68,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             "url": "https://relucio.es",
             "image": "https://relucio.es/sobre_mi.jpg",
             "sameAs": [
-                "https://www.linkedin.com/in/enriquerelucio/",
-                "https://ciberseguridadtactica.substack.com/"
+                "https://www.linkedin.com/in/enriquerelucio/"
             ],
-            "jobTitle": "Consultor de Ciberseguridad & Business Development",
+            "jobTitle": "Dirección comercial y desarrollo de negocio",
             "worksFor": {
                 "@type": "Organization",
                 "name": "Alcorce Ciberseguridad"
@@ -88,22 +88,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		</script>
 	</head>
 	<body class="bg-white dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 min-h-screen selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900">
-		<ThemeToggle />
-		<NewsletterWidget />
-        <CommandPalette />
-		<main class="max-w-2xl mx-auto px-6 pt-12 pb-12 md:pt-20 md:pb-20 flex flex-col min-h-screen">
-			
-			{showHeader && <Header />}
-
-			<div class="flex-grow">
-				<slot />
-			</div>
-			<div class="mb-20">
-				
-			</div>
-			<Footer />
-
-		</main>
+        <a class="skip-link" href="#main-content">Saltar al contenido</a>
+        {showHeader && <Header />}
+        <main id="main-content" class:list={["site-main", wide ? "site-main-wide" : "site-main-reading"]}>
+            <slot />
+        </main>
+        <Footer />
 
     <script>
       import { inject } from '@vercel/analytics';
