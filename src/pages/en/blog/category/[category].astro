@@ -1,43 +1,44 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../../layouts/Layout.astro'; 
+import Layout from '../../../../layouts/Layout.astro'; 
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
-  const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+  const allPosts = await getCollection('blogEn');
+  const uniqueCategories = [...new Set(allPosts.map((post) => post.data.category).flat())];
 
-  return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+  return uniqueCategories.map((category) => {
+    const filteredPosts = allPosts.filter((post) => post.data.category.includes(category));
     return {
-      params: { tag },
+      params: { category },
       props: { posts: filteredPosts },
     };
   });
 }
 
-const { tag } = Astro.params;
+const { category } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={`Entradas sobre ${tag}`}>
+<Layout title={`Posts about ${category}`}>
   <main class="container">
     <header class="page-header">
-      <p>Explorando la etiqueta:</p>
-      <h1>#{tag}</h1>
-      <a href="/blog" class="back-link">← Volver al blog</a>
+      <p>Browse category:</p>
+      <h1>#{category}</h1>
+      <a href="/en/blog/" class="back-link">← Return to blog</a>
     </header>
     
     <section class="posts-grid">
       {posts.map((post) => (
         <article class="post-card">
-          <a href={`/blog/${post.id}/`}>
+          <a href={`/en/blog/${post.id}/`}>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
-            <span class="read-more">Leer más &rarr;</span>
+            <span class="read-more">Read more →</span>
           </a>
         </article>
       ))}
     </section>
+   
   </main>
 </Layout>
 

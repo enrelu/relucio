@@ -1,0 +1,97 @@
+---
+// src/components/BlogRow.astro
+interface Props {
+  title: string;
+  description?: string;
+  date: Date;
+  url: string;
+  heroImage?: string; // Nombre que viene de la colección de Astro
+  image?: string;     // Nombre que podrías estar pasando manualmente
+  category: string;
+  tags: string[];
+}
+
+// Extraemos ambos posibles nombres y priorizamos uno
+const { 
+  title, 
+  description,
+  date, 
+  url, 
+  heroImage, 
+  image, 
+  category = 'General', 
+  tags = [] 
+} = Astro.props;
+
+// Esta es la clave: usamos la que tenga contenido
+const imageSource = image || heroImage;
+const finalImage = imageSource && (/^(https?:\/\/|\/)/.test(imageSource) ? imageSource : `/${imageSource}`);
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+---
+
+<article class="group relative flex flex-row gap-4 md:gap-6 p-4 -mx-4 rounded-xl transition-all duration-300 border border-transparent hover:bg-zinc-50 dark:hover:bg-zinc-900/50 hover:border-zinc-200 dark:hover:border-zinc-800">
+  
+  {/* 1. IMAGEN: Usamos finalImage */}
+  {finalImage && (
+    <div class="shrink-0">
+      <div class="w-32 h-20 md:w-40 md:h-24 overflow-hidden rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-100 dark:bg-zinc-800">
+        <img 
+          src={finalImage} 
+          alt="" 
+          class="w-full h-full object-cover grayscale opacity-90 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  )}
+
+  {/* 2. CONTENIDO */}
+  <div class="flex flex-col flex-1 min-w-0 justify-center">
+    
+    <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-x-4 gap-y-1">
+      <h3 class="font-bold text-lg text-zinc-900 dark:text-zinc-100 transition-colors group-hover:text-orange-600 dark:group-hover:text-orange-400 leading-tight">
+        <a href={url} class="focus:outline-none">
+          {title}
+        </a>
+      </h3>
+      
+      <time datetime={date.toISOString()} class="text-xs font-mono text-zinc-400 whitespace-nowrap shrink-0 uppercase tracking-tighter">
+        {formattedDate}
+      </time>
+    </div>
+
+    {description && (
+      <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400 line-clamp-2 md:line-clamp-3 leading-relaxed">
+        {description}
+      </p>
+    )}
+
+    {/* METADATOS */}
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-3 text-[10px]">
+      
+      <a 
+        href={`/en/blog/category/${category}`}
+        class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest border-r border-zinc-200 dark:border-zinc-800 pr-3 leading-none hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+      >
+        {category}
+      </a>
+
+      <div class="flex flex-wrap gap-2">
+        {tags.map((tag) => (
+          <a 
+            href={`/en/blog/tag/${tag}`}
+            class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700/50 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-900 dark:hover:text-zinc-100 transition-all"
+          >
+            #{tag}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+</article>

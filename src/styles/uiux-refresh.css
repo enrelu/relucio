@@ -487,3 +487,11 @@
     break-inside: avoid;
   }
 }
+
+/* Persistent, native language selector; no flag icons or hover-only interaction. */
+.language-control { display:flex;align-items:center; }
+.language-control select { min-height:44px;min-width:56px;padding:8px 4px;border:1px solid var(--control-line);border-radius:8px;background:var(--canvas);color:var(--ink);font:inherit;font-size:14px;cursor:pointer; }
+.language-control select:focus-visible { outline:2px solid var(--accent);outline-offset:4px; }
+@media(max-width:767px) { .site-header-inner { gap:12px; } .header-controls { gap:4px; } .language-control select { min-width:48px;max-width:52px; } }
+@media(max-width:359px) { .site-header-inner { gap:8px; } .site-brand img { display:none!important; } .site-brand { font-size:14px;gap:0; } }
+@media print { .language-control { display:none; } }

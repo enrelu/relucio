@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../../layouts/Layout.astro'; 
+import Layout from '../../../../layouts/Layout.astro'; 
 
 export async function getStaticPaths() {
-  const allPosts = await getCollection('blog');
+  const allPosts = await getCollection('blogEn');
   const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 
   return uniqueTags.map((tag) => {
@@ -19,21 +19,21 @@ const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={`Entradas sobre ${tag}`}>
+<Layout title={`Posts about ${tag}`}>
   <main class="container">
     <header class="page-header">
-      <p>Explorando la etiqueta:</p>
+      <p>Browse tag:</p>
       <h1>#{tag}</h1>
-      <a href="/blog" class="back-link">← Volver al blog</a>
+      <a href="/en/blog/" class="back-link">← Return to blog</a>
     </header>
     
     <section class="posts-grid">
       {posts.map((post) => (
         <article class="post-card">
-          <a href={`/blog/${post.id}/`}>
+          <a href={`/en/blog/${post.id}/`}>
             <h2>{post.data.title}</h2>
             <p>{post.data.description}</p>
-            <span class="read-more">Leer más &rarr;</span>
+            <span class="read-more">Read more →</span>
           </a>
         </article>
       ))}

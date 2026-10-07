@@ -1,0 +1,175 @@
+<section aria-labelledby="photography-title">
+    <header class="mb-8">
+      <h2 id="photography-title" class="text-3xl font-medium tracking-tight text-zinc-900 dark:text-zinc-50">Photography</h2>
+      <p class="mt-3 text-base leading-relaxed">A random photo from my Flickr.</p>
+    </header>
+
+    <figure class="m-0">
+      <div id="flickr-frame" class="photo-frame" aria-busy="true">
+        <a id="flickr-photo-link" href="https://www.flickr.com/photos/enrelu/" target="_blank" rel="noopener noreferrer" aria-label="See the photo on Flickr" hidden>
+          <img id="flickr-photo" alt="" decoding="async" />
+        </a>
+        <p id="flickr-status" role="status" aria-live="polite" class="px-6 text-center text-base">Loading a photo…</p>
+      </div>
+      <figcaption id="flickr-caption" class="mt-3 min-h-6 text-sm text-zinc-600 dark:text-zinc-400"></figcaption>
+    </figure>
+
+    <div class="mt-6 flex flex-wrap items-center justify-between gap-4">
+      <button id="flickr-next" type="button" disabled class="min-h-11 rounded-lg bg-orange-700 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-orange-800 disabled:cursor-wait disabled:opacity-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600">Another photo</button>
+      <a href="https://www.flickr.com/photos/enrelu/" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-11 items-center text-sm font-medium text-zinc-700 underline underline-offset-4 hover:text-orange-600 dark:text-zinc-300 dark:hover:text-orange-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-orange-600">See all on Flickr ↗</a>
+    </div>
+    <p class="mt-4 text-sm text-zinc-500 dark:text-zinc-400">Random selection from the most recent public photos.</p>
+    <noscript><p class="mt-4">To see a random photo, activate JavaScript or visit <a href="https://www.flickr.com/photos/enrelu/" class="underline">my Flickr</a>.</p></noscript>
+  </section>
+
+
+<style>
+  .photo-frame { aspect-ratio: 4 / 3; position: relative; display: grid; place-items: center; overflow: hidden; }
+  .photo-frame a { position: absolute; inset: 0; display: block; }
+  .photo-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .photo-frame [hidden] { display: none; }
+  .photo-frame a:focus-visible { outline: 3px solid #ea580c; outline-offset: -4px; }
+  @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+</style>
+
+<script is:inline>
+(() => {
+  const account = '201901490@N07';
+  const frame = document.getElementById('flickr-frame');
+  const photoLink = document.getElementById('flickr-photo-link');
+  const photo = document.getElementById('flickr-photo');
+  const status = document.getElementById('flickr-status');
+  const caption = document.getElementById('flickr-caption');
+  const button = document.getElementById('flickr-next');
+  if (!frame || !photoLink || !photo || !status || !caption || !button) return;
+
+  let photos = [];
+  let currentIndex = -1;
+  let loading = false;
+
+  function fail(message) {
+    loading = false;
+    frame.setAttribute('aria-busy', 'false');
+    photoLink.hidden = true;
+    status.hidden = false;
+    status.textContent = message;
+    caption.textContent = '';
+    button.disabled = false;
+    button.textContent = photos.length ? "Another photo" : "Retry";
+  }
+
+  function allowedPhoto(item) {
+    if (item?.author_id !== account || typeof item?.media?.m !== 'string' || typeof item?.link !== 'string') return false;
+    try {
+      const image = new URL(item.media.m);
+      const link = new URL(item.link);
+      return image.protocol === 'https:' && image.hostname.endsWith('.staticflickr.com') && link.protocol === 'https:' && link.hostname === 'www.flickr.com' && (link.pathname.startsWith('/photos/enrelu/') || link.pathname.startsWith('/photos/' + account + '/'));
+    } catch { return false; }
+  }
+
+  function showRandom() {
+    if (loading || !photos.length) return;
+    loading = true;
+    button.disabled = true;
+    frame.setAttribute('aria-busy', 'true');
+    status.hidden = false;
+    status.textContent = "Loading a photo…";
+    photoLink.hidden = true;
+    caption.textContent = '';
+
+    let candidates = photos.map((_, index) => index).filter(index => index !== currentIndex);
+    if (!candidates.length) candidates = [0];
+    const index = candidates[Math.floor(Math.random() * candidates.length)];
+    const item = photos[index];
+    const title = typeof item.title === 'string' && item.title.trim() ? item.title.trim() : "Photography by Enrique Relucio";
+    const image = new Image();
+    let fallback = false;
+    const timer = setTimeout(() => {
+      image.onload = image.onerror = null;
+      fail("The photo has not loaded. Try another one or visit Flickr.");
+    }, 12000);
+
+    image.onload = () => {
+      clearTimeout(timer);
+      currentIndex = index;
+      photo.src = image.src;
+      photo.alt = title;
+      photoLink.href = item.link;
+      photoLink.setAttribute('aria-label', title + '. View on Flickr (new tab)');
+      caption.textContent = title;
+      photoLink.hidden = false;
+      status.hidden = true;
+      frame.setAttribute('aria-busy', 'false');
+      loading = false;
+      button.textContent = "Another photo";
+      button.disabled = photos.length < 2;
+    };
+    image.onerror = () => {
+      if (!fallback && image.src !== item.media.m) {
+        fallback = true;
+        image.src = item.media.m;
+      } else {
+        clearTimeout(timer);
+        fail("The photo has not loaded. Try another one or visit Flickr.");
+      }
+    };
+    image.src = item.media.m.replace(/_m(\.[a-z]+)$/i, '_b$1');
+  }
+
+  function loadFeed() {
+    if (loading) return;
+    loading = true;
+    button.disabled = true;
+    status.hidden = false;
+    status.textContent = "Loading a photo…";
+    frame.setAttribute('aria-busy', 'true');
+    const callback = 'relucioFlickrPhotos_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+    const script = document.createElement('script');
+    let finished = false;
+    const timer = setTimeout(() => {
+      cleanup();
+      fail("Flickr is not responding now. You can try again or view the photos on Flickr.");
+    }, 12000);
+
+    function cleanup() {
+      finished = true;
+      clearTimeout(timer);
+      script.remove();
+      window[callback] = () => {};
+      setTimeout(() => { delete window[callback]; }, 60000);
+    }
+    window[callback] = (data) => {
+      if (finished) return;
+      cleanup();
+      photos = Array.isArray(data?.items) ? data.items.filter(allowedPhoto) : [];
+      loading = false;
+      if (!photos.length) {
+        fail("No public photos available now. You can visit my Flickr.");
+        return;
+      }
+      showRandom();
+    };
+    script.onerror = () => {
+      if (finished) return;
+      cleanup();
+      fail("The photos could not be loaded. Try again or visit Flickr.");
+    };
+    const url = new URL('https://www.flickr.com/services/feeds/photos_public.gne');
+    url.searchParams.set('id', account);
+    url.searchParams.set('format', 'json');
+    url.searchParams.set('jsoncallback', callback);
+    script.src = url.href;
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
+  button.addEventListener('click', () => photos.length ? showRandom() : loadFeed());
+  let started = false;
+  function start() { if (!started) { started = true; loadFeed(); } }
+  const panel = frame.closest('[data-profile-panel]');
+  if (panel) {
+    window.addEventListener('profile-section-change', event => { if (event.detail === panel.id) start(); });
+    if (location.hash === '#fotografia') start();
+  } else start();
+})();
+</script>

@@ -1,9 +1,10 @@
 ---
+const isEnglish = Astro.url.pathname.startsWith('/en/');
 const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="footer-inner">
-    <div><div class="footer-identity"><a class="footer-name" href="/">Enrique Relucio</a><span class="footer-copyright">© {year}</span></div><p>Dirección comercial y desarrollo de negocio.</p></div>
-    <div class="footer-last"><nav class="footer-socials" aria-label="Redes y perfiles"><a class="text-link" href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a class="text-link" href="https://x.com/enrelu" target="_blank" rel="noopener noreferrer">X ↗</a><a class="text-link" href="https://github.com/enrelu" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="text-link" href="https://www.flickr.com/photos/enrelu/" target="_blank" rel="noopener noreferrer">Flickr ↗</a></nav></div>
+    <div><div class="footer-identity"><a class="footer-name" href={isEnglish ? "/en/" : "/"}>Enrique Relucio</a><span class="footer-copyright">© {year}</span></div><p>{isEnglish ? 'Sales leadership and business development.' : 'Dirección comercial y desarrollo de negocio.'}</p></div>
+    <div class="footer-last"><nav class="footer-socials" aria-label={isEnglish ? "Social profiles" : "Redes y perfiles"}><a class="text-link" href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a class="text-link" href="https://x.com/enrelu" target="_blank" rel="noopener noreferrer">X ↗</a><a class="text-link" href="https://github.com/enrelu" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="text-link" href="https://www.flickr.com/photos/enrelu/" target="_blank" rel="noopener noreferrer">Flickr ↗</a></nav></div>
   </div>
 </footer>

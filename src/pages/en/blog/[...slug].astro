@@ -1,0 +1,173 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+
+// 1. Generamos las rutas para cada post
+export async function getStaticPaths() {
+	const posts = await getCollection('blogEn');
+	
+	// 1. Ordenamos por fecha (del más nuevo al más antiguo)
+	const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+	return sortedPosts.map((post, index) => ({
+		params: { slug: post.id },
+		props: { 
+			post,
+			// El "Siguiente" es el índice anterior (porque es más nuevo)
+			// El "Anterior" es el índice siguiente (porque es más viejo)
+			nextPost: index > 0 ? sortedPosts[index - 1] : null,
+			prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+		},
+	}));
+}
+
+// 2. Obtenemos los datos del post actual
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await render(post);
+
+// 3. Extraemos las propiedades (Frontmatter)
+const { title, description, pubDate, updatedDate, heroImage, category = 'General', tags = [] } = post.data;
+
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+	year: 'numeric',
+	month: 'short',
+	day: 'numeric',
+});
+
+// Resolver imagen para metadatos (absoluta)
+const socialImage = heroImage 
+    ? (heroImage.startsWith('http') ? heroImage : new URL(heroImage, Astro.site).toString())
+    : '/Logo_ER_B&W.png';
+---
+
+<Layout title={`${title} | Enrique Relucio`} description={description} image={socialImage} ogType="article">
+    
+    <!-- JSON-LD para Artículos de Blog -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": title,
+        "image": socialImage,
+        "datePublished": pubDate.toISOString(),
+        "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
+        "author": {
+            "@type": "Person",
+            "name": "Enrique Relucio",
+            "url": "https://relucio.es"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Enrique Relucio",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://relucio.es/Logo_ER_B&W.png"
+            }
+        },
+        "inLanguage": "en",
+        "description": description
+    })} />
+
+		<article class="flex flex-col gap-8">
+			
+			{/* CABECERA DEL ARTÍCULO */}
+			<header class="flex flex-col gap-4">
+				
+				{/* Breadcrumbs / Migas de Pan */}
+                <nav class="flex items-center gap-2 text-sm text-zinc-500 dark:text-zinc-400 mb-2">
+                    <a href="/en/" class="hover:text-orange-600 transition-colors">Home</a>
+                    <span>/</span>
+                    <a href="/en/blog/" class="hover:text-orange-600 transition-colors">Blog</a>
+                    <span>/</span>
+                    <span class="text-zinc-900 dark:text-zinc-200 font-medium truncate max-w-[200px]">{title}</span>
+                </nav>
+
+				{/* Título */}
+				<h1 class="text-3xl pt-2 md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
+					{title}
+				</h1>
+				{/* Meta superior: Fecha y Categoría */}
+				<div class="flex items-center gap-3 text-sm">
+					<span class="text-zinc-400 font-mono">{formattedDate}</span>
+					<span class="text-zinc-300 dark:text-zinc-700">|</span>
+					<a href={`/en/blog/category/${category}`} class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider hover:underline">
+						{category}
+					</a>
+				</div>
+
+				{/* Etiquetas (Tags) */}
+				{tags && tags.length > 0 && (
+					<div class="flex flex-wrap gap-2 mt-2">
+						{tags.map((tag) => (
+							<a 
+								href={`/en/blog/tag/${tag}`} 
+								class="px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-xs font-medium"
+							>
+								#{tag}
+							</a>
+						))}
+					</div>
+				)}
+			</header>
+
+			<p class="text-sm"><a class="text-link" href={`/blog/${post.data.translationKey}/`} lang="es" hreflang="es">Read the original in Spanish →</a></p>
+
+            {/* IMAGEN DE PORTADA (HERO IMAGE) */}
+			{heroImage && (
+				<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800">
+					<img
+						src={heroImage.startsWith('http') || heroImage.startsWith('/') ? heroImage : `/${heroImage}`}
+						alt={title}
+						class="object-cover w-full h-full"
+					/>
+				</div>
+			)}
+
+			{/* CONTENIDO DEL POST */}
+			<div class="prose prose-zinc dark:prose-invert max-w-none mt-4 prose-a:text-blue-600 hover:prose-a:text-blue-500 prose-img:rounded-lg">
+				<Content />
+			</div>
+
+		</article>
+
+		{/* NAVEGACIÓN ENTRE ARTÍCULOS (NUEVO) */}
+		<div class="flex flex-col sm:flex-row justify-between gap-4 mt-16 mb-8">
+			{/* Botón Anterior (Más antiguo) */}
+			{prevPost ? (
+				<a href={`/en/blog/${prevPost.id}/`} class="group flex flex-col gap-1 text-left sm:max-w-[45%]">
+					<span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+						← Previous
+					</span>
+					<span class="text-sm font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors line-clamp-2">
+						{prevPost.data.title}
+					</span>
+				</a>
+			) : (
+				<div /> /* Espaciador vacío si no hay anterior */
+			)}
+
+			{/* Botón Siguiente (Más nuevo) */}
+			{nextPost ? (
+				<a href={`/en/blog/${nextPost.id}/`} class="group flex flex-col gap-1 text-right sm:max-w-[45%] items-end">
+					<span class="text-xs font-mono text-zinc-400 group-hover:text-zinc-600 dark:group-hover:text-zinc-300 transition-colors">
+						Next →
+					</span>
+					<span class="text-sm font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-zinc-900 dark:group-hover:text-white transition-colors line-clamp-2">
+						{nextPost.data.title}
+					</span>
+				</a>
+			) : (
+				<div /> 
+			)}
+		</div>
+
+		{/* NAVEGACIÓN INFERIOR */}
+		<div class="mt-16 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex justify-between items-center">
+			<a href="/en/blog/" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+				← Return to blog
+			</a>
+            <a href="#" class="text-sm text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 transition-colors">
+				Back to top ↑
+			</a>
+		</div>
+        
+</Layout>
