@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ExpandableItem from '../../components/en/ExpandableItem.astro';
+import FlickrPhoto from '../../components/en/FlickrPhoto.astro';
+import { experience, certifications, projects } from '../../data/portfolio.en';
+const skills = [
+  {
+    title: "Sales priorities",
+    description: "The judgment to decide which accounts and opportunities deserve attention, where to focus your effort, and what to let go."
+  },
+  {
+    title: "Propositions and negotiation",
+    description: "Experience developing technology propositions and managing complex proposals, tenders and negotiations, with attention to customer value and the company’s ability to deliver."
+  },
+  {
+    title: "Team management",
+    description: "Experience coordinating sales and technical teams, clarifying responsibilities, and connecting their work to business goals."
+  },
+  {
+    title: "Management and profitability",
+    description: "Responsibility for profit and loss, margins and project delivery. A sales perspective that goes beyond closing a deal to consider the business it creates."
+  }
+];
+const metrics = [
+  {value:'+150',label:"Projects led"},
+  {value:'+60',label:"Customers managed"},
+  {value:"€10M+",label:"Business volume"},
+  {value:'+50',label:"Engineering team"},
+];
+const sections = [{id:'perfil',label:"Profile"},{id:'trayectoria',label:"Career"},{id:'proyectos',label:"Projects"},{id:'certificaciones',label:"Certifications"},{id:'fotografia',label:"Photography"}];
+---
+<Layout title="About me and CV | Enrique Relucio" description="Profile, professional experience, projects and certifications of Enrique Relucio. Creation and management of business units.">
+  <div class="profile-page">
+    <header class="profile-heading">
+      <img src="/sobre_mi.jpg" alt="Enrique Relucio" width="144" height="144" />
+      <div><p class="eyebrow">About me</p><h1>Enrique Relucio</h1><p class="profile-subtitle">Telecommunications Engineer · Business development · Strategic consulting</p></div>
+    </header>
+    <nav class="profile-tabs" aria-label="Sections of my profile">
+      {sections.map(section=><a id={`tab-${section.id}`} href={`#${section.id}`} data-profile-tab={section.id}>{section.label}</a>)}
+    </nav>
+    <section id="perfil" class="profile-panel" data-profile-panel aria-labelledby="tab-perfil">
+      <div class="profile-section-heading"><p class="eyebrow">Professional profile</p><h2>Sales leadership grounded in business judgment.</h2></div>
+      <div class="profile-bio">
+        <p>I am a telecommunications engineer and have built and led business units in telecommunications and cybersecurity. My experience connects technology services with customers, teams and results: <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">turn technical capabilities into a profitable business</strong>.</p>
+        <p>I have been responsible for developing services, winning new accounts, negotiating, leading teams, and managing profit and loss. That perspective lets me work on sales without losing sight of what a company can deliver or the margins it needs to maintain.</p>
+        <p>This is the experience I bring to B2B technology companies that already sell and need stronger sales leadership. <strong class="text-zinc-900 dark:text-zinc-100 font-semibold">My service is for CEOs and founders who still carry too many sales decisions themselves:</strong> what opportunities to prioritize, how to guide the team and when to intervene.</p>
+      </div>
+      <h3 class="profile-group-title">My experience in numbers</h3>
+      <div class="profile-metrics">{metrics.map(metric=><article><strong>{metric.value}</strong><p>{metric.label}</p></article>)}</div>
+      <h2>What I bring to sales leadership</h2>
+      <div class="profile-skills">{skills.map(skill=><article><h3>{skill.title}</h3><p>{skill.description}</p></article>)}</div>
+      <div class="profile-product-note"><h3 class="text-xl font-medium text-zinc-900 dark:text-zinc-100 mb-3">Fidus OS</h3><p>I also develop <a href="https://fidusos.com" target="_blank" rel="noopener noreferrer">Fidus OS ↗</a>, my own product for sales management and follow-up. It is separate from this service.</p></div>
+    </section>
+    <section id="trayectoria" class="profile-panel" data-profile-panel aria-labelledby="tab-trayectoria">
+      <div class="profile-section-heading"><p class="eyebrow">Professional experience</p><h2>Career in business development and management.</h2><p>I have moved from designing technical proposals for key accounts to building and leading business units. That experience connects customers, services, teams and results, and now informs my approach to sales leadership.</p></div>
+      {experience.map(job=><ExpandableItem id={job.id} title={job.role} subtitle={job.company} summary={job.summary} details={job.details} year={job.year} />)}
+    </section>
+    <section id="proyectos" class="profile-panel" data-profile-panel aria-labelledby="tab-proyectos">
+      <div class="profile-section-heading"><p class="eyebrow">Offer, clients and results</p><h2>Projects and products.</h2><p>Business development initiatives that I have led within companies and products that I develop on my own initiative.</p></div>
+      <h3 class="profile-group-title">Business development</h3>
+      {projects.filter(p=>p.category==='negocio').sort((a,b)=>Number(b.year)-Number(a.year)).map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} />)}
+      <h3 class="profile-group-title">My own products</h3><p class="profile-lead">In addition to running a business, I develop my own products. It is a way to explore problems, build solutions and work directly with technology.</p>
+      {projects.filter(p=>['proj-0','proj-1'].includes(p.id)).map(p=><ExpandableItem id={p.id} title={p.title} subtitle={p.client} summary={p.summary} details={p.details} year={p.year} url={'url' in p?p.url:undefined} />)}
+    </section>
+    <section id="certificaciones" class="profile-panel" data-profile-panel aria-labelledby="tab-certificaciones">
+      <div class="profile-section-heading"><p class="eyebrow">Accredited training</p><h2>Certifications</h2></div>
+      <div class="cert-grid profile-certifications">{certifications.map(cert=>{
+        const Tag = 'url' in cert ? 'a' : 'article';
+        return <Tag class="profile-certification" href={'url' in cert ? cert.url : undefined} target={'url' in cert ? '_blank' : undefined} rel={'url' in cert ? 'noopener noreferrer' : undefined}>
+          <div class="certification-title"><h3>{cert.name}</h3><div class="certification-meta">{'url' in cert && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-label="View credential"><path d="M14 4h6v6m0-6L10 14M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4" /></svg>}<span>{cert.year}</span></div></div>
+          <p>Issued by <strong>{cert.issuer}</strong></p>
+        </Tag>;
+      })}</div>
+    </section>
+    <section id="fotografia" class="profile-panel" data-profile-panel aria-labelledby="tab-fotografia"><FlickrPhoto /></section>
+  </div>
+</Layout>
+<script>
+  document.querySelector('.profile-page')?.classList.add('is-enhanced');
+  const tabs = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-profile-tab]'));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-profile-panel]'));
+  document.querySelector('.profile-tabs')?.setAttribute('role', 'tablist');
+  tabs.forEach(tab => { tab.setAttribute('role','tab'); tab.setAttribute('aria-controls',tab.dataset.profileTab!); });
+  panels.forEach(panel => panel.setAttribute('role','tabpanel'));
+  function activate(id: string, focus = false) {
+    tabs.forEach(tab => {const active=tab.dataset.profileTab===id; tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1;if(active&&focus)tab.focus();});
+    panels.forEach(panel=>{panel.hidden=panel.id!==id;panel.tabIndex=panel.hidden?-1:0;});
+    window.dispatchEvent(new CustomEvent('profile-section-change', {detail:id}));
+  }
+  function readHash() {
+    const id=location.hash.slice(1);
+    const target=document.getElementById(id);
+    const panel=panels.find(panel=>panel.id===id||!!target&&panel.contains(target));
+    activate(panel?.id||'perfil');
+    if(target instanceof HTMLDetailsElement)target.open=true;
+  }
+  tabs.forEach((tab,index)=>{
+    tab.addEventListener('click',e=>{e.preventDefault();history.pushState(null,'','#'+tab.dataset.profileTab);activate(tab.dataset.profileTab!);});
+    tab.addEventListener('keydown',e=>{
+      let next=index;
+      if(e.key==='ArrowRight')next=(index+1)%tabs.length;
+      else if(e.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;
+      else if(e.key==='Home')next=0;
+      else if(e.key==='End')next=tabs.length-1;
+      else return;
+      e.preventDefault();const id=tabs[next].dataset.profileTab!;history.replaceState(null,'','#'+id);activate(id,true);
+    });
+  });
+  window.addEventListener('hashchange',readHash);window.addEventListener('popstate',readHash);readHash();
+  let closed: HTMLDetailsElement[]=[];
+  let hiddenPanels: HTMLElement[]=[];
+  window.addEventListener('beforeprint',()=>{hiddenPanels=panels.filter(panel=>panel.hidden);panels.forEach(panel=>panel.hidden=false);closed=Array.from(document.querySelectorAll<HTMLDetailsElement>('.profile-page .portfolio-item:not([open])'));closed.forEach(detail=>detail.open=true);});
+  window.addEventListener('afterprint',()=>{closed.forEach(detail=>detail.open=false);closed=[];hiddenPanels.forEach(panel=>panel.hidden=true);hiddenPanels=[];});
+</script>

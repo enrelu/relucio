@@ -1,5 +1,6 @@
 ---
 import Header from '../components/Header.astro';
+import { localeFor, localeRoutes } from '../i18n/routes';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/services.css';
@@ -18,21 +19,34 @@ interface Props {
 // 2. Le damos valor por defecto true (si no dices nada, se muestra)
 const { 
     title, 
-    description = "Dirección comercial y desarrollo de negocio para empresas tecnológicas B2B.", 
+    description = Astro.url.pathname.startsWith("/en/") ? "Sales leadership and business development for B2B technology companies." : "Dirección comercial y desarrollo de negocio para empresas tecnológicas B2B.", 
     showHeader = true,
     wide = false,
     image = "/Logo_ER_B&W.png", // Fallback image for social sharing
     ogType = "website"
 } = Astro.props;
 
+const locale = localeFor(Astro.url.pathname);
+const isEnglish = locale === 'en';
+const alternateRoutes = localeRoutes(Astro.url.pathname);
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang={locale} class="scroll-smooth">
 	<head>
 		<SecurityHeaders />
 		<meta charset="UTF-8" />
+        <script is:inline>
+          // Detect only at the unqualified home entry; explicit /en/ and deep links win.
+          (() => {
+            if (location.pathname !== '/') return;
+            let saved = null;
+            try { saved = localStorage.getItem('relucio-language'); } catch {}
+            const preferred = saved === 'es' || saved === 'en' ? saved : (navigator.language || '').toLowerCase().startsWith('es') ? 'es' : 'en';
+            if (preferred === 'en') location.replace('/en/' + location.search + location.hash);
+          })();
+        </script>
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -46,6 +60,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
         <!-- Canonical URL -->
         <link rel="canonical" href={canonicalURL} />
+        <link rel="alternate" hreflang="es" href={new URL(alternateRoutes.es, Astro.site)} />
+        {alternateRoutes.en && <link rel="alternate" hreflang="en" href={new URL(alternateRoutes.en, Astro.site)} />}
+        <link rel="alternate" hreflang="x-default" href={new URL(alternateRoutes.es, Astro.site)} />
+        <meta property="og:locale" content={isEnglish ? 'en_US' : 'es_ES'} />
+        {alternateRoutes.en && <meta property="og:locale:alternate" content={isEnglish ? 'es_ES' : 'en_US'} />}
 
         <!-- Open Graph / Facebook -->
         <meta property="og:type" content={ogType} />
@@ -71,7 +90,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
             "sameAs": [
                 "https://www.linkedin.com/in/enriquerelucio/"
             ],
-            "jobTitle": "Dirección comercial y desarrollo de negocio",
+            "jobTitle": isEnglish ? "Sales leadership and business development" : "Dirección comercial y desarrollo de negocio",
             "worksFor": {
                 "@type": "Organization",
                 "name": "Alcorce Ciberseguridad"
@@ -80,18 +99,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         })} />
 		<script is:inline>
 			const theme = (() => {
-				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-					return localStorage.getItem('theme');
-				}
-				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-			})();
+                try { const stored = localStorage.getItem('theme'); if (stored === 'dark' || stored === 'light') return stored; } catch {}
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            })();
 			if (theme === 'dark') document.documentElement.classList.add('dark');
 		</script>
 	</head>
 	<body class="site-body bg-white dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 min-h-screen selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900">
-        <a class="skip-link" href="#main-content">Saltar al contenido</a>
+        <a class="skip-link" href="#main-content">{isEnglish ? 'Skip to content' : 'Saltar al contenido'}</a>
         {showHeader && <Header />}
-        <main id="main-content" class:list={["site-main", Astro.url.pathname === "/" && "site-main-home", wide ? "site-main-wide" : "site-main-reading"]}>
+        <main id="main-content" class:list={["site-main", (Astro.url.pathname === "/" || Astro.url.pathname === "/en/") && "site-main-home", wide ? "site-main-wide" : "site-main-reading"]}>
             <slot />
         </main>
         <Footer />

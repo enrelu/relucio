@@ -1,0 +1,668 @@
+[
+  {
+    "es": "como-proteger-tus-cuentas-en-linea",
+    "en": "how-to-protect-your-online-accounts",
+    "titleEs": "Cómo proteger tus cuentas en línea",
+    "titleEn": "How to protect your online accounts",
+    "categoryEs": "Consejos",
+    "categoryEn": "Tips",
+    "tagsEs": [
+      "Contraseñas",
+      "MFA",
+      "Phishing",
+      "Redes sociales"
+    ],
+    "tagsEn": [
+      "Passwords",
+      "MFA",
+      "Phishing",
+      "Social networks"
+    ],
+    "anchorsEsToEn": {
+      "consejo-1-olvida-tus-contraseñas": "tip-1-forget-your-passwords",
+      "consejo-2-usa-autenticación-de-múltiples-factores-mfa": "tip-2-use-multi-factor-authentication-mfa",
+      "consejo-3-mantente-alerta-ante-el-phishing-y-el-malware": "tip-3-be-alert-to-phishing-and-malware",
+      "consejo-4-protege-tus-cuentas-de-redes-sociales-correo-electrónico-y-banca-en-línea": "tip-4-protect-your-social-media-email-and-online-banking-accounts"
+    },
+    "anchorsEnToEs": {
+      "tip-1-forget-your-passwords": "consejo-1-olvida-tus-contraseñas",
+      "tip-2-use-multi-factor-authentication-mfa": "consejo-2-usa-autenticación-de-múltiples-factores-mfa",
+      "tip-3-be-alert-to-phishing-and-malware": "consejo-3-mantente-alerta-ante-el-phishing-y-el-malware",
+      "tip-4-protect-your-social-media-email-and-online-banking-accounts": "consejo-4-protege-tus-cuentas-de-redes-sociales-correo-electrónico-y-banca-en-línea"
+    }
+  },
+  {
+    "es": "el-impacto-de-la-inteligencia-artificial-en-los-ataques-de-ingenieria-social",
+    "en": "ai-and-social-engineering-attacks",
+    "titleEs": "El impacto de la inteligencia artificial en los ataques de ingeniería social",
+    "titleEn": "The impact of artificial intelligence on social engineering attacks",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "Deepfake",
+      "IA",
+      "Phishing",
+      "Voice cloning"
+    ],
+    "tagsEn": [
+      "Deepfake",
+      "AI",
+      "Phishing",
+      "Voice cloning"
+    ],
+    "anchorsEsToEn": {},
+    "anchorsEnToEs": {}
+  },
+  {
+    "es": "el-impacto-psicologico-de-los-ciberataques",
+    "en": "psychological-impact-of-cyberattacks",
+    "titleEs": "El impacto psicológico de los ciberataques",
+    "titleEn": "The psychological impact of cyberattacks",
+    "categoryEs": "Consejos",
+    "categoryEn": "Tips",
+    "tagsEs": [
+      "Ciberataque",
+      "Gestión riesgos",
+      "Personas"
+    ],
+    "tagsEn": [
+      "Cyber attack",
+      "Risk management",
+      "People"
+    ],
+    "anchorsEsToEn": {
+      "claves-para-construir-resiliencia-tras-el-ataque": "keys-to-building-resilience-after-the-attack"
+    },
+    "anchorsEnToEs": {
+      "keys-to-building-resilience-after-the-attack": "claves-para-construir-resiliencia-tras-el-ataque"
+    }
+  },
+  {
+    "es": "el-retorno-de-la-inversion-roi-en-ciberseguridad",
+    "en": "cybersecurity-return-on-investment",
+    "titleEs": "El retorno de la inversión (ROI) en Ciberseguridad",
+    "titleEn": "Return on investment (ROI) in cybersecurity",
+    "categoryEs": "Negocio",
+    "categoryEn": "Business",
+    "tagsEs": [
+      "ROI"
+    ],
+    "tagsEn": [
+      "ROI"
+    ],
+    "anchorsEsToEn": {
+      "por-qué-es-importante-calcular-el-roi-en-ciberseguridad": "why-is-it-important-to-calculate-roi-in-cybersecurity",
+      "desafíos-en-el-cálculo-del-roi-en-ciberseguridad": "challenges-in-calculating-roi-in-cybersecurity",
+      "enfoques-para-calcular-el-roi-en-ciberseguridad": "approaches-to-calculate-cybersecurity-roi",
+      "métricas-clave-para-el-cálculo-del-roi-en-ciberseguridad": "key-metrics-for-calculating-roi-in-cybersecurity",
+      "mejores-prácticas-para-calcular-el-roi-en-ciberseguridad": "best-practices-for-calculating-roi-in-cybersecurity"
+    },
+    "anchorsEnToEs": {
+      "why-is-it-important-to-calculate-roi-in-cybersecurity": "por-qué-es-importante-calcular-el-roi-en-ciberseguridad",
+      "challenges-in-calculating-roi-in-cybersecurity": "desafíos-en-el-cálculo-del-roi-en-ciberseguridad",
+      "approaches-to-calculate-cybersecurity-roi": "enfoques-para-calcular-el-roi-en-ciberseguridad",
+      "key-metrics-for-calculating-roi-in-cybersecurity": "métricas-clave-para-el-cálculo-del-roi-en-ciberseguridad",
+      "best-practices-for-calculating-roi-in-cybersecurity": "mejores-prácticas-para-calcular-el-roi-en-ciberseguridad"
+    }
+  },
+  {
+    "es": "el-spam-puede-llegar-a-salir-caro",
+    "en": "can-spam-end-up-costing-you",
+    "titleEs": "¿El SPAM puede llegar a salir caro?",
+    "titleEn": "Can spam end up costing you?",
+    "categoryEs": "Consejos",
+    "categoryEn": "Tips",
+    "tagsEs": [
+      "Correo",
+      "Compliance"
+    ],
+    "tagsEn": [
+      "Email",
+      "Compliance"
+    ],
+    "anchorsEsToEn": {},
+    "anchorsEnToEs": {}
+  },
+  {
+    "es": "elegir-contrasenas-fuertes",
+    "en": "choosing-strong-passwords",
+    "titleEs": "Elegir contraseñas fuertes",
+    "titleEn": "Choosing strong passwords",
+    "categoryEs": "Consejos",
+    "categoryEn": "Tips",
+    "tagsEs": [
+      "Contraseñas",
+      "MFA",
+      "RockYou"
+    ],
+    "tagsEn": [
+      "Passwords",
+      "MFA",
+      "RockYou"
+    ],
+    "anchorsEsToEn": {
+      "rompiendo-mitos-la-fuerza-de-la-contraseña": "busting-myths-password-strength",
+      "cómo-funciona-la-adivinación-de-contraseñas": "how-password-guessing-works",
+      "cómo-elegir-una-contraseña-verdaderamente-fuerte": "how-to-choose-a-truly-strong-password"
+    },
+    "anchorsEnToEs": {
+      "busting-myths-password-strength": "rompiendo-mitos-la-fuerza-de-la-contraseña",
+      "how-password-guessing-works": "cómo-funciona-la-adivinación-de-contraseñas",
+      "how-to-choose-a-truly-strong-password": "cómo-elegir-una-contraseña-verdaderamente-fuerte"
+    }
+  },
+  {
+    "es": "es-seguro-el-correo-electronico",
+    "en": "is-email-secure",
+    "titleEs": "¿Es seguro el correo electrónico?",
+    "titleEn": "Is email secure?",
+    "categoryEs": "Tecnología",
+    "categoryEn": "Technology",
+    "tagsEs": [
+      "Correo"
+    ],
+    "tagsEn": [
+      "Email"
+    ],
+    "anchorsEsToEn": {
+      "pulsas-enviar-empieza-el-recorrido": "press-send-the-tour-begins",
+      "el-sobre-y-la-carta": "the-envelope-and-the-letter",
+      "smtp-mueve-imap-y-pop3-permiten-recoger": "smtp-moves-imap-and-pop3-allow-collecting",
+      "tls-cifra-cada-tramo": "tls-encrypts-every-leg",
+      "spf-qué-máquinas-pueden-hablar-en-tu-nombre": "spf-which-machines-can-speak-on-your-behalf",
+      "dkim-el-sello-del-dominio": "dkim-the-seal-of-mastery",
+      "dmarc-alinea-las-identidades": "dmarc-aligns-identities",
+      "qué-protege-cada-mecanismo": "what-each-mechanism-protects",
+      "cifrado-de-extremo-a-extremo": "end-to-end-encryption",
+      "lo-que-los-registros-dns-no-arreglan": "what-dns-records-dont-fix",
+      "entonces-el-correo-es-seguro": "so-is-email-secure"
+    },
+    "anchorsEnToEs": {
+      "press-send-the-tour-begins": "pulsas-enviar-empieza-el-recorrido",
+      "the-envelope-and-the-letter": "el-sobre-y-la-carta",
+      "smtp-moves-imap-and-pop3-allow-collecting": "smtp-mueve-imap-y-pop3-permiten-recoger",
+      "tls-encrypts-every-leg": "tls-cifra-cada-tramo",
+      "spf-which-machines-can-speak-on-your-behalf": "spf-qué-máquinas-pueden-hablar-en-tu-nombre",
+      "dkim-the-seal-of-mastery": "dkim-el-sello-del-dominio",
+      "dmarc-aligns-identities": "dmarc-alinea-las-identidades",
+      "what-each-mechanism-protects": "qué-protege-cada-mecanismo",
+      "end-to-end-encryption": "cifrado-de-extremo-a-extremo",
+      "what-dns-records-dont-fix": "lo-que-los-registros-dns-no-arreglan",
+      "so-is-email-secure": "entonces-el-correo-es-seguro"
+    }
+  },
+  {
+    "es": "la-cadena-de-suministro-el-nuevo-punto-vulnerable",
+    "en": "supply-chain-the-new-weak-point",
+    "titleEs": "La cadena de suministro: el nuevo punto vulnerable",
+    "titleEn": "The supply chain: the new weak point",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "Cadena suministro",
+      "DORA",
+      "Gestión riesgos",
+      "NIS2",
+      "NIST",
+      "Vulnerabilidades",
+      "Zero Trust"
+    ],
+    "tagsEn": [
+      "Supply chain",
+      "DORA",
+      "Risk management",
+      "NIS2",
+      "NIST",
+      "Vulnerabilities",
+      "Zero Trust"
+    ],
+    "anchorsEsToEn": {
+      "comprendiendo-la-cadena-de-suministro-digital": "understanding-the-digital-supply-chain",
+      "panorama-actual-de-amenazas": "current-threat-landscape",
+      "anatomía-de-los-ataques-a-la-cadena-de-suministro": "anatomy-of-supply-chain-attacks",
+      "casos-de-ataques-a-la-cadena-de-suministro": "cases-of-supply-chain-attacks",
+      "marcos-de-protección-y-estándares-de-seguridad": "protection-frameworks-and-security-standards",
+      "estrategias-prácticas-para-fortalecer-la-cadena-de-suministro-digital": "practical-strategies-to-strengthen-the-digital-supply-chain",
+      "conclusión-transformando-la-vulnerabilidad-en-fortaleza": "conclusion-transforming-vulnerability-into-strength"
+    },
+    "anchorsEnToEs": {
+      "understanding-the-digital-supply-chain": "comprendiendo-la-cadena-de-suministro-digital",
+      "current-threat-landscape": "panorama-actual-de-amenazas",
+      "anatomy-of-supply-chain-attacks": "anatomía-de-los-ataques-a-la-cadena-de-suministro",
+      "cases-of-supply-chain-attacks": "casos-de-ataques-a-la-cadena-de-suministro",
+      "protection-frameworks-and-security-standards": "marcos-de-protección-y-estándares-de-seguridad",
+      "practical-strategies-to-strengthen-the-digital-supply-chain": "estrategias-prácticas-para-fortalecer-la-cadena-de-suministro-digital",
+      "conclusion-transforming-vulnerability-into-strength": "conclusión-transformando-la-vulnerabilidad-en-fortaleza"
+    }
+  },
+  {
+    "es": "la-guerra-no-es-ia-vs-humano-es-criterio-vs-ruido",
+    "en": "judgment-vs-noise-not-ai-vs-humans",
+    "titleEs": "La guerra no es IA vs humano. Es criterio vs ruido",
+    "titleEn": "The battle is not AI vs humans. It is judgment vs noise",
+    "categoryEs": "Estrategia",
+    "categoryEn": "Strategy",
+    "tagsEs": [
+      "IA"
+    ],
+    "tagsEn": [
+      "AI"
+    ],
+    "anchorsEsToEn": {},
+    "anchorsEnToEs": {}
+  },
+  {
+    "es": "la-mierdificacion-y-la-piramide-del-recorte",
+    "en": "enshittification-and-the-pyramid-of-cuts",
+    "titleEs": "La mierdificación y la pirámide del recorte",
+    "titleEn": "Enshittification and the pyramid of cuts",
+    "categoryEs": "Negocio",
+    "categoryEn": "Business",
+    "tagsEs": [
+      "enshittification",
+      "economía",
+      "subcontratación",
+      "Ibex35"
+    ],
+    "tagsEn": [
+      "enshittification",
+      "economy",
+      "outsourcing",
+      "Ibex35"
+    ],
+    "anchorsEsToEn": {},
+    "anchorsEnToEs": {}
+  },
+  {
+    "es": "mayores-brechas-de-datos-del-ano-2023",
+    "en": "biggest-data-breaches-of-2023",
+    "titleEs": "Mayores brechas de datos del año 2023",
+    "titleEn": "The biggest data breaches of 2023",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "Data Breach",
+      "Data Leak"
+    ],
+    "tagsEn": [
+      "Data Breach",
+      "Data Leak"
+    ],
+    "anchorsEsToEn": {
+      "principales-brechas-del-2023": "main-gaps-in-2023",
+      "conclusiones": "conclusions"
+    },
+    "anchorsEnToEs": {
+      "main-gaps-in-2023": "principales-brechas-del-2023",
+      "conclusions": "conclusiones"
+    }
+  },
+  {
+    "es": "mitos-de-la-seguridad-cloud-por-que-la-configuracion-por-defecto-no-te-protege",
+    "en": "cloud-security-myths-and-default-settings",
+    "titleEs": "Mitos de la seguridad cloud: Por qué la configuración por defecto no te protege",
+    "titleEn": "Cloud security myths: why default settings do not protect you",
+    "categoryEs": "Negocio",
+    "categoryEn": "Business",
+    "tagsEs": [
+      "CEO",
+      "CISO",
+      "Cloud"
+    ],
+    "tagsEn": [
+      "CEO",
+      "CISO",
+      "Cloud"
+    ],
+    "anchorsEsToEn": {
+      "1-el-error-de-concepto-infraestructura-vs-uso": "1-the-misconception-infrastructure-vs-use",
+      "2-el-contrato-que-nadie-lee-responsabilidad-compartida": "2-the-contract-that-no-one-reads-shared-responsibility",
+      "3-los-datos-el-enemigo-está-en-la-configuración": "3-the-data-the-enemy-is-in-the-configuration",
+      "guía-táctica-cómo-puede-el-ciso-desbloquear-el-presupuesto": "tactical-guide-how-the-ciso-can-unlock-the-budget",
+      "conclusión": "conclusion"
+    },
+    "anchorsEnToEs": {
+      "1-the-misconception-infrastructure-vs-use": "1-el-error-de-concepto-infraestructura-vs-uso",
+      "2-the-contract-that-no-one-reads-shared-responsibility": "2-el-contrato-que-nadie-lee-responsabilidad-compartida",
+      "3-the-data-the-enemy-is-in-the-configuration": "3-los-datos-el-enemigo-está-en-la-configuración",
+      "tactical-guide-how-the-ciso-can-unlock-the-budget": "guía-táctica-cómo-puede-el-ciso-desbloquear-el-presupuesto",
+      "conclusion": "conclusión"
+    }
+  },
+  {
+    "es": "panorama-de-las-brechas-de-datos-personales-del-ano-2022",
+    "en": "personal-data-breaches-in-2022",
+    "titleEs": "Panorama de las brechas de datos personales del año 2022",
+    "titleEn": "An overview of personal data breaches in 2022",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "Data Breach",
+      "Data Leak"
+    ],
+    "tagsEn": [
+      "Data Breach",
+      "Data Leak"
+    ],
+    "anchorsEsToEn": {
+      "incidentes-con-mayor-cantidad-de-registros-robados": "incidents-with-the-highest-number-of-stolen-records"
+    },
+    "anchorsEnToEs": {
+      "incidents-with-the-highest-number-of-stolen-records": "incidentes-con-mayor-cantidad-de-registros-robados"
+    }
+  },
+  {
+    "es": "protegiendo-tu-marca-dmarc",
+    "en": "protecting-your-brand-with-dmarc",
+    "titleEs": "Protegiendo tu marca: DMARC",
+    "titleEn": "Protecting your brand: DMARC",
+    "categoryEs": "Tecnologías",
+    "categoryEn": "Technologies",
+    "tagsEs": [
+      "Correo",
+      "DKIM",
+      "DMARC",
+      "SPF"
+    ],
+    "tagsEn": [
+      "Email",
+      "DKIM",
+      "DMARC",
+      "SPF"
+    ],
+    "anchorsEsToEn": {
+      "qué-es-dmarc": "what-is-dmarc",
+      "cómo-funciona-dmarc": "how-does-dmarc-work",
+      "por-qué-dmarc": "why-dmarc",
+      "conclusiones": "conclusions"
+    },
+    "anchorsEnToEs": {
+      "what-is-dmarc": "qué-es-dmarc",
+      "how-does-dmarc-work": "cómo-funciona-dmarc",
+      "why-dmarc": "por-qué-dmarc",
+      "conclusions": "conclusiones"
+    }
+  },
+  {
+    "es": "que-es-data-security-posture-management-dspm",
+    "en": "what-is-data-security-posture-management-dspm",
+    "titleEs": "¿Qué es Data Security Posture Management (DSPM)?",
+    "titleEn": "What is Data Security Posture Management (DSPM)?",
+    "categoryEs": "Tecnologías",
+    "categoryEn": "Technologies",
+    "tagsEs": [
+      "Cloud",
+      "Datos",
+      "DSPM"
+    ],
+    "tagsEn": [
+      "Cloud",
+      "Data",
+      "DSPM"
+    ],
+    "anchorsEsToEn": {},
+    "anchorsEnToEs": {}
+  },
+  {
+    "es": "que-es-la-gestion-continua-de-la-exposicion-a-amenazas-ctem",
+    "en": "what-is-continuous-threat-exposure-management-ctem",
+    "titleEs": "¿Qué es la gestión continua de la exposición a amenazas (CTEM)?",
+    "titleEn": "What is Continuous Threat Exposure Management (CTEM)?",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "CTEM",
+      "Gestión riesgos",
+      "Superficie ataque",
+      "Vulnerabilidades"
+    ],
+    "tagsEn": [
+      "CTEM",
+      "Risk management",
+      "Attack surface",
+      "Vulnerabilities"
+    ],
+    "anchorsEsToEn": {
+      "diferencias-clave-entre-ctem-y-rbvm": "key-differences-between-ctem-and-rbvm",
+      "conclusión": "conclusion"
+    },
+    "anchorsEnToEs": {
+      "key-differences-between-ctem-and-rbvm": "diferencias-clave-entre-ctem-y-rbvm",
+      "conclusion": "conclusión"
+    }
+  },
+  {
+    "es": "que-esta-pasando-en-españa-con-la-directiva-nis2",
+    "en": "nis2-directive-what-is-happening-in-spain",
+    "titleEs": "¿Qué está pasando en España con la Directiva NIS2?",
+    "titleEn": "What is happening in Spain with the NIS2 Directive?",
+    "categoryEs": "Estrategia",
+    "categoryEn": "Strategy",
+    "tagsEs": [
+      "CNI",
+      "Compliance",
+      "NIS2",
+      "Política"
+    ],
+    "tagsEn": [
+      "CNI",
+      "Compliance",
+      "NIS2",
+      "Politics"
+    ],
+    "anchorsEsToEn": {
+      "el-país-que-presumía-de-ciberseguridad-y-no-puede-aprobar-su-propia-ley": "the-country-that-boasted-of-cybersecurity-and-cannot-pass-its-own-law",
+      "tres-guerras-en-una-sola-ley": "three-wars-in-a-single-law",
+      "1-la-guerra-por-el-botón-rojo": "1-the-war-for-the-red-button",
+      "2-el-chantaje-parlamentario-ciberseguridad-como-moneda-de-cambio": "2-parliamentary-blackmail-cybersecurity-as-a-bargaining-chip",
+      "3-el-lobby-silencioso-del-ibex-35": "3-the-silent-lobby-of-the-ibex-35",
+      "418-millones-de-euros-en-el-aire": "418-million-euros-in-the-air",
+      "el-sector-que-más-pierde-3000-millones-de-facturación-en-stand-by": "the-sector-that-loses-the-most-3000-million-turnover-in-stand-by",
+      "cuándo-se-aprobará": "when-will-it-be-approved",
+      "la-verdadera-amenaza": "the-real-threat"
+    },
+    "anchorsEnToEs": {
+      "the-country-that-boasted-of-cybersecurity-and-cannot-pass-its-own-law": "el-país-que-presumía-de-ciberseguridad-y-no-puede-aprobar-su-propia-ley",
+      "three-wars-in-a-single-law": "tres-guerras-en-una-sola-ley",
+      "1-the-war-for-the-red-button": "1-la-guerra-por-el-botón-rojo",
+      "2-parliamentary-blackmail-cybersecurity-as-a-bargaining-chip": "2-el-chantaje-parlamentario-ciberseguridad-como-moneda-de-cambio",
+      "3-the-silent-lobby-of-the-ibex-35": "3-el-lobby-silencioso-del-ibex-35",
+      "418-million-euros-in-the-air": "418-millones-de-euros-en-el-aire",
+      "the-sector-that-loses-the-most-3000-million-turnover-in-stand-by": "el-sector-que-más-pierde-3000-millones-de-facturación-en-stand-by",
+      "when-will-it-be-approved": "cuándo-se-aprobará",
+      "the-real-threat": "la-verdadera-amenaza"
+    }
+  },
+  {
+    "es": "ransomware-tendencias-y-como-defenderse",
+    "en": "ransomware-trends-and-how-to-defend-yourself",
+    "titleEs": "Ransomware: tendencias y cómo defenderse",
+    "titleEn": "Ransomware: trends and how to defend yourself",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "Bases de datos",
+      "Cifrado",
+      "Dark web",
+      "IA",
+      "Ransomware"
+    ],
+    "tagsEn": [
+      "Databases",
+      "Encryption",
+      "Dark web",
+      "AI",
+      "Ransomware"
+    ],
+    "anchorsEsToEn": {
+      "1-enfoque-en-el-chantaje-de-datos": "1-focus-on-data-blackmail",
+      "2-beneficiarse-de-la-monetización-de-datos": "2-benefit-from-data-monetization",
+      "3-ataque-a-endpoints-en-la-nube": "3-attack-on-endpoints-in-the-cloud",
+      "4-ataque-a-plataformas-no-comunes": "4-attack-on-unusual-platforms",
+      "5-escalamiento-a-través-de-la-automatización": "5-scaling-through-automation",
+      "6-explotación-de-vulnerabilidades-de-día-cero": "6-exploitation-of-zero-day-vulnerabilities"
+    },
+    "anchorsEnToEs": {
+      "1-focus-on-data-blackmail": "1-enfoque-en-el-chantaje-de-datos",
+      "2-benefit-from-data-monetization": "2-beneficiarse-de-la-monetización-de-datos",
+      "3-attack-on-endpoints-in-the-cloud": "3-ataque-a-endpoints-en-la-nube",
+      "4-attack-on-unusual-platforms": "4-ataque-a-plataformas-no-comunes",
+      "5-scaling-through-automation": "5-escalamiento-a-través-de-la-automatización",
+      "6-exploitation-of-zero-day-vulnerabilities": "6-explotación-de-vulnerabilidades-de-día-cero"
+    }
+  },
+  {
+    "es": "riesgo-de-seguridad-al-restablecer-contrasenas-exposicion-del-numero-de-telefono",
+    "en": "password-reset-risks-and-phone-number-exposure",
+    "titleEs": "Riesgo de seguridad al restablecer contraseñas: exposición del número de teléfono",
+    "titleEn": "Password reset risks: exposing phone numbers",
+    "categoryEs": "Vulnerabilidades",
+    "categoryEn": "Vulnerabilities",
+    "tagsEs": [
+      "Lastpass",
+      "MFA",
+      "SIM Swapping",
+      "SS7"
+    ],
+    "tagsEn": [
+      "Lastpass",
+      "MFA",
+      "SIM Swapping",
+      "SS7"
+    ],
+    "anchorsEsToEn": {
+      "recopilando-el-número-de-teléfono-asociado-al-correo": "collecting-the-phone-number-associated-with-the-email",
+      "riesgos-en-la-exposición-del-número-de-teléfono": "risks-in-telephone-number-exposure",
+      "automatización-del-proceso": "process-automation"
+    },
+    "anchorsEnToEs": {
+      "collecting-the-phone-number-associated-with-the-email": "recopilando-el-número-de-teléfono-asociado-al-correo",
+      "risks-in-telephone-number-exposure": "riesgos-en-la-exposición-del-número-de-teléfono",
+      "process-automation": "automatización-del-proceso"
+    }
+  },
+  {
+    "es": "seguridad-adaptativa-con-biometria-conductual-el-futuro-de-la-proteccion",
+    "en": "adaptive-security-and-behavioral-biometrics",
+    "titleEs": "Seguridad Adaptativa con Biometría Conductual: El Futuro de la Protección",
+    "titleEn": "Adaptive security with behavioral biometrics: the future of protection",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "Autenticación",
+      "Biometría",
+      "IAM",
+      "MFA"
+    ],
+    "tagsEn": [
+      "Authentication",
+      "Biometrics",
+      "IAM",
+      "MFA"
+    ],
+    "anchorsEsToEn": {},
+    "anchorsEnToEs": {}
+  },
+  {
+    "es": "tendencias-de-la-ciberseguridad-en-el-segundo-trimestre-de-2023",
+    "en": "cybersecurity-trends-q2-2023",
+    "titleEs": "Tendencias de la ciberseguridad en el segundo trimestre de 2023",
+    "titleEn": "Cybersecurity trends in the second quarter of 2023",
+    "categoryEs": "Tendencias",
+    "categoryEn": "Trends",
+    "tagsEs": [
+      "Cloud",
+      "Google",
+      "SaaS",
+      "Typosquatting"
+    ],
+    "tagsEn": [
+      "Cloud",
+      "Google",
+      "SaaS",
+      "Typosquatting"
+    ],
+    "anchorsEsToEn": {
+      "ataques-a-la-nube-y-compromisos-de-seguridad": "cloud-attacks-and-security-compromises",
+      "impacto-de-los-compromisos-en-la-nube": "impact-of-cloud-compromises",
+      "compromisos-relacionados-con-software-vulnerable": "compromise-related-to-vulnerable-software",
+      "ataques-al-software-as-a-service-saas": "attacks-on-software-as-a-service-saas",
+      "ciberocupación-en-plataformas-de-almacenamiento-en-la-nube": "cybersquatting-on-cloud-storage-platforms",
+      "conclusión": "conclusion"
+    },
+    "anchorsEnToEs": {
+      "cloud-attacks-and-security-compromises": "ataques-a-la-nube-y-compromisos-de-seguridad",
+      "impact-of-cloud-compromises": "impacto-de-los-compromisos-en-la-nube",
+      "compromise-related-to-vulnerable-software": "compromisos-relacionados-con-software-vulnerable",
+      "attacks-on-software-as-a-service-saas": "ataques-al-software-as-a-service-saas",
+      "cybersquatting-on-cloud-storage-platforms": "ciberocupación-en-plataformas-de-almacenamiento-en-la-nube",
+      "conclusion": "conclusión"
+    }
+  },
+  {
+    "es": "traduciendo-el-riesgo-como-presentar-informes-de-ciberseguridad-que-el-ceo-si-entienda",
+    "en": "cybersecurity-reports-your-ceo-can-understand",
+    "titleEs": "Traduciendo el Riesgo: Cómo presentar informes de ciberseguridad que el CEO sí entienda",
+    "titleEn": "Translating risk: cybersecurity reports your CEO can actually understand",
+    "categoryEs": "Negocio",
+    "categoryEn": "Business",
+    "tagsEs": [
+      "CEO",
+      "CISO",
+      "ROI"
+    ],
+    "tagsEn": [
+      "CEO",
+      "CISO",
+      "ROI"
+    ],
+    "anchorsEsToEn": {
+      "la-ecuación-que-falla-en-la-mayoría-de-reportes": "the-equation-that-fails-in-most-reports",
+      "caso-práctico-del-tecniqués-a-la-estrategia": "practical-case-from-techniqués-to-strategy",
+      "el-enfoque-técnico-el-que-se-ignora": "the-technical-approach-the-one-that-is-ignored",
+      "el-enfoque-consultivo-el-que-consigue-presupuesto": "the-consultative-approach-the-one-who-gets-the-budget",
+      "la-herramienta-la-matriz-del-y-qué": "the-tool-the-so-what-matrix",
+      "las-3-métricas-que-sí-importan-al-negocio": "the-3-metrics-that-do-matter-to-the-business",
+      "conclusión": "conclusion"
+    },
+    "anchorsEnToEs": {
+      "the-equation-that-fails-in-most-reports": "la-ecuación-que-falla-en-la-mayoría-de-reportes",
+      "practical-case-from-techniqués-to-strategy": "caso-práctico-del-tecniqués-a-la-estrategia",
+      "the-technical-approach-the-one-that-is-ignored": "el-enfoque-técnico-el-que-se-ignora",
+      "the-consultative-approach-the-one-who-gets-the-budget": "el-enfoque-consultivo-el-que-consigue-presupuesto",
+      "the-tool-the-so-what-matrix": "la-herramienta-la-matriz-del-y-qué",
+      "the-3-metrics-that-do-matter-to-the-business": "las-3-métricas-que-sí-importan-al-negocio",
+      "conclusion": "conclusión"
+    }
+  },
+  {
+    "es": "vulnerabilidades-y-riesgos-en-vpns-ataque-de-tunnelcrack",
+    "en": "vpn-vulnerabilities-and-the-tunnelcrack-attack",
+    "titleEs": "Vulnerabilidades y riesgos en VPNs: ataque de TunnelCrack",
+    "titleEn": "VPN vulnerabilities and risks: the TunnelCrack attack",
+    "categoryEs": "Vulnerabilidades",
+    "categoryEn": "Vulnerabilities",
+    "tagsEs": [
+      "HTTPS",
+      "TunnelCrack",
+      "VPN"
+    ],
+    "tagsEn": [
+      "HTTPS",
+      "TunnelCrack",
+      "VPN"
+    ],
+    "anchorsEsToEn": {
+      "qué-es-tunnelcrack": "what-is-tunnelcrack",
+      "ataque-localnet": "localnet-attack",
+      "ataque-serverip": "serverip-attack",
+      "qué-se-puede-hacer": "what-can-be-done"
+    },
+    "anchorsEnToEs": {
+      "what-is-tunnelcrack": "qué-es-tunnelcrack",
+      "localnet-attack": "ataque-localnet",
+      "serverip-attack": "ataque-serverip",
+      "what-can-be-done": "qué-se-puede-hacer"
+    }
+  }
+]
