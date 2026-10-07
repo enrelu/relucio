@@ -3,6 +3,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 import '../styles/services.css';
+import '../styles/uiux-refresh.css';
 import SecurityHeaders from '../components/SecurityHeaders.astro';
 
 interface Props {
@@ -87,10 +88,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 			if (theme === 'dark') document.documentElement.classList.add('dark');
 		</script>
 	</head>
-	<body class="bg-white dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 min-h-screen selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900">
+	<body class="site-body bg-white dark:bg-zinc-950 text-zinc-600 dark:text-zinc-400 min-h-screen selection:bg-zinc-900 selection:text-white dark:selection:bg-white dark:selection:text-zinc-900">
         <a class="skip-link" href="#main-content">Saltar al contenido</a>
         {showHeader && <Header />}
-        <main id="main-content" class:list={["site-main", wide ? "site-main-wide" : "site-main-reading"]}>
+        <main id="main-content" class:list={["site-main", Astro.url.pathname === "/" && "site-main-home", wide ? "site-main-wide" : "site-main-reading"]}>
             <slot />
         </main>
         <Footer />
