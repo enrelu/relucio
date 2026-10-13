@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import ConsultingCta from '../../components/ConsultingCta.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
 
 // 1. Generamos las rutas para cada post
 export async function getStaticPaths() {
@@ -10,20 +11,35 @@ export async function getStaticPaths() {
 	// 1. Ordenamos por fecha (del más nuevo al más antiguo)
 	const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-	return sortedPosts.map((post, index) => ({
-		params: { slug: post.id },
-		props: { 
-			post,
-			// El "Siguiente" es el índice anterior (porque es más nuevo)
-			// El "Anterior" es el índice siguiente (porque es más viejo)
-			nextPost: index > 0 ? sortedPosts[index - 1] : null,
-			prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
-		},
-	}));
+	return sortedPosts.map((post, index) => {
+		// Calcular artículos relacionados por similitud temática (categoría y tags compartidos)
+		const otherPosts = sortedPosts.filter((p) => p.id !== post.id);
+		const scored = otherPosts.map((p) => {
+			let score = 0;
+			if (p.data.category && p.data.category === post.data.category) score += 3;
+			const sharedTags = (p.data.tags || []).filter((t) => (post.data.tags || []).includes(t));
+			score += sharedTags.length * 2;
+			return { post: p, score };
+		});
+		scored.sort((a, b) => b.score - a.score || b.post.data.pubDate.valueOf() - a.post.data.pubDate.valueOf());
+		const relatedPosts = scored.slice(0, 3).map((s) => s.post);
+
+		return {
+			params: { slug: post.id },
+			props: { 
+				post,
+				// El "Siguiente" es el índice anterior (porque es más nuevo)
+				// El "Anterior" es el índice siguiente (porque es más viejo)
+				nextPost: index > 0 ? sortedPosts[index - 1] : null,
+				prevPost: index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null,
+				relatedPosts,
+			},
+		};
+	});
 }
 
 // 2. Obtenemos los datos del post actual
-const { post, prevPost, nextPost } = Astro.props;
+const { post, prevPost, nextPost, relatedPosts } = Astro.props;
 const { Content } = await render(post);
 
 // 3. Extraemos las propiedades (Frontmatter)
@@ -183,6 +199,8 @@ const blogUrl = new URL('/blog/', Astro.site).toString();
 		</article>
 
 		<ConsultingCta />
+
+		<RelatedPosts posts={relatedPosts} locale="es" />
 
 		{/* NAVEGACIÓN ENTRE ARTÍCULOS (NUEVO) */}
 		<div class="flex flex-col sm:flex-row justify-between gap-4 mt-16 mb-8">
