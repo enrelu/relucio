@@ -17,12 +17,28 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+
+const pageTitle = `Artículos sobre #${tag} | Blog Enrique Relucio`;
+const pageDesc = `Publicaciones y análisis relacionados con #${tag}: tecnología, ciberseguridad y negocio por Enrique Relucio.`;
+const currentUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const homeUrl = new URL('/', Astro.site).toString();
+const blogUrl = new URL('/blog/', Astro.site).toString();
 ---
 
-<Layout title={`Entradas sobre ${tag}`}>
+<Layout title={pageTitle} description={pageDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${currentUrl}#breadcrumb`,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": homeUrl },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": blogUrl },
+      { "@type": "ListItem", "position": 3, "name": `#${tag}`, "item": currentUrl }
+    ]
+  })} />
   <main class="container">
     <header class="page-header">
-      <p>Explorando la etiqueta:</p>
+      <p class="tag-eyebrow">Etiqueta del blog</p>
       <h1>#{tag}</h1>
       <a href="/blog" class="back-link">← Volver al blog</a>
     </header>
@@ -53,6 +69,15 @@ const { posts } = Astro.props;
     margin-bottom: 3rem;
     border-bottom: 1px solid var(--line);
     padding-bottom: 2rem;
+  }
+
+  .tag-eyebrow {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin: 0;
   }
 
   .page-header h1 {

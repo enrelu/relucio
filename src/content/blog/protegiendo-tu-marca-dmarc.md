@@ -29,7 +29,7 @@ DMARC ofrece tres opciones:
 *   Cuarentena: se entrega el correo en el buzón de “no deseado”
 *   Rechazar: los correos se rechazan y eliminan directamente
 
-![DMARC](https://relucio.es/wp-content/uploads/2024/02/DMARC-1024x438.png)
+![DMARC: Funcionamiento y políticas de supervisión, cuarentena y rechazo](/protegiendo-tu-marca-dmarc.jpg)
 
 ### **¿Por qué DMARC?**
 

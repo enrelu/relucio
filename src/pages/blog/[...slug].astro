@@ -39,32 +39,83 @@ const formattedDate = pubDate.toLocaleDateString('es-ES', {
 const socialImage = heroImage 
     ? (heroImage.startsWith('http') ? heroImage : new URL(heroImage, Astro.site).toString())
     : '/Logo_ER_B&W.png';
+
+const rawBody = post.body || '';
+const wordCount = rawBody ? rawBody.trim().split(/\s+/).length : 0;
+const readingMinutes = Math.max(1, Math.ceil(wordCount / 200));
+
+const postUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const homeUrl = new URL('/', Astro.site).toString();
+const blogUrl = new URL('/blog/', Astro.site).toString();
 ---
 
 <Layout title={`${title} | Enrique Relucio`} description={description} image={socialImage} ogType="article">
     
-    <!-- JSON-LD para Artículos de Blog -->
+    <!-- JSON-LD para Artículos de Blog y Migas de Pan -->
     <script type="application/ld+json" set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        "headline": title,
-        "image": socialImage,
-        "datePublished": pubDate.toISOString(),
-        "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
-        "author": {
-            "@type": "Person",
-            "name": "Enrique Relucio",
-            "url": "https://relucio.es"
-        },
-        "publisher": {
-            "@type": "Organization",
-            "name": "Enrique Relucio",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://relucio.es/Logo_ER_B&W.png"
+        "@graph": [
+            {
+                "@type": "BlogPosting",
+                "@id": `${postUrl}#article`,
+                "isPartOf": {
+                    "@id": blogUrl
+                },
+                "headline": title,
+                "description": description,
+                "image": socialImage,
+                "datePublished": pubDate.toISOString(),
+                "dateModified": updatedDate ? updatedDate.toISOString() : pubDate.toISOString(),
+                "inLanguage": "es-ES",
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": postUrl
+                },
+                ...(wordCount > 0 ? { "wordCount": wordCount } : {}),
+                "timeRequired": `PT${readingMinutes}M`,
+                "articleSection": category,
+                ...(tags && tags.length > 0 ? { "keywords": tags.join(', ') } : {}),
+                "author": {
+                    "@type": "Person",
+                    "@id": "https://relucio.es/#enrique-relucio",
+                    "name": "Enrique Relucio",
+                    "url": "https://relucio.es"
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "@id": "https://relucio.es/#consulting-service",
+                    "name": "Enrique Relucio",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://relucio.es/Logo_ER_B&W.png"
+                    }
+                }
+            },
+            {
+                "@type": "BreadcrumbList",
+                "@id": `${postUrl}#breadcrumb`,
+                "itemListElement": [
+                    {
+                        "@type": "ListItem",
+                        "position": 1,
+                        "name": "Inicio",
+                        "item": homeUrl
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 2,
+                        "name": "Blog",
+                        "item": blogUrl
+                    },
+                    {
+                        "@type": "ListItem",
+                        "position": 3,
+                        "name": title,
+                        "item": postUrl
+                    }
+                ]
             }
-        },
-        "description": description
+        ]
     })} />
 
 		<article class="flex flex-col gap-8">
@@ -85,13 +136,15 @@ const socialImage = heroImage
 				<h1 class="text-3xl pt-2 md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
 					{title}
 				</h1>
-				{/* Meta superior: Fecha y Categoría */}
-				<div class="flex items-center gap-3 text-sm">
+				{/* Meta superior: Fecha, Categoría y Tiempo de lectura */}
+				<div class="flex items-center gap-3 text-sm flex-wrap">
 					<span class="text-zinc-400 font-mono">{formattedDate}</span>
 					<span class="text-zinc-300 dark:text-zinc-700">|</span>
 					<a href={`/blog/category/${category}`} class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider hover:underline">
 						{category}
 					</a>
+					<span class="text-zinc-300 dark:text-zinc-700">|</span>
+					<span class="text-zinc-500 dark:text-zinc-400 font-mono text-xs">⏱️ {readingMinutes} min de lectura</span>
 				</div>
 
 				{/* Etiquetas (Tags) */}
@@ -114,8 +167,10 @@ const socialImage = heroImage
 				<div class="relative w-full aspect-video rounded-xl overflow-hidden shadow-sm border border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-800">
 					<img
 						src={heroImage.startsWith('http') || heroImage.startsWith('/') ? heroImage : `/${heroImage}`}
-						alt={title}
+						alt={`Portada: ${title}`}
 						class="object-cover w-full h-full"
+						fetchpriority="high"
+						decoding="async"
 					/>
 				</div>
 			)}

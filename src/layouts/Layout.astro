@@ -81,6 +81,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta name="generator" content={Astro.generator} />
         {import.meta.env.VERCEL_ENV === "preview" && <meta name="robots" content="noindex, nofollow" />}
         <link rel="sitemap" href="/sitemap-index.xml" />
+        <link rel="alternate" type="application/rss+xml" title={isEnglish ? "Enrique Relucio — Blog (RSS)" : "Enrique Relucio — Blog (RSS)"} href={isEnglish ? "/en/rss.xml" : "/rss.xml"} />
 
         <!-- Canonical URL -->
         <link rel="canonical" href={canonicalURL} />

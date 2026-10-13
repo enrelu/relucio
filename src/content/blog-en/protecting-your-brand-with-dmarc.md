@@ -35,7 +35,7 @@ DMARC offers three options:
 * Quarantine: mail is delivered to the “junk” mailbox
 * Reject: Mails are rejected and deleted directly
 
-![DMARC](https://relucio.es/wp-content/uploads/2024/02/DMARC-1024x438.png)
+![DMARC: How email authentication, quarantine, and rejection policies work](/protegiendo-tu-marca-dmarc.jpg)
 
 ### **Why DMARC?**
 
