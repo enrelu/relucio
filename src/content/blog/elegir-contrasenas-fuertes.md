@@ -1,6 +1,6 @@
 ---
 title: 'Elegir contraseñas fuertes'
-description: 'Rompiendo mitos: La fuerza de la contraseña La fuerza de las contraseñas es importante en contextos específicos, como cuando se trata de proteger información va...'
+description: "Desmontando mitos sobre la longitud y complejidad de contraseñas: descubre qué hace verdaderamente segura a una credencial y cómo proteger el acceso corporativo."
 pubDate: '2023-09-26'
 category: 'Consejos'
 tags: ['Contraseñas','MFA','RockYou']

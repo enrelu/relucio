@@ -1,7 +1,6 @@
 ---
 title: The psychological impact of cyberattacks
-description: Post-cyber attack psychological management is often forgotten in cybersecurity.
-  Beyond the “technical battle”, teams suffer stress, anxiety and bl...
+description: "Incident response is not purely technical. Discover the psychological toll, anxiety, and burnout affecting response teams after a breach and how to manage it."
 pubDate: '2025-10-03'
 category: Tips
 tags:

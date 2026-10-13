@@ -1,7 +1,6 @@
 ---
 title: Enshittification and the pyramid of cuts
-description: A reflection on declining services, record profits, and why the weight
-  of cuts always falls on the same people.
+description: "A reflection on declining platform services, record corporate profits, and why cost cuts inevitably impact users and operational teams the most."
 pubDate: '2026-03-12'
 category: Business
 tags:

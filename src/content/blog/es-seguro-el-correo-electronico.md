@@ -1,6 +1,6 @@
 ---
 title: '¿Es seguro el correo electrónico?'
-description: 'El correo parece un trayecto directo, pero atraviesa clientes, servidores, DNS, relays y filtros. Estas son las capas que lo protegen y sus límites.'
+description: "El correo parece un trayecto directo, pero atraviesa clientes, servidores, DNS, relays y filtros. Estas son las capas que lo protegen y sus límites."
 pubDate: '2026-09-16'
 category: 'Tecnología'
 tags: ['Correo']

@@ -1,7 +1,6 @@
 ---
 title: The battle is not AI vs humans. It is judgment vs noise
-description: Today, producing content is like leaving the tap running. The bottleneck
-  is no longer creating, but filtering. Judgment becomes the real source of value.
+description: "Content production has become effortless with AI. The bottleneck is no longer creating, but filtering. Human judgment has become the defining source of value."
 pubDate: '2026-04-13'
 category: Strategy
 tags:

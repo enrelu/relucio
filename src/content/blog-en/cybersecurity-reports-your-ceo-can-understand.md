@@ -1,7 +1,6 @@
 ---
 title: 'Translating risk: cybersecurity reports your CEO can actually understand'
-description: I recently had an impeccable technical audit report in my hands. It was
-  40 pages of exhaustive analysis, full of evidence, CVSS scores and references...
+description: "Transform technical cybersecurity reports into strategic business decisions: the formula to translate technical vulnerabilities into financial impact for CEOs."
 pubDate: '2025-12-02'
 category: Business
 tags:

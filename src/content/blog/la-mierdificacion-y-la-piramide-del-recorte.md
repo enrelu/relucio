@@ -1,6 +1,6 @@
 ---
 title: 'La mierdificación y la pirámide del recorte'
-description: 'Una reflexión sobre la degradación de los servicios, los beneficios récord y cómo el peso de los recortes siempre acaba cayendo sobre los mismos.'
+description: "Una reflexión sobre la degradación de los servicios, los beneficios récord y cómo el peso de los recortes siempre acaba cayendo sobre los mismos."
 pubDate: '2026-03-12'
 category: 'Negocio'
 tags: ['enshittification', 'economía', 'subcontratación', 'Ibex35']

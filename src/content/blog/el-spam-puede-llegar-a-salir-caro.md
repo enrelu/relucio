@@ -1,6 +1,6 @@
 ---
 title: '¿El SPAM puede llegar a salir caro?'
-description: 'Vender bases de datos con tu correo es ilegal, pero denunciarlo es una cruzada perdida. Hay una herramienta que no cuesta nada y hace mucho más daño al spammer...'
+description: "Vender bases de datos de correo es ilegal. Descubre las herramientas gratuitas y legales para neutralizar al spammer y proteger la privacidad de tu buzón."
 pubDate: '2026-07-17'
 category: 'Consejos'
 tags: ['Correo' , 'Compliance']

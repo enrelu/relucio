@@ -1,6 +1,6 @@
 ---
 title: 'Protegiendo tu marca: DMARC'
-description: 'El correo electrónico es una herramienta clave para las empresas, pero su popularidad también lo convierte en un objetivo principal para los ciberdelincuentes. ...'
+description: "Evita la suplantación de identidad y ataques BEC protegiendo tu dominio de correo con SPF, DKIM y DMARC: cómo implementarlo para blindar la reputación de tu marca."
 pubDate: '2024-05-02'
 category: 'Tecnologías'
 tags: ['Correo','DKIM','DMARC','SPF']

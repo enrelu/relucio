@@ -1,6 +1,6 @@
 ---
 title: 'La guerra no es IA vs humano. Es criterio vs ruido'
-description: 'Hoy se puede producir contenido como quien deja el grifo abierto. El cuello de botella ya no es crear, es filtrar. El criterio se convierte en el verdadero valor.'
+description: "Hoy se puede producir contenido como quien deja el grifo abierto. El cuello de botella ya no es crear, es filtrar. El criterio se convierte en el verdadero valor."
 pubDate: '2026-04-13'
 category: 'Estrategia'
 tags: ['IA']

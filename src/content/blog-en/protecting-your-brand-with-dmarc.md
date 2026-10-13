@@ -1,7 +1,6 @@
 ---
 title: 'Protecting your brand: DMARC'
-description: Email is a key tool for businesses, but its popularity also makes it
-  a prime target for cybercriminals. ...
+description: "Prevent email spoofing and Business Email Compromise (BEC) using SPF, DKIM, and DMARC: practical implementation steps to protect your brand reputation."
 pubDate: '2024-05-02'
 category: Technologies
 tags:

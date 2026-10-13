@@ -1,6 +1,6 @@
 ---
 title: 'La cadena de suministro: el nuevo punto vulnerable'
-description: 'La cadena de suministro digital se ha convertido en uno de los eslabones más débiles en la ciberseguridad corporativa, transformándose de una preocupación secun...'
+description: "El riesgo de terceros es la principal vía de intrusión corporativa. Claves para evaluar proveedores tecnológicos y cumplir con normativas como NIS2 y DORA."
 pubDate: '2025-06-03'
 category: 'Tendencias'
 tags: ['Cadena suministro' , 'DORA' , 'Gestión riesgos' , 'NIS2' , 'NIST' , 'Vulnerabilidades' , 'Zero Trust']

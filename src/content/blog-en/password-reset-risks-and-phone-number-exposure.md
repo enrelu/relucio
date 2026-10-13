@@ -1,7 +1,6 @@
 ---
 title: 'Password reset risks: exposing phone numbers'
-description: Have you ever wondered how much of your personal information is just
-  a few clicks away? In today's entry we will see the "fascinating" world of rest...
+description: "How password reset flows leak phone numbers and expose users to SIM swapping attacks. Technical breakdown and actionable mitigation steps for identity safety."
 pubDate: '2023-11-27'
 category: Vulnerabilities
 tags:

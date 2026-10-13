@@ -1,7 +1,6 @@
 ---
 title: Return on investment (ROI) in cybersecurity
-description: In today's ever-evolving threat landscape, cybersecurity has become a
-  top priority for businesses of all sizes...
+description: "How do you justify security budgets to the board? Learn how to calculate Return on Security Investment (ROSI) and communicate the financial value of defense."
 pubDate: '2025-01-22'
 category: Business
 tags:

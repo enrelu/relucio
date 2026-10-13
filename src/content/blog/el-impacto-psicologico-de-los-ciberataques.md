@@ -1,6 +1,6 @@
 ---
 title: 'El impacto psicológico de los ciberataques'
-description: 'La gestión psicológica post-ciberataque suele ser el gran olvidado en ciberseguridad. Más allá de la “batalla técnica”, los equipos sufren estrés, ansiedad y bl...'
+description: "La respuesta a un ciberataque no es solo técnica. Analizamos el desgaste psicológico, el estrés y el agotamiento en los equipos de respuesta y cómo gestionarlo."
 pubDate: '2025-10-03'
 category: 'Consejos'
 tags: ['Ciberataque','Gestión riesgos','Personas']

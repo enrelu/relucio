@@ -1,7 +1,6 @@
 ---
 title: 'Ransomware: trends and how to defend yourself'
-description: Ransomware is a type of malware that encrypts data and demands a ransom
-  in exchange for the decryption key. It is one of the biggest threats to cybersecurity...
+description: "Ransomware evolution, RaaS ecosystems, and double extortion threats: how to build a layered defense and incident recovery roadmap against cyber extortion."
 pubDate: '2023-10-20'
 category: Trends
 tags:

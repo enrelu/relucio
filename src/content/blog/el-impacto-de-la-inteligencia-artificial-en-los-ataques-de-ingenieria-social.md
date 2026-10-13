@@ -1,6 +1,6 @@
 ---
 title: 'El impacto de la inteligencia artificial en los ataques de ingeniería social'
-description: 'La ingeniería social es un conjunto de técnicas utilizadas por los ciberdelincuentes para engañar a las personas y hacer que divulguen información confidencial ...'
+description: "Descubre cómo la IA revoluciona la ingeniería social con deepfakes y clonación de voz, y qué medidas deben adoptar las organizaciones para protegerse del engaño."
 pubDate: '2023-02-14'
 category: 'Tendencias'
 tags: ['Deepfake' , 'IA' , 'Phishing' , 'Voice cloning']

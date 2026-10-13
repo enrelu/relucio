@@ -1,7 +1,6 @@
 ---
 title: What is happening in Spain with the NIS2 Directive?
-description: Spain is 16 months behind with NIS2. Power struggles, parliamentary blackmail
-  and 418 million at risk while critical infrastructure waits...
+description: "Spain faces significant delays transposing the European NIS2 Directive. Key insights on regulatory friction, funding at risk, and new corporate obligations."
 pubDate: '2026-02-10'
 category: Strategy
 tags:
