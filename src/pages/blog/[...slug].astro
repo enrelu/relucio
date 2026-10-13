@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import ConsultingCta from '../../components/ConsultingCta.astro';
 
 // 1. Generamos las rutas para cada post
 export async function getStaticPaths() {
@@ -125,6 +126,8 @@ const socialImage = heroImage
 			</div>
 
 		</article>
+
+		<ConsultingCta />
 
 		{/* NAVEGACIÓN ENTRE ARTÍCULOS (NUEVO) */}
 		<div class="flex flex-col sm:flex-row justify-between gap-4 mt-16 mb-8">

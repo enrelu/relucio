@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /test.json
 
 Sitemap: https://relucio.es/sitemap-index.xml

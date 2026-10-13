@@ -44,6 +44,28 @@ const references = [
   {company:'ALTEN',text:'Creación de la unidad Telco y desarrollo de grandes cuentas.',metric:'2,5 M€',context:'Cartera anual de la unidad.'},
   {company:'Babel',text:'Dirección del negocio y del equipo comercial de Levante.',metric:'4 comerciales',context:'Equipo establecido y dirigido en Levante.'},
 ];
+const faqs = [
+  {
+    q: '¿Para qué tipo de empresas está pensado este servicio?',
+    a: 'Para empresas tecnológicas B2B (software, ciberseguridad, cloud, ingeniería IT) que ya tienen clientes y facturación, pero cuya actividad comercial depende de la improvisación o se atasca en el fundador.'
+  },
+  {
+    q: '¿En qué se diferencia de contratar a un Director Comercial o a una agencia?',
+    a: 'No soy una agencia de prospección en frío ni un comercial subcontratado. Trabajo como consultor y director comercial fraccional para ordenar la operativa: definir criterios de seguimiento, estructurar la oferta, capacitar al equipo y dejar herramientas en marcha para que el negocio funcione con autonomía.'
+  },
+  {
+    q: '¿Cuánto tiempo y dedicación requiere del equipo directivo?',
+    a: 'El trabajo se hace sobre situaciones comerciales reales (oportunidades abiertas, propuestas en curso), sin burocracia paralela. Requiere sesiones periódicas de trabajo conjunto y revisión, diseñadas para liberar tiempo al fundador, no para sobrecargarlo.'
+  },
+  {
+    q: '¿Cuánto dura la intervención y cuándo se ven resultados?',
+    a: 'El diagnóstico inicial y las prioridades se definen en las primeras semanas. La estructuración del método y la puesta en marcha de herramientas suele desarrollarse en periodos de 2 a 3 meses, con mejoras inmediatas en el seguimiento de oportunidades desde el primer mes.'
+  },
+  {
+    q: '¿Qué ocurre en la conversación inicial de 30 minutos?',
+    a: 'Es una sesión de diagnóstico para entender qué vendes, quién vende y dónde se atasca el trabajo. No hay compromiso comercial: si puedo ayudarte te explicaré cómo abordarlo, y si no encaja, te daré mi visión sincera.'
+  }
+];
 ---
 <Layout wide title="Enrique Relucio | Consultoría comercial para empresas tecnológicas B2B" description="Pongo orden en tu actividad comercial: analizo cómo vendes, definimos una forma de trabajar y configuramos herramientas para ejecutarla.">
   <div class="framework-landing">
@@ -52,7 +74,7 @@ const references = [
         <p class="eyebrow">Consultoría comercial · Empresas tecnológicas B2B</p>
         <h1 id="hero-title">Pongo orden en tu actividad comercial.</h1>
         <p class="hero-description">Analizo cómo vendes, trabajo contigo para definir una forma de hacerlo mejor y te doy herramientas para llevarla al día a día.</p>
-        <div class="hero-actions"><a class="button button-primary" href="/contacto">Hablemos de tu negocio <span aria-hidden="true">↗</span></a><a class="text-link" href="#metodo">Ver cómo trabajo ↓</a></div>
+        <div class="hero-actions"><a class="button button-primary" href="/contacto" data-track="cta-hero">Hablemos de tu negocio <span aria-hidden="true">↗</span></a><a class="text-link" href="#metodo">Ver cómo trabajo ↓</a></div>
       </div>
       <figure class="hero-scheme framework-scheme" aria-labelledby="scheme-title">
         <figcaption id="scheme-title">Cómo pasamos del análisis al trabajo diario.</figcaption>
@@ -91,6 +113,36 @@ const references = [
       <a class="text-link section-link" href="/sobre-mi#trayectoria">Ver trayectoria y proyectos →</a>
     </section>
 
-    <section class="closing-cta" aria-labelledby="contact-title"><p class="eyebrow">Siguiente paso</p><h2 id="contact-title">Cuéntame cómo estás vendiendo hoy.</h2><p>Qué ofreces, quién se ocupa de vender y dónde se atasca el trabajo. En la conversación inicial veremos si puedo ayudarte y por dónde tendría sentido empezar.</p><a class="button button-primary" href="/contacto">Hablemos de tu negocio <span aria-hidden="true">↗</span></a></section>
+    <section id="faq" class="section-block" aria-labelledby="faq-title">
+      <div class="section-heading"><p class="eyebrow">Dudas frecuentes</p><h2 id="faq-title">Preguntas sobre el servicio de consultoría.</h2></div>
+      <div class="faq-list">
+        {faqs.map(faq => (
+          <details class="faq-item">
+            <summary class="faq-question">
+              <span>{faq.q}</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <div class="faq-answer">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(f => ({
+        "@type": "Question",
+        "name": f.q,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": f.a
+        }
+      }))
+    })} />
+
+    <section class="closing-cta" aria-labelledby="contact-title"><p class="eyebrow">Siguiente paso</p><h2 id="contact-title">Cuéntame cómo estás vendiendo hoy.</h2><p>Qué ofreces, quién se ocupa de vender y dónde se atasca el trabajo. En la conversación inicial veremos si puedo ayudarte y por dónde tendría sentido empezar.</p><a class="button button-primary" href="/contacto" data-track="cta-closing">Hablemos de tu negocio <span aria-hidden="true">↗</span></a></section>
   </div>
 </Layout>

@@ -4,7 +4,7 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial?locale=
 ---
 <Layout wide title="Let’s talk about your business | Enrique Relucio" description="Tell me what is happening with your sales and book an initial conversation.">
   <div id="contact-layout" class="contact-layout">
-    <header class="contact-intro"><p class="eyebrow">Initial conversation · 30 minutes</p><h1>Let’s talk about your business.</h1><p>First, tell me what is happening with your sales and what you would like to change. Then choose a time to talk.</p><ol class="booking-steps" aria-label="Booking steps"><li id="context-step" aria-current="step"><span>01</span> Your business</li><li id="time-step"><span>02</span> Choose a time</li></ol><p class="contact-note">We agree on the scope and time commitment once I understand your situation.</p></header>
+    <header class="contact-intro"><p class="eyebrow">Initial conversation · 30 minutes</p><h1>Let’s talk about your business.</h1><p>First, tell me what is happening with your sales and what you would like to change. Then choose a time to talk.</p><ol class="booking-steps" aria-label="Booking steps"><li id="context-step" aria-current="step"><span>01</span> Your business</li><li id="time-step"><span>02</span> Choose a time</li></ol><div class="direct-channels-card"><p class="direct-channels-title"><strong>Prefer direct contact?</strong></p><div class="direct-channels-items"><a class="text-link" href="mailto:enrique@relucio.es?subject=Discussion%20about%20commercial%20consulting"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> enrique@relucio.es</a><a class="text-link" href="https://www.linkedin.com/in/enriquerelucio/" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn ↗</a></div><p class="contact-promise">I reply personally within 24 business hours.</p></div><p class="contact-note">We agree on the scope and time commitment once I understand your situation.</p></header>
     <section id="context-panel" class="form-panel" aria-label="Context for the meeting">
       <form id="contact-form" method="POST">
         <div class="form-row"><div><label for="name">Name</label><input id="name" name="name" type="text" autocomplete="name" maxlength="120" required /></div><div><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="254" required /></div></div>
@@ -23,6 +23,13 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial?locale=
       <p id="booking-status" class="form-status" role="status" aria-live="polite">Loading available times…</p>
       <div id="calendar-error" class="form-error" role="alert" hidden><p>The calendar is taking a while to load. Your answers are still here; you can retry or return to the form.</p><button id="retry-btn" type="button" class="text-link">Retry calendar</button></div>
       <div id="calendly-embed" class="calendly-embed" data-booking-url={booking}></div>
+      <div class="calendar-fallback-box">
+        <p><strong>Prefer not to use the calendar now or need another time?</strong></p>
+        <p>You can send your answers directly by email to Enrique and he will reply personally.</p>
+        <a id="email-backup-btn" class="button button-secondary" href="mailto:enrique@relucio.es?subject=Discussion%20about%20commercial%20consulting">
+          Send my answers via email to Enrique <span aria-hidden="true">✉️</span>
+        </a>
+      </div>
     </section>
     <section id="booking-confirmed" class="form-panel booking-confirmed" aria-labelledby="confirmed-title" hidden tabindex="-1"><p class="eyebrow">Booking confirmed</p><h2 id="confirmed-title">Your conversation is booked.</h2><p>Calendly has confirmed the reservation. You'll find details and options to change or cancel your meeting in your meeting confirmation.</p><a class="text-link" href="/en/">Back to home →</a></section>
   </div>
@@ -47,7 +54,47 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial?locale=
   let prefill: CalendlyOptions['prefill'] | null = null;
   button.disabled = false;
   const controls = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input,textarea'));
-  controls.forEach(control => control.addEventListener('input', () => control.setCustomValidity('')));
+  const backupBtn = document.getElementById('email-backup-btn') as HTMLAnchorElement | null;
+
+  // Restore draft if available
+  try {
+    const savedDraft = sessionStorage.getItem('relucio_contact_draft_en');
+    if (savedDraft) {
+      const parsed = JSON.parse(savedDraft);
+      controls.forEach(control => {
+        if (parsed[control.name]) control.value = parsed[control.name];
+      });
+    }
+  } catch {}
+
+  const saveDraft = () => {
+    try {
+      const draft: Record<string, string> = {};
+      controls.forEach(c => { draft[c.name] = c.value; });
+      sessionStorage.setItem('relucio_contact_draft_en', JSON.stringify(draft));
+    } catch {}
+  };
+
+  controls.forEach(control => control.addEventListener('input', () => {
+    control.setCustomValidity('');
+    saveDraft();
+  }));
+
+  function updateBackupEmail(name: string, email: string, company: string, situation: string, goal: string) {
+    if (!backupBtn) return;
+    const subject = encodeURIComponent(`Sales consulting inquiry from ${name} (${company})`);
+    const body = encodeURIComponent(
+      `Hi Enrique,\n\nI am writing to discuss my company's sales situation:\n\n` +
+      `- Name: ${name}\n` +
+      `- Email: ${email}\n` +
+      `- Company/Website: ${company}\n\n` +
+      `Current sales situation:\n${situation}\n\n` +
+      `What we would like to change:\n${goal}\n\n` +
+      `Looking forward to hearing from you.`
+    );
+    backupBtn.href = `mailto:enrique@relucio.es?subject=${subject}&body=${body}`;
+  }
+
   function loadWidget(): Promise<void> {
     if (window.Calendly) return Promise.resolve();
     if (widgetPromise) return widgetPromise;
@@ -88,19 +135,28 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial?locale=
     controls.forEach(control => control.setCustomValidity(control.value.trim() ? '' : "Complete this field."));
     if (!form.reportValidity()) return;
     const value = (name: string) => (form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement).value.trim();
-    // a1 corresponde al campo de notas (primera pregunta) del evento actual.
-    prefill = { name: value('name'), email: value('email'), customAnswers: { a1: `Company or website:
-${value('company')}
+    const nameVal = value('name');
+    const emailVal = value('email');
+    const companyVal = value('company');
+    const situationVal = value('situation');
+    const goalVal = value('goal');
 
-Business situation:
-${value('situation')}
+    updateBackupEmail(nameVal, emailVal, companyVal, situationVal, goalVal);
+    saveDraft();
 
-What would you like to change:
-${value('goal')}` } };
+    // a1 corresponds to notes in Calendly
+    prefill = { name: nameVal, email: emailVal, customAnswers: { a1: `Company or website:\n${companyVal}\n\nBusiness situation:\n${situationVal}\n\nWhat would you like to change:\n${goalVal}` } };
     loading = true; button.disabled = true; error.hidden = true; status.textContent = "Preparing the calendar…";
     form.setAttribute('aria-busy','true');
-    try { await loadWidget(); showCalendar(); }
-    catch { backToForm(); error.textContent = "The calendar could not be loaded. Your answers are still here. Press Continue again to try again."; error.hidden = false; }
+    try {
+      await loadWidget();
+      showCalendar();
+    }
+    catch {
+      backToForm();
+      error.textContent = "The calendar could not be loaded. Your answers are still here. You can click Continue again or use the email link below.";
+      error.hidden = false;
+    }
     finally { loading = false; button.disabled = false; status.textContent = ''; form.setAttribute('aria-busy','false'); }
   });
   document.getElementById('back-btn')?.addEventListener('click', () => { backToForm(); document.getElementById('name')?.focus(); });
@@ -111,7 +167,69 @@ ${value('goal')}` } };
     const data = event.data;
     if (data?.event !== 'calendly.event_scheduled' || typeof data.payload?.event?.uri !== 'string' || !/^https:\/\/api\.calendly\.com\/scheduled_events\/[a-zA-Z0-9-]+$/.test(data.payload.event.uri)) return;
     clearTimeout(frameTimer); bookingPanel.hidden = true; embed.replaceChildren(); prefill = null; form.reset();
+    try { sessionStorage.removeItem('relucio_contact_draft_en'); } catch {}
     const confirmed = document.getElementById('booking-confirmed')!; confirmed.hidden = false; confirmed.focus();
     document.getElementById('time-step')?.removeAttribute('aria-current');
   });
 </script>
+
+<style>
+  .direct-channels-card {
+    margin: 28px 0;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .direct-channels-title {
+    font-size: 14px;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+  .direct-channels-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .direct-channels-items .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: var(--ink);
+  }
+  .direct-channels-items .text-link:hover {
+    color: var(--accent);
+  }
+  .contact-promise {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 12px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+  .calendar-fallback-box {
+    margin-top: 24px;
+    padding: 24px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .calendar-fallback-box p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .calendar-fallback-box p + p {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .calendar-fallback-box .button {
+    margin-top: 8px;
+  }
+</style>

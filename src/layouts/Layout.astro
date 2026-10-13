@@ -35,8 +35,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 <!doctype html>
 <html lang={locale} class="scroll-smooth">
 	<head>
-		<SecurityHeaders />
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<SecurityHeaders />
         <script is:inline>
           // Detect only at the unqualified home entry; explicit /en/ and deep links win.
           (() => {
@@ -48,11 +49,34 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           })();
         </script>
 		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+		<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+		<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
+		
+		<!-- Speculation Rules API for instant navigation to high-conversion pages -->
+		<script type="speculationrules">
+		{
+			"prerender": [
+				{
+					"where": {
+						"href_matches": ["/contacto/", "/en/contact/", "/sobre-mi/", "/en/about/"]
+					},
+					"eagerness": "moderate"
+				}
+			],
+			"prefetch": [
+				{
+					"where": {
+						"href_matches": "/*"
+					},
+					"eagerness": "conservative"
+				}
+			]
+		}
+		</script>
 		<title>{title}</title>
         <meta name="generator" content={Astro.generator} />
         {import.meta.env.VERCEL_ENV === "preview" && <meta name="robots" content="noindex, nofollow" />}
@@ -80,22 +104,44 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <meta property="twitter:description" content={description} />
         <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
-        <!-- JSON-LD Structured Data for Personal Website -->
+        <!-- JSON-LD Structured Data for Personal and Professional Consulting -->
         <script type="application/ld+json" set:html={JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Person",
-            "name": "Enrique Relucio",
-            "url": "https://relucio.es",
-            "image": "https://relucio.es/sobre_mi.jpg",
-            "sameAs": [
-                "https://www.linkedin.com/in/enriquerelucio/"
-            ],
-            "jobTitle": isEnglish ? "Sales leadership and business development" : "Dirección comercial y desarrollo de negocio",
-            "worksFor": {
-                "@type": "Organization",
-                "name": "Alcorce Ciberseguridad"
-            },
-            "description": description
+            "@graph": [
+                {
+                    "@type": "Person",
+                    "@id": "https://relucio.es/#enrique-relucio",
+                    "name": "Enrique Relucio",
+                    "url": "https://relucio.es",
+                    "image": "https://relucio.es/sobre_mi.jpg",
+                    "sameAs": [
+                        "https://www.linkedin.com/in/enriquerelucio/",
+                        "https://x.com/enrelu",
+                        "https://github.com/enrelu"
+                    ],
+                    "jobTitle": isEnglish ? "B2B Technology Sales Consultant & Fractional Sales Director" : "Consultor comercial y dirección de desarrollo de negocio B2B",
+                    "description": description
+                },
+                {
+                    "@type": "ProfessionalService",
+                    "@id": "https://relucio.es/#consulting-service",
+                    "name": "Enrique Relucio - Consultoría Comercial B2B",
+                    "url": "https://relucio.es",
+                    "logo": "https://relucio.es/Logo_ER_B%26W.png",
+                    "image": "https://relucio.es/sobre_mi.jpg",
+                    "founder": { "@id": "https://relucio.es/#enrique-relucio" },
+                    "description": description,
+                    "areaServed": ["ES", "EU", "Worldwide"],
+                    "knowsAbout": [
+                        "B2B Sales Consulting",
+                        "Cybersecurity",
+                        "Telecommunications",
+                        "Commercial Strategy",
+                        "Sales Operations and Pipeline Management"
+                    ],
+                    "priceRange": "$$$$"
+                }
+            ]
         })} />
 		<script is:inline>
 			const theme = (() => {
@@ -114,8 +160,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         <Footer />
 
     <script>
-      import { inject } from '@vercel/analytics';
+      import { inject, track } from '@vercel/analytics';
       inject();
+
+      // Telemetría de interacción con CTAs
+      document.addEventListener('click', (event) => {
+        const target = (event.target as HTMLElement)?.closest('[data-track]');
+        if (target) {
+          const trackId = target.getAttribute('data-track');
+          if (trackId) {
+            try { track('cta_click', { location: trackId }); } catch {}
+          }
+        }
+      });
     </script>
 	</body>
 </html>
