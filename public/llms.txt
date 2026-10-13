@@ -17,12 +17,11 @@
 
 ## Páginas Clave
 - [Inicio / Propuesta de Valor](https://relucio.es/): Diagnóstico, método de trabajo, oferta para empresas tech y dudas frecuentes.
-- [Contacto y Reserva](https://relucio.es/contacto/): Formulario de diagnóstico previo y reserva de conversación inicial de 30 minutos (Calendly o email directo).
+- [Contacto y Reserva](https://relucio.es/contacto/): Formulario de diagnóstico previo y reserva de conversación inicial de 30 minutos (Calendly).
 - [Sobre mí y Trayectoria](https://relucio.es/sobre-mi/): Perfil profesional, proyectos liderados, certificaciones y cifras de negocio.
 - [Blog de Tecnología y Estrategia](https://relucio.es/blog/): 23 artículos sobre ciberseguridad, gestión del riesgo tecnológico, ROI y estrategia comercial.
 - [English Version](https://relucio.es/en/): Full English site with sales consulting framework and translated articles.
 
-## Contacto Directo
-- Email: enrique@relucio.es
+## Contacto
 - LinkedIn: https://www.linkedin.com/in/enriquerelucio/
 - Web: https://relucio.es

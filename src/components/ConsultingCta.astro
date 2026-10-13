@@ -15,16 +15,14 @@ const content = {
     title: '¿Tu actividad comercial depende demasiado de la improvisación?',
     description: 'Analizo cómo vendes hoy, definimos una forma clara de trabajar y configuramos herramientas para que tu equipo ejecute con criterio compartido.',
     cta: 'Hablemos de tu negocio',
-    secondary: 'Ver cómo trabajo',
-    direct: 'O escríbeme directamente a'
+    secondary: 'Ver cómo trabajo'
   },
   en: {
     eyebrow: 'Sales consulting · B2B technology companies',
     title: 'Is your sales operation relying too much on guesswork?',
     description: 'I assess how you sell today, define a clear way of working, and configure practical tools so your team executes with shared criteria.',
     cta: 'Let’s talk about your business',
-    secondary: 'See how I work',
-    direct: 'Or email me directly at'
+    secondary: 'See how I work'
   }
 }[isEnglish ? 'en' : 'es'];
 ---
@@ -44,10 +42,6 @@ const content = {
           {content.secondary} ↓
         </a>
       </div>
-
-      <p class="cta-box-direct">
-        {content.direct} <a href="mailto:enrique@relucio.es" class="direct-email">enrique@relucio.es</a>
-      </p>
     </div>
   </div>
 </aside>
@@ -83,23 +77,7 @@ const content = {
     align-items: center;
     gap: 20px;
     flex-wrap: wrap;
-    margin-bottom: 20px;
-  }
-  .cta-box-direct {
-    font-size: 14px;
-    color: var(--muted);
-    margin: 0;
-    padding-top: 16px;
-    border-top: 1px solid var(--line);
-  }
-  .direct-email {
-    color: var(--ink);
-    font-weight: 500;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  .direct-email:hover {
-    color: var(--accent);
+    margin-bottom: 0;
   }
   @media (max-width: 767px) {
     .consulting-cta-box {

@@ -88,14 +88,6 @@ try {
     { category: "Navegación", name: "Sobre mí", icon: "user", action: () => window.location.href = "/sobre-mi" },
     { category: "Navegación", name: "Contacto", icon: "mail", action: () => window.location.href = "/contacto" },
     { category: "Acciones", name: "Cambiar Tema (Claro/Oscuro)", icon: "moon", action: () => document.getElementById('theme-toggle')?.click() },
-    { category: "Acciones", name: "Copiar Email", icon: "copy", action: async () => {
-        try {
-            await navigator.clipboard.writeText("contacto@relucio.es"); // Reemplazar con email real si se desea
-            alert("Email copiado al portapapeles");
-        } catch (err) {
-            console.error('Error al copiar', err);
-        }
-    }},
     { category: "Social", name: "LinkedIn", icon: "linkedin", action: () => window.open("https://linkedin.com/in/enriquerelucio", "_blank") },
     { category: "Social", name: "Twitter / X", icon: "twitter", action: () => window.open("https://twitter.com/enrelu", "_blank") },
   ];
