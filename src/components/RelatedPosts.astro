@@ -1,0 +1,83 @@
+---
+interface RelatedPostItem {
+  id: string;
+  data: {
+    title: string;
+    description: string;
+    category: string;
+    tags?: string[];
+    pubDate: Date;
+    heroImage?: string;
+  };
+}
+
+interface Props {
+  posts: RelatedPostItem[];
+  locale?: 'es' | 'en';
+}
+
+const { posts, locale = 'es' } = Astro.props;
+const isEnglish = locale === 'en';
+
+const basePath = isEnglish ? '/en/blog' : '/blog';
+---
+
+{posts && posts.length > 0 && (
+  <section class="related-posts-section mt-16 pt-10 border-t border-zinc-200 dark:border-zinc-800" aria-labelledby="related-posts-heading">
+    <div class="mb-6">
+      <p class="text-xs font-mono uppercase tracking-widest text-zinc-400 mb-1">
+        {isEnglish ? 'Topic Cluster' : 'Temática relacionada'}
+      </p>
+      <h2 id="related-posts-heading" class="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
+        {isEnglish ? 'Related articles' : 'Artículos relacionados'}
+      </h2>
+      <p class="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+        {isEnglish 
+          ? 'Deepen into strategy, cybersecurity governance, and technology risk management.' 
+          : 'Profundiza en estrategia, gobierno de ciberseguridad y gestión del riesgo tecnológico.'}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {posts.map((post) => {
+        const postUrl = `${basePath}/${post.id}/`;
+        const formattedDate = post.data.pubDate.toLocaleDateString(isEnglish ? 'en-US' : 'es-ES', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric'
+        });
+
+        return (
+          <article class="flex flex-col justify-between p-5 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700 transition-all hover:shadow-sm group">
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-blue-600 dark:text-blue-400 uppercase tracking-wider text-[11px]">
+                  {post.data.category}
+                </span>
+                <time datetime={post.data.pubDate.toISOString()} class="text-zinc-400 font-mono text-[11px]">
+                  {formattedDate}
+                </time>
+              </div>
+
+              <h3 class="font-bold text-base text-zinc-900 dark:text-zinc-100 line-clamp-2 leading-snug group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">
+                <a href={postUrl} class="focus:outline-none">
+                  {post.data.title}
+                </a>
+              </h3>
+
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-3 leading-relaxed">
+                {post.data.description}
+              </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80">
+              <a href={postUrl} class="text-xs font-medium text-orange-600 dark:text-orange-400 inline-flex items-center gap-1 group-hover:underline">
+                {isEnglish ? 'Read article' : 'Leer artículo'} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+)}

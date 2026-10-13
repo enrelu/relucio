@@ -1,7 +1,6 @@
 ---
 title: 'The supply chain: the new weak point'
-description: The digital supply chain has become one of the weakest links in corporate
-  cybersecurity, transforming from a secondary concern...
+description: "Third-party risk is the leading corporate intrusion vector. Discover how to assess vendor vulnerabilities and align with regulations like NIS2 and DORA."
 pubDate: '2025-06-03'
 category: Trends
 tags:

@@ -1,7 +1,6 @@
 ---
 title: Cybersecurity trends in the second quarter of 2023
-description: According to the Google Cybersecurity Action Team report, various trends
-  and threats have been identified in the second quarter of 2023...
+description: "Highlights from Google's Cybersecurity Action Team report: emerging threats in cloud environments, typosquatting campaigns, and attack vectors in SaaS tools."
 pubDate: '2023-11-08'
 category: Trends
 tags:

@@ -1,6 +1,6 @@
 ---
 title: 'El retorno de la inversión (ROI) en Ciberseguridad'
-description: 'En el panorama actual de amenazas en constante evolución, la ciberseguridad se ha convertido en una prioridad fundamental para las empresas de todos los tamaños...'
+description: "¿Cómo justificar el presupuesto de seguridad ante la dirección? Guía para calcular el retorno de inversión (ROSI) y comunicar el valor financiero de la protección."
 pubDate: '2025-01-22'
 category: 'Negocio'
 tags: ['ROI']

@@ -1,6 +1,6 @@
 ---
 title: 'Panorama de las brechas de datos personales del año 2022'
-description: 'Cada vez son más las organizaciones que sufren pérdidas de información confidencial debido a ataques cibernéticos, errores humanos o malas prácticas de segurida...'
+description: "Resumen de los principales incidentes y filtraciones de datos personales en 2022: causas, errores humanos, vectores cibernéticos y medidas de contingencia."
 pubDate: '2023-01-22'
 category: 'Tendencias'
 tags: ['Data Breach' ,'Data Leak']

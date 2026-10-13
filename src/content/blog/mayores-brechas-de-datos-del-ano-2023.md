@@ -1,6 +1,6 @@
 ---
 title: 'Mayores brechas de datos del año 2023'
-description: 'Al comenzar el nuevo año, una vez más, hacemos resumen de las brechas de seguridad que han expuesto mayor número de datos personales. El año 2023 presenció un t...'
+description: "Análisis de las mayores brechas de seguridad e incidentes de filtración de datos de 2023: lecciones aprendidas, vectores de ataque y cómo prevenir incidentes."
 pubDate: '2024-01-24'
 category: 'Tendencias'
 tags: ['Data Breach' , 'Data Leak']

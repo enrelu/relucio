@@ -1,6 +1,6 @@
 ---
 title: 'Traduciendo el Riesgo: Cómo presentar informes de ciberseguridad que el CEO sí entienda'
-description: 'Hace poco tuve en mis manos un informe de auditoría técnica impecable. Eran 40 páginas de análisis exhaustivo, lleno de evidencias, puntuaciones CVSS y referenc...'
+description: "Aprende a transformar informes técnicos de ciberseguridad en decisiones estratégicas de negocio: la fórmula para comunicar riesgo financiero y conseguir presupuesto."
 pubDate: '2025-12-02'
 category: 'Negocio'
 tags: ['CEO', 'CISO', 'ROI']

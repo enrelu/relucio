@@ -1,7 +1,6 @@
 ---
 title: 'Protecting your brand: DMARC'
-description: Email is a key tool for businesses, but its popularity also makes it
-  a prime target for cybercriminals. ...
+description: "Prevent email spoofing and Business Email Compromise (BEC) using SPF, DKIM, and DMARC: practical implementation steps to protect your brand reputation."
 pubDate: '2024-05-02'
 category: Technologies
 tags:
@@ -35,7 +34,7 @@ DMARC offers three options:
 * Quarantine: mail is delivered to the “junk” mailbox
 * Reject: Mails are rejected and deleted directly
 
-![DMARC](https://relucio.es/wp-content/uploads/2024/02/DMARC-1024x438.png)
+![DMARC: How email authentication, quarantine, and rejection policies work](/protegiendo-tu-marca-dmarc.jpg)
 
 ### **Why DMARC?**
 

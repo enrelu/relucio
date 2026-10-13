@@ -1,6 +1,6 @@
 ---
 title: 'Ransomware: tendencias y cómo defenderse'
-description: 'El ransomware es un tipo de malware que cifra los datos y exige un rescate a cambio de la clave de descifrado. Es una de las mayores amenazas a la cibersegurida...'
+description: "Evolución del ransomware, modelos RaaS y tácticas de doble extorsión: cómo diseñar una estrategia de defensa multicapa y recuperación ante secuestro de datos."
 pubDate: '2023-10-20'
 category: 'Tendencias'
 tags: ['Bases de datos' , 'Cifrado' , 'Dark web' , 'IA' , 'Ransomware']

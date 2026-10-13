@@ -1,7 +1,6 @@
 ---
 title: The impact of artificial intelligence on social engineering attacks
-description: Social engineering is a set of techniques used by cybercriminals to trick
-  people into divulging confidential information...
+description: "Discover how AI enhances social engineering through deepfakes and voice cloning, and learn the defensive strategies organizations need to prevent manipulation."
 pubDate: '2023-02-14'
 category: Trends
 tags:

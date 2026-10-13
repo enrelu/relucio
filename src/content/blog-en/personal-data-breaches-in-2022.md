@@ -1,7 +1,6 @@
 ---
 title: An overview of personal data breaches in 2022
-description: More and more organizations are suffering losses of confidential information
-  due to cyber attacks, human error or poor security practices...
+description: "Summary of the major personal data leaks and corporate breaches of 2022: human error, cyber attack patterns, and organizational contingency recommendations."
 pubDate: '2023-01-22'
 category: Trends
 tags:

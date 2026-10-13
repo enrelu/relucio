@@ -1,7 +1,6 @@
 ---
 title: 'Cloud security myths: why default settings do not protect you'
-description: In recent weeks I have had several meetings with managers that have left
-  me really uneasy. There is a systematically repeated pattern that seems...
+description: "Cloud infrastructure is not secure by default. Understand shared responsibility models and the critical misconfigurations that leave cloud workloads exposed."
 pubDate: '2025-12-04'
 category: Business
 tags:

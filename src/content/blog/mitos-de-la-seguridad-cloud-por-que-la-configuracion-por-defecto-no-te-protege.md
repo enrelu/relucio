@@ -1,6 +1,6 @@
 ---
 title: 'Mitos de la seguridad cloud: Por qué la configuración por defecto no te protege'
-description: 'En las últimas semanas he mantenido varias reuniones con directivos que me han dejado realmente inquieto. Hay un patrón se repite de forma sistemática que parec...'
+description: "La nube no es segura por defecto. Analizamos el modelo de responsabilidad compartida y los errores de configuración más comunes que exponen infraestructuras cloud."
 pubDate: '2025-12-04'
 category: 'Negocio'
 tags: ['CEO','CISO','Cloud']

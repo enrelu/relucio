@@ -1,7 +1,6 @@
 ---
 title: Is email secure?
-description: Mail seems like a direct path, but it goes through clients, servers,
-  DNS, relays and filters. These are the layers that protect you and your limits.
+description: "Email feels direct, but journeys through clients, servers, DNS, relays, and filters. Discover the protocols that protect it and where their limits lie."
 pubDate: '2026-09-16'
 category: Technology
 tags:

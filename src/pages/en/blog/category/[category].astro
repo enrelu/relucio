@@ -17,13 +17,29 @@ export async function getStaticPaths() {
 
 const { category } = Astro.params;
 const { posts } = Astro.props;
+
+const pageTitle = `Articles on ${category} | Enrique Relucio Blog`;
+const pageDesc = `Articles, analysis, and insights on ${category} covering cybersecurity, technology risk, and B2B sales strategy by Enrique Relucio.`;
+const currentUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const homeUrl = new URL('/en/', Astro.site).toString();
+const blogUrl = new URL('/en/blog/', Astro.site).toString();
 ---
 
-<Layout title={`Posts about ${category}`}>
+<Layout title={pageTitle} description={pageDesc}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${currentUrl}#breadcrumb`,
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": homeUrl },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": blogUrl },
+      { "@type": "ListItem", "position": 3, "name": category, "item": currentUrl }
+    ]
+  })} />
   <main class="container">
     <header class="page-header">
-      <p>Browse category:</p>
-      <h1>#{category}</h1>
+      <p class="category-eyebrow">Blog Category</p>
+      <h1>{category}</h1>
       <a href="/en/blog/" class="back-link">← Return to blog</a>
     </header>
     
@@ -54,6 +70,15 @@ const { posts } = Astro.props;
     margin-bottom: 3rem;
     border-bottom: 1px solid var(--line);
     padding-bottom: 2rem;
+  }
+
+  .category-eyebrow {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin: 0;
   }
 
   .page-header h1 {

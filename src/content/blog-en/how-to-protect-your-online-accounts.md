@@ -1,7 +1,6 @@
 ---
 title: How to protect your online accounts
-description: In an increasingly connected world, it is essential to protect our data
-  and online accounts. From social networks to online banking, we all have information...
+description: "Learn how to protect your digital accounts from unauthorized access: best practices for strong passwords, two-factor authentication (2FA), and risk reduction."
 pubDate: '2023-02-01'
 category: Tips
 tags:

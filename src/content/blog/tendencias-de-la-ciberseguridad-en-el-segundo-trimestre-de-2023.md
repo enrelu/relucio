@@ -1,6 +1,6 @@
 ---
 title: 'Tendencias de la ciberseguridad en el segundo trimestre de 2023'
-description: 'Según el informe del equipo de acción de ciberseguridad de Google, en el segundo trimestre de 2023 se han identificado diversas tendencias y amenazas en el ámbi...'
+description: "Resumen del informe de ciberseguridad de Google: principales amenazas en entornos cloud, campañas de typosquatting y vectores de ataque en aplicaciones SaaS."
 pubDate: '2023-11-08'
 category: 'Tendencias'
 tags: ['Cloud','Google','SaaS','Typosquatting']

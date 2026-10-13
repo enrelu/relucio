@@ -1,6 +1,6 @@
 ---
 title: '¿Qué es la gestión continua de la exposición a amenazas (CTEM)?'
-description: 'La Gestión Continua de la Exposición a Amenazas (CTEM, por sus siglas en inglés) es un programa proactivo y holístico de ciberseguridad diseñado para identifica...'
+description: "Aprende en qué consiste el marco CTEM de Gartner: un enfoque proactivo de 5 fases para priorizar y reducir la superficie de ataque frente a vulnerabilidades reales."
 pubDate: '2024-11-27'
 category: 'Tendencias'
 tags: ['CTEM' , 'Gestión riesgos' , 'Superficie ataque' , 'Vulnerabilidades']

@@ -1,7 +1,6 @@
 ---
 title: Choosing strong passwords
-description: 'Busting Myths: Password Strength Password strength is important in specific
-  contexts, such as when it comes to protecting valuable information...'
+description: "Busting password strength myths: discover what genuinely makes credentials secure, how brute-force attacks work, and how to safeguard corporate access."
 pubDate: '2023-09-26'
 category: Tips
 tags:

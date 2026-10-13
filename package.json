@@ -7,9 +7,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:i18n": "npm run build && node scripts/check-i18n.mjs"
+    "check:i18n": "npm run build && node scripts/check-i18n.mjs",
+    "audit:html": "node scripts/audit-html.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.2",
     "@tailwindcss/vite": "^4.1.18",
     "@vercel/analytics": "^1.6.1",

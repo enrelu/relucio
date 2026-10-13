@@ -1,6 +1,6 @@
 ---
 title: '¿Qué es Data Security Posture Management (DSPM)?'
-description: 'La Gestión de la Postura de Seguridad de Datos (Data Security Posture Management – DSPM) es un enfoque para asegurar que los datos sensibles siempre tengan la p...'
+description: "Descubre qué es DSPM (Data Security Posture Management): visibilidad total de datos sensibles en la nube, control de acceso y mitigación de riesgos de fuga."
 pubDate: '2023-08-03'
 category: 'Tecnologías'
 tags: ['Cloud','Datos','DSPM']

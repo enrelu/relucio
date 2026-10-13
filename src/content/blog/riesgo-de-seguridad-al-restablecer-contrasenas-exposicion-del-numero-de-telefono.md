@@ -1,6 +1,6 @@
 ---
 title: 'Riesgo de seguridad al restablecer contraseñas: exposición del número de teléfono'
-description: '¿Alguna vez te has preguntado cuánto de tu información personal está al alcance de un par de clics? En la entrada de hoy veremos el «fascinante» mundo del resta...'
+description: "¿Cómo los flujos de recuperación de contraseñas filtran números de teléfono y facilitan ataques de SIM Swapping? Riesgos reales y recomendaciones de mitigación."
 pubDate: '2023-11-27'
 category: 'Vulnerabilidades'
 tags: ['Lastpass' , 'MFA' , 'SIM Swapping' , 'SS7']

@@ -1,6 +1,6 @@
 ---
 title: 'Vulnerabilidades y riesgos en VPNs: ataque de TunnelCrack'
-description: 'En un documento aceptado por USENIX Association, académicos de New York University y KU Leuven han detallado las vulnerabilidades conocidas colectivamente como ...'
+description: "Análisis de las vulnerabilidades TunnelCrack en clientes VPN: cómo los atacantes logran desviar tráfico fuera del túnel cifrado y cómo asegurar las conexiones."
 pubDate: '2023-11-08'
 category: 'Vulnerabilidades'
 tags: ['HTTPS','TunnelCrack','VPN']

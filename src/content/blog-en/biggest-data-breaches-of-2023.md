@@ -1,8 +1,6 @@
 ---
 title: The biggest data breaches of 2023
-description: As we begin the new year, once again, we summarize the security breaches
-  that have exposed the greatest number of personal data. The year 2023 witnessed
-  a...
+description: "Review of the largest corporate data breaches of 2023: attack vectors, millions of exposed records, lessons learned, and defensive takeaways for organizations."
 pubDate: '2024-01-24'
 category: Trends
 tags:

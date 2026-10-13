@@ -1,8 +1,6 @@
 ---
 title: Can spam end up costing you?
-description: Selling databases containing your email address is illegal, but reporting
-  it can feel like a lost cause. There is a free tool that does far more damage to
-  the spammer…
+description: "Selling email databases is illegal, but reporting it is difficult. Discover free, legal strategies to neutralize spammers and protect your inbox privacy."
 pubDate: '2026-07-17'
 category: Tips
 tags:

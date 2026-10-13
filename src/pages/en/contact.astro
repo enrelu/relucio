@@ -47,7 +47,31 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial?locale=
   let prefill: CalendlyOptions['prefill'] | null = null;
   button.disabled = false;
   const controls = Array.from(form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input,textarea'));
-  controls.forEach(control => control.addEventListener('input', () => control.setCustomValidity('')));
+
+  // Restore draft if available
+  try {
+    const savedDraft = sessionStorage.getItem('relucio_contact_draft_en');
+    if (savedDraft) {
+      const parsed = JSON.parse(savedDraft);
+      controls.forEach(control => {
+        if (parsed[control.name]) control.value = parsed[control.name];
+      });
+    }
+  } catch {}
+
+  const saveDraft = () => {
+    try {
+      const draft: Record<string, string> = {};
+      controls.forEach(c => { draft[c.name] = c.value; });
+      sessionStorage.setItem('relucio_contact_draft_en', JSON.stringify(draft));
+    } catch {}
+  };
+
+  controls.forEach(control => control.addEventListener('input', () => {
+    control.setCustomValidity('');
+    saveDraft();
+  }));
+
   function loadWidget(): Promise<void> {
     if (window.Calendly) return Promise.resolve();
     if (widgetPromise) return widgetPromise;
@@ -88,19 +112,27 @@ const booking = 'https://calendly.com/enriquerelucio/conversacioninicial?locale=
     controls.forEach(control => control.setCustomValidity(control.value.trim() ? '' : "Complete this field."));
     if (!form.reportValidity()) return;
     const value = (name: string) => (form.elements.namedItem(name) as HTMLInputElement | HTMLTextAreaElement).value.trim();
-    // a1 corresponde al campo de notas (primera pregunta) del evento actual.
-    prefill = { name: value('name'), email: value('email'), customAnswers: { a1: `Company or website:
-${value('company')}
+    const nameVal = value('name');
+    const emailVal = value('email');
+    const companyVal = value('company');
+    const situationVal = value('situation');
+    const goalVal = value('goal');
 
-Business situation:
-${value('situation')}
+    saveDraft();
 
-What would you like to change:
-${value('goal')}` } };
+    // a1 corresponds to notes in Calendly
+    prefill = { name: nameVal, email: emailVal, customAnswers: { a1: `Company or website:\n${companyVal}\n\nBusiness situation:\n${situationVal}\n\nWhat would you like to change:\n${goalVal}` } };
     loading = true; button.disabled = true; error.hidden = true; status.textContent = "Preparing the calendar…";
     form.setAttribute('aria-busy','true');
-    try { await loadWidget(); showCalendar(); }
-    catch { backToForm(); error.textContent = "The calendar could not be loaded. Your answers are still here. Press Continue again to try again."; error.hidden = false; }
+    try {
+      await loadWidget();
+      showCalendar();
+    }
+    catch {
+      backToForm();
+      error.textContent = "The calendar could not be loaded. Your answers are still here. You can try again.";
+      error.hidden = false;
+    }
     finally { loading = false; button.disabled = false; status.textContent = ''; form.setAttribute('aria-busy','false'); }
   });
   document.getElementById('back-btn')?.addEventListener('click', () => { backToForm(); document.getElementById('name')?.focus(); });
@@ -111,6 +143,7 @@ ${value('goal')}` } };
     const data = event.data;
     if (data?.event !== 'calendly.event_scheduled' || typeof data.payload?.event?.uri !== 'string' || !/^https:\/\/api\.calendly\.com\/scheduled_events\/[a-zA-Z0-9-]+$/.test(data.payload.event.uri)) return;
     clearTimeout(frameTimer); bookingPanel.hidden = true; embed.replaceChildren(); prefill = null; form.reset();
+    try { sessionStorage.removeItem('relucio_contact_draft_en'); } catch {}
     const confirmed = document.getElementById('booking-confirmed')!; confirmed.hidden = false; confirmed.focus();
     document.getElementById('time-step')?.removeAttribute('aria-current');
   });

@@ -1,7 +1,6 @@
 ---
 title: What is Continuous Threat Exposure Management (CTEM)?
-description: Continuous Threat Exposure Management (CTEM) is a proactive and holistic
-  cybersecurity program designed to identify...
+description: "Explore Gartner's CTEM framework: a 5-stage proactive approach to identify, validate, and prioritize vulnerabilities across your organization's attack surface."
 pubDate: '2024-11-27'
 category: Trends
 tags:

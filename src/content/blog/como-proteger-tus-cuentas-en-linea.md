@@ -1,6 +1,6 @@
 ---
 title: 'Cómo proteger tus cuentas en línea'
-description: 'En un mundo cada vez más conectado, es fundamental proteger nuestros datos y cuentas en línea. Desde redes sociales hasta banca electrónica, todos tenemos infor...'
+description: "Aprende a proteger tus cuentas digitales frente a intrusiones: mejores prácticas para contraseñas seguras, autenticación en dos factores (2FA) y gestión del riesgo."
 pubDate: '2023-02-01'
 category: 'Consejos'
 tags: ['Contraseñas' , 'MFA' , 'Phishing' , 'Redes sociales']
